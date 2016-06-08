@@ -1,0 +1,58 @@
+--- nbody-seq-v1.c	2011-03-24 22:31:19.000000000 -0400
++++ nbody-seq.c	2011-03-24 22:31:30.000000000 -0400
+@@ -9,10 +9,11 @@
+ #define EPS 1e-10
+ 
+ /// runtime on my computer: 1m
++// on my laptop, 2m8s
+ #define POINTS 500 * 64
+-#define SPACE 100.0f;
++#define SPACE 1000.0f;
+ 
+-cl_float4 bodyBodyInteraction(cl_float4 bi, cl_float4 bj, cl_float4 ai) {
++void bodyBodyInteraction(cl_float4 bi, cl_float4 bj, cl_float4 *ai) {
+     cl_float4 r;
+     
+     r.x = bj.x - bi.x;
+@@ -27,11 +28,9 @@
+ 
+     float s = bj.w * invDistCube;
+ 
+-    ai.x += r.x * s;
+-    ai.y += r.y * s;
+-    ai.z += r.z * s;
+-
+-    return ai;
++    ai->x += r.x * s;
++    ai->y += r.y * s;
++    ai->z += r.z * s;
+ }
+ 
+ void calculateForces(int points, int global_id, cl_float4 * globalP, cl_float4 * globalA) {
+@@ -41,7 +40,7 @@
+     cl_float4 acc = {0.0f, 0.0f, 0.0f, 1.0f};
+     
+     for (i = 0; i < points; i ++) {
+-	acc = bodyBodyInteraction(myPosition, globalP[i], acc);
++	bodyBodyInteraction(myPosition, globalP[i], &acc);
+     }
+     globalA[global_id] = acc;
+ }
+@@ -58,7 +57,7 @@
+ 	pts[i].x = ((float)rand())/RAND_MAX * SPACE;
+ 	pts[i].y = ((float)rand())/RAND_MAX * SPACE;
+ 	pts[i].z = ((float)rand())/RAND_MAX * SPACE;
+-	pts[i].w = ((float)rand())/RAND_MAX; // size in [0, 1].
++	pts[i].w = 1.0f; // size = 1.0f for simplicity.
+     }
+     return pts;
+ }
+@@ -83,7 +82,7 @@
+ 	calculateForces(POINTS, i, x, a);
+ 
+     for (i = 0; i < POINTS; i++)
+-	printf("(%2.2f,%2.2f,%2.2f,%2.2f) (%2.2f,%2.2f,%2.2f)\n", 
++	printf("(%2.2f,%2.2f,%2.2f,%2.2f) (%2.3f,%2.3f,%2.3f)\n", 
+ 	       x[i].x, x[i].y, x[i].z, x[i].w,
+ 	       a[i].x, a[i].y, a[i].z);
+     return 0;

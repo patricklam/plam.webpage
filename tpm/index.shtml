@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Software Engineering Technical Presentation Milestone</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+  <h3>TPM Presentation</h3>
+
+  <p>If you are fluent in git, the git repository for my TPM
+  presentation is at:</p>
+
+  <p style="text-align:center"><code> http://patricklam.ca/tpm/tpm-presentation.git/ </code></p>
+
+  <p>You can also download the presentation in <a href="tpm.pdf">PDF</a> format.</p>
+
+  <h3>Rules</h3>
+
+  <ul>
+  <li><a href="http://ece.uwaterloo.ca/Undergrad/Academics/Forms/TPPEEvaluationForm.pdf">Evaluation form</a>.</li>
+  <li><a href="http://www.ece.uwaterloo.ca/~tppe000/">Electrical and Computer Engineering TPM page.</a> (This page contains a lot of resources on TPMs, and a couple of <a href="http://www.ece.uwaterloo.ca/~tppe000/Examples/">example talks</a>.)</li>
+  <li><a href="http://www.softeng.uwaterloo.ca/Current/policies.htm#tpm">Software Engineering rules for the TPM.</a></li>
+  </ul>
+
+  <h3>Resources</h3>
+
+  <p>I don't like slideware. However, the TPM requirements do include the use of slideware. Here are some resources for you to consider. Although some of the suggestions may not apply to the rigid TPM format, I encourage you to experiment with more useful and creative presentation formats in your later careers.</p>
+
+  <ul>
+  <li><a href="http://www.garrreynolds.com/Presentation/index.html">Garr Reynolds's presentation tips</a> and his <a href="http://presentationzen.blogs.com/presentationzen/">Presentation Zen blog</a>.</li>
+  <li><a href="http://www.presentationzen.com/presentationzen/2005/11/the_zen_estheti.html">Jobs vs. Gates</a>, again on Presentation Zen.</li>
+  <li><a href="www.ctan.org/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf">Manual for the Beamer TeX presentation package</a>, by Till Tantau. I recommend Chapter 5, "Guidelines for Creating Presentations."</li>
+  <li>An original way to use slides: <a href="http://lessig.org">Larry Lessig</a> on <a href="http://randomfoo.net/oscon/2002/lessig/free.html">free culture</a>.</li>
+  <li><a href="http://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0000qY">Thread about "The Cognitive Style of PowerPoint"</a>, a pamphlet by <a href="http://www.edwardtufte.com">Edward Tufte</a>.</li>
+  <li><a href="http://www.edwardtufte.com/bboard/q-and-a-fetch-msg?msg_id=0001yB">Thread "PowerPoint Does Rocket Science&mdash;and Better Techniques for Technical Reports</a>.</li>
+  <li><a href="http://www.norvig.com/Gettysburg/index.htm">Gettysburg Powerpoint Presentation</a>, by Peter Norvig.</li>
+  </ul>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

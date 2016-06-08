@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 251: Programming Languages and Translators</title>
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Building top-down parsers</h3>
+
+<p>There are a lot of information sources on top-down parsers on the Internet.
+Here is <a href="http://dragonbook.stanford.edu/lecture-notes/Stanford-CS143/07-Top-Down-Parsing.pdf">one good one</a>; it is affiliated with a text that we're not using.</p>
+
+<h3>ANTLRWorks</h3>
+
+<p>Working on Lab 1? Having trouble with your ANTLR grammar? Try <a href="http://www.antlr.org/works/index.html">ANTLRWorks</a>!</p>
+
+<p>I also found another <a href="http://fmt.cs.utwente.nl/courses/vertalerbouw/sheets/vb-04-antlr-1-4up.pdf">bunch of slides</a> about using ANTLR. They don't make sense if you have no clue about compilers. But now you should have enough clue for them to make a lot of sense.</p>
+
+<h3>Regexps</h3>
+
+<p>Here are some more links for regular expressions (thanks Mehdi):</p>
+
+<ul>
+<li> <i>Practical Programming in Tcl and Tk</i>, 3rd Edition, by Brent Welch, 2003. (Chapter 11 is on Regular Expressions and you can <a href="http://www.beedub.com/book/3rd/regexp.pdf">access it online</a>.)</li>
+<li> <i>Regular Expression Pocket Reference</i>, 2nd Edition, by Tony Stubblebine, O`Reilly Media Inc., 2007. (You can <a href="http://my.safaribooksonline.com/9780596514273">access it online at Safari</a>.)</li>
+<li> Regular Expressions quick reference sheets: <a href="http://www.night-ray.com/regex.pdf">sheet 1</a> or <a href="http://opencompany.org/download/regex-cheatsheet.pdf">sheet 2</a>.</li>
+</ul>
+
+<p>You can explore regular expressions using the following tool: 
+<code><a href="http://gskinner.com/RegExr/">http://gskinner.com/RegExr/</a></code>. Thanks to Aly Hirani for the link!</p>
+
+<p>Another useful reference is at <a href="http://www.regular-expressions.info"><code>http://www.regular-expressions.info</code></a>, which says much more about regular expressions in practice than I possibly could in lecture.</p>
+
+<h3>XML and XML parsing in Java</h3>
+
+<p>The following Chapters from the J2EE 1.4 Tutorial (Update 7):</p>
+<ul>
+<li>Chapter 2: Understanding XML</li>
+<li>Chapter 4: Java API for XML Processing (JAXP)</li>
+<li>Chapter 5: Simple API for XML (SAX)</li>
+<li>Chapter 6: Document Object Model (DOM)</li>
+</ul>
+
+<p>You can access the tutorial online at:</p>
+<ul>
+<li><a href="http://download.oracle.com/javaee/1.4/tutorial/doc/index.html">HTML</a></li>
+<li><a href="http://download.oracle.com/javaee/1.4/tutorial/doc/J2EETutorial.pdf">PDF</a></li>
+</ul>
+
+<h3>Bootstrapping</h3>
+
+<p>I found an online compilers book, 
+<i>Compilers and Compiler Generators</i>, by P.D. Terry.
+<a href="http://scifac.ru.ac.za/compilers/cha03s.htm">Chapter 3</a> talks about bootstrapping. You can also find the whole
+book at:</p>
+
+<blockquote>
+http://scifac.ru.ac.za/compilers/
+</blockquote>
+
+
+</div>
+
+</div>
+<!--#include virtual="/sase/includes/footer.html" -->

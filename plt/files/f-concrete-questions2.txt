@@ -1,0 +1,101 @@
+* execution: interpretation and JIT compilation
+   1. Fill in parts of the code for a bytecode interpreter.
+   2. Name and compare different the three interpreter designs.
+   3. What are the advantages and disadvantages of JIT compilers?
+       When would you use them?
+   4. What state does an interpreter need to store? why?
+   5. Why is it hard to handle goto statements in an AST-walking interpreter?
+   6. Compare and contrast the state that an AST needs vs. the state a
+       VM needs.
+   7. Why would you use a JIT compiler to convert x86 code to x86 code?
+
+(The above questions are pretty concrete already.)
+
+* functional languages
+
+1. Consider the following Java loop:
+
+        for (Id i : scope.keySet()) {
+            if (isString(scope.get(i)))
+                s.add(qualifiedVariableName(i));
+        }
+
+Use map and filter, and anonymous functions, to write equivalent code
+in a higher-order language.
+
+2. Write a function filterN which takes a parameter N and returns a
+function which filters a list, keeping only elements which are greater
+than N.
+
+3. Recall that the fold statement takes a function (which takes an
+accumulator and a list element), an initial value for the accumulator,
+and a list. What does the following fold statement do?
+
+fold (fun x y -> x + " " + y) "" l
+
+4a. [mapreduce]: Draw the block diagram for map reduce, 
+       including the inputs and outputs of the map and reduce phases.
+
+4b. [mapreduce]: Reverse web-link graph: You can view the Web as a
+graph, in the following sense: each web page (node) contains a number
+of links (edges). We want to compute the reverse web-link graph,
+which answers the question: given a web page, which pages point to it?
+Suggest map and reduce functions for computing this graph.
+
+* logic programming languages
+
+1. http://www.csse.monash.edu.au/~lloyd/tildeLogic/Prolog.toy/Examples/
+
+Here is a Prolog program.
+
+witch(X)  <= burns(X) and female(X).
+burns(X)  <= wooden(X).
+wooden(X) <= floats(X).
+floats(X) <= sameweight(duck, X).
+
+female(girl).          {by observation}
+sameweight(duck,girl). {by experiment }
+
+What is the output of the following query? Why?
+
+? witch(girl).
+
+2. Here's another program from the same site.
+
+born(charles, elizabeth2, philip).
+born(anne,    elizabeth2, philip).
+born(andrew,  elizabeth2, philip).
+born(edward,  elizabeth2, philip).
+
+born(diana,   frances,    edwardSpencer).
+
+born(william, diana,      charles).
+born(henry,   diana,      charles).
+
+Which of these clauses unify with the following query?
+
+? born(S, elizabeth2, Y)
+
+* scripting languages
+
+1. Give me a use case for a scripting language.
+
+2. Name some properties of scripting (and all other kinds of) languages.
+        (Here's a bunch of applications, which is the best language?)
+
+I could make question 2 concrete, but so can you.
+
+* domain-specific languages
+
+1. Do you ever *need* a DSL? Why or why not?
+2. What are disadvantages of using DSLs?
+3. Why would you use a DSL versus a general-purpose language?
+
+4. You have to extract data from a set of semi-structured
+logfiles. Each log file contains a set of lines, and a line contains a
+number of colon-delimited fields. You have to run a number of
+different queries on these log files. Propose a DSL for this task;
+describe characteristics of your DSL, e.g. internal vs. external, and
+describe what you need to code. Defend your choices.
+
+

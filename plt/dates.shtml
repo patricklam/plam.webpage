@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 251: Programming Languages and Translators: Important Dates</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+    <h3>Important Dates</h3>
+    <table>
+      <tr><td>September 21&nbsp;&nbsp;</td><td>L1 out</td></tr>
+      <tr><td>October 9</td><td>L1 due, L2 out</td></tr>
+      <tr><td>October 26-28</td><td>Midterm week, no lectures</td></tr>
+      <tr><td>October 28</td><td>Midterm (10-11:20AM), MC4021/RCH302</td></tr>
+      <tr><td>November 3-4</td><td>Patrick in <a href="http://www.rv2010.org">Malta</a>, no lectures</td></tr>
+      <tr><td>November 6</td><td>L2 due</td></tr>
+      <tr><td>November 19</td><td>Project part 1 due</td></tr>
+      <tr><td>December 2</td><td>Last lecture; project part 2, 3 due</td></tr>
+      <tr><td>December 10</td><td>Final exam, 2.5 hours, 16:00-18:30, RCH 103/105/106</td></tr>
+    </table>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

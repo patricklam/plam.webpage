@@ -1,0 +1,45 @@
+<h2>Patch: de-lameify evince</h2>
+
+<p id="date">May 12, 2008</p>
+
+<code>
+From:    Patrick Lam <prof.lam@gmail.com><br>
+To:      evince-list@gnome.org<br>
+Date:    Mon, May 12, 2008 at 7:12 PM<br>
+Subject: Patch: do not persist print pages settings, etc.<br>
+<br>
+Hi,<br>
+<br>
+I've been frustrated a number of times by evince's persisting of page<br>
+ranges for printing. That is, if I print pages 1-3 of x.pdf, and then<br>
+tomorrow I print y.pdf without checking the dialog box, evince happily<br>
+prints pages 1-3 of y.pdf. No sane person could want that!<br>
+<br>
+Please consider the following trivial diff, which prevents the<br>
+persisting of page information.<br>
+<br>
+</code>
+<pre>
+Index: shell/ev-application.c
+===================================================================
+--- shell/ev-application.c      (revision 3031)
++++ shell/ev-application.c      (working copy)
+@@ -828,6 +828,12 @@
+       if (application->print_settings)
+               g_object_unref (application->print_settings);
+
++       /* Do not persist print pages, page ranges, or page set. */
++       /* (I've wasted too many pages on this. -plam) */
++       gtk_print_settings_set_print_pages(settings, GTK_PRINT_PAGES_ALL);
++       gtk_print_settings_set_page_ranges(settings, NULL, 0);
++       gtk_print_settings_set_page_set(settings, GTK_PAGE_SET_ALL);
++
+       application->print_settings = g_object_ref (settings);
+ }
+</pre>
+<code>
+<br>
+Thanks!<br>
+<br>
+pat
+</code>

@@ -1,0 +1,104 @@
+version 0
+
+Here is the general abstract question list. Some of these questions may 
+disappear as I find that I can't convert them to satisfactory concrete
+questions.
+
+There are a lot of memorization questions here. Memorization will
+account for at most 33% of the exam, and I will try to make these
+questions more understanding-based and less memorization-based as I
+concretize them.
+
+The abstract questions from the midterm apply also. 
+
+* abstract syntax trees
+   1. Identify nodes which are in the parse tree but not in the AST
+   2. Give me an AST traversal (sequence of calls); which design pattern
+       would you use to code AST traversal?
+   3. Why did you have to deploy multiple visitors simultaneously in your
+       project?
+   4. What properties did you check of the ASTs in your project?
+
+* symbol tables
+   1. How do symbol tables work? What is tricky to implement? Why do they
+       differ from just a simple HashMap? What should be in a symbol table?
+       When do we need symbol table information?
+   2. Give me an example of the difference between static and dynamic scope.
+   3. When do we check for symbol definitions and uses?
+   4. What language feature do you require if you're to implement a one-pass
+       symbol table? Name languages which require multi-pass symbol tables,
+       and say why.
+   5. I give you some symbol table operations. You tell me what they do and
+       (pseudocode) how to implement them.
+
+* type checking
+   1. What guarantees do type checkers give you?
+   2. Tell me about the implications of checking types at: a) compile time;
+        b) run-time; c) not at all.
+   3. Why would you want to infer types? Why not?
+   4. When is it inappropriate to do an automatic type coercion?
+        e.g. Here is some code. Identify places where you would coerce
+        automatically and where you'd give an error.
+   5. Give code examples triggering a given set of type errors.
+   6. Nominal vs. structural type equivalence.
+   7. Use the type checking formalism to manually type-check a given
+        example. (including environments)
+   8. What is the connection between type rules and the implementation of a
+        type checker?
+
+* code generation
+   1. Convert expressions into three-address code.
+   1b. Convert an AST into a CFG.
+   2. Describe how to address impedence-mismatch issues in source-to-source
+       transformers (e.g. what's hard when translating Java to C?)
+   3. What are some potential applications of source-to-source	
+       transformations?
+   4. Why do you need to do register allocation? When does it occur?
+       (Relate this to save/restoreVariablesHelper on the project).
+   5. What are the outcomes of code generation, and what steps does the
+       compiler take to get there?
+
+* execution: interpretation and JIT compilation
+   1. Fill in parts of the code for a bytecode interpreter
+   2. Name and compare different the three interpreter designs
+   3. What are the advantages and disadvantages of JIT compilers?
+       when would you use them?
+   4. What state does an interpreter need to store? why?
+   5. Why is it hard to handle goto statements in an AST-walking interpreter?
+   6. Compare and contrast the state that an AST needs vs. the state a
+       VM needs.
+   7. Why would you use a JIT compiler to convert x86 code to x86 code?
+
+* functional languages
+   1. Convert imperative code (e.g. a loop) to use higher-order functions,
+       like some of the loops in the project code.
+   2. Solve some problem (which I give you) using map, fold, filter, etc.
+       e.g. write map in terms of fold.
+   3. Be able to deploy or interpret a fold statement.
+   4. Infer type of a given expression (which includes a higher-order fn).
+   5. Currying: why would you use it?
+   6. mapreduce: I specify a problem, you tell me the map and reduce phases.
+   7. mapreduce: be able to draw the block diagram for map reduce, 
+       including phases.
+
+* logic programming languages
+   1. I give you a logic program and a query. You tell me the output.
+   2. Tell me about search as the execution strategy, and how unification
+       fits in.
+   3. "Which of these clauses unify?"
+
+* scripting languages
+   1. Give me a use case for a scripting language.
+   2. Name some properties of scripting (and all other kinds of) languages.
+        (Here's a bunch of applications, which is the best language?)
+
+* domain-specific languages
+   1. Do you ever *need* a DSL? Why or why not?
+   2. Wha are disadvantages of using DSLs?
+   3. Why would you use a DSL versus a general-purpose language?
+   4. I give you a scenario where you might use a DSL.
+        You tell me about the characteristics of the appropriate DSL,
+        e.g. internal vs. external, and describe what you need to code.
+        For instance, dealing with XML.
+
+

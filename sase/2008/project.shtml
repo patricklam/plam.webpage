@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 750-T05: Static Analysis for Software Engineering: Project Ideas</title>
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Project Ideas</h3>
+
+<p>Here are a couple of project ideas, in no particular order. You
+should come see me to discuss your project idea. You are, of course,
+free to choose a project that is not on this list.</p>
+
+<ul>
+ <li><b>Modify Soot to read and write local type information.</b> The
+Java Virtual Machine specification has recently changed so that it
+requires classfiles to contain information on local variable types; this
+information used to be inferred from the bytecode and now must be
+explicitly included. In this project, you will modify
+the <a href="http://www.sable.mcgill.ca/soot">Soot</a> program
+analysis framework so that it emits the appropriate type
+information. You should also make Soot use this type information,
+which may be faster than the current type inference algorithm. <br />
+
+You can find a discussion of the issues involved
+in <a href="http://www.bodden.de/wordpress/wp-content/uploads/2008/03/bodden-javados.pdf">this
+report</a>. </li>
+
+ <li><b>Extend the Java type system.</b> We've seen non-null types as 
+part of Spec#. The <a href="http://jastadd.org">JastAdd</a> project implements
+non-null types as a Java extension. In this project, your job is to explore
+an extension to the Java type system that enables developers to specify
+some program property and to verify it. Past examples of type system extensions
+include non-null types and stationary fields; suggest a new type system
+extension and implement it.</li>
+
+ <li><b>Novel application of pointer analysis.</b> Static analysis writers
+need pointer analysis and they know it. Developers need pointer analysis
+and they don't know it. In this project, you propose a way to make pointer
+analysis results available to developers (perhaps as an Eclipse plugin).
+See <a href="http://www.sable.mcgill.ca/~hendren/ftp/ghiya/thesis.ps.gz">
+Rakesh Ghiya</a>'s PhD thesis or <a href="http://www.cag.csail.mit.edu/~salcianu/publications/phd-thesis.pdf">Alex Salcianu</a>'s SM thesis for ideas. Purity 
+analysis also ought to be useful; see Alex's thesis for details on that.
+</li>
+
+ <li><b>Making sound static analysis results available to Eclipse.</b> Evaluate
+the static analysis results currently available to Eclipse plugins and
+see how they are sound or unsound. Eclipse plugins need analysis results
+quickly, but sound pointer analyses need the whole program. One way to
+get around this problem is to create summaries of the whole program
+and to update the summaries when any file changes. </li>
+
+<!-- <li><b>Verify a runtime property statically.</b></li>-->
+
+ <li><b>Compare your intuition with profiling information.</b> A famous
+saying: "Premature Optimization is the Root of All Evil". (attributed to
+Donald Knuth). See <a href="http://weblogs.mozillazine.org/roc/archives/2005/11/immature_optimization.html">Rob O'Callahan</a> for an alternate take
+on the saying. The key point here, I think, is that people have terrible
+intuition about where the bottlenecks are going to be. This experimental
+project would compare intuition about performance with profiling results.</li>
+
+</ul>
+
+  </div>
+</div>
+<!--#include virtual="/sase/includes/footer.html" -->

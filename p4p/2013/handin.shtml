@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 459: Programming for Performance: Assignment Handin</title>
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<?php
+/* sanitize_file_name taken from WordPress, which is GPL. */
+/**
+ * Filters certain characters from the file name.
+ *
+ * Turns all strings to lowercase removing most characters except alphanumeric
+ * with spaces, dashes and periods. All spaces and underscores are converted to
+ * dashes. Multiple dashes are converted to a single dash. Finally, if the file
+ * name ends with a dash, it is removed.
+ *
+ * @since 2.1.0
+ *
+ * @param string $name The file name
+ * @return string Sanitized file name
+ */
+function sanitize_file_name( $name ) { // Like sanitize_title, but with periods
+    $name = strtolower( $name );
+    $name = preg_replace('/&.+?;/', '', $name); // kill entities
+    $name = str_replace( '_', '-', $name );
+    $name = preg_replace('/[^a-z0-9\s-.]/', '', $name);
+    $name = preg_replace('/\s+/', '-', $name);
+    $name = preg_replace('|-+|', '-', $name);
+    $name = trim($name, '-');
+    return $name;
+}
+
+function getpw($uid) {
+    $fp = fopen('uploads/passwd', 'r');
+    if (!$fp) {
+      echo 'passwd does not exist!?</body></html>'; 
+      exit;
+    }
+    while (!feof($fp)) {
+      $line = fgets($fp, 1024);
+      list ($u, $p, $f) = split ('\|', $line);
+      if ($u == $uid) $rv = $p;
+    }
+    fclose($fp);
+    return $rv;
+}
+
+$uid = sanitize_file_name($_POST["uid"]); $name = $_POST["name"]; 
+$pw = $_POST["pw"];
+$actualpw = getpw($uid);
+
+if (isset($actualpw) && getpw($uid) != $pw) {
+ echo "<p style='color:red'>Code doesn't match; mail Patrick to have your code reset.</p>";
+ exit;
+}
+
+if (($uid == "" || $name == "") && (isset($_FILES["zip"]["name"])))
+ echo "<p style='color:red'>You must enter both your uid and your name. Submission refused.</p>";
+else
+  if (isset($_FILES["zip"])) {
+   if (($_FILES["zip"]["error"] > 0 || $_FILES["zip"]["name"] == "name")) {
+     $err = $_FILES["zip"]["error"];
+     echo "<p>Did not successfully receive file: $err.</p>";
+   } else {
+     $fname = sanitize_file_name($_FILES["zip"]["name"]);
+
+     $latest_dir = "uploads/latest";
+     if (!file_exists($latest_dir)) mkdir ($latest_dir, 0777, true);
+     $latest_name = "$latest_dir/$uid-$fname";
+
+     $lfile=fopen("uploads/log", "a");
+     fputs($lfile, "Submission of file $fname, dated ".date("D M j G:i:s T Y")." by $name.\n");
+     fclose($lfile);
+
+     $pwf = fopen("uploads/passwd", "r");
+     $pwn = fopen("uploads/passwd.new", "w");
+     if (!$pwn) { echo 'cannot open new passwd!?</body></html>'; exit;}
+     while (!feof($pwf)) {
+       $line = fgets($pwf, 1024);
+       list ($u, $p, $f) = split ('\|', $line);
+       if ($u != $uid) fputs($pwn, $line);
+     }
+     fputs($pwn, "$uid|$pw|$fname\n");
+     fclose ($pwf); fclose ($pwn);
+     rename ("uploads/passwd", "uploads/passwd~");
+     rename ("uploads/passwd.new", "uploads/passwd");
+     unlink ("uploads/passwd~");
+
+     $neworused = "new submission";
+     if (file_exists($latest_name)) {
+       $archive_dir = "uploads/archive/";
+       if (!file_exists($archive_dir)) mkdir ($archive_dir, 0777, true);
+       rename($latest_name, $archive_dir . $uid . "-" . $fname . "-" . mktime());
+       $neworused = "resubmission";
+     }
+     move_uploaded_file($_FILES["zip"]["tmp_name"], $latest_name);
+
+     echo "<p>Successfully received a $neworused from $name ($uid) for assignment 2. </p>";
+  }
+}
+?>
+
+<!-- <p style="color:red">Beta test! Please mail Patrick Lam after you've successfully submitted your assignment, to make sure
+that it has arrived.</p> -->
+
+<p>This is the submission site for assignment 4. You
+can also give me hardcopy of non-code submissions in class.  You may
+make multiple submissions; the system will keep all past submissions
+from you as well, so you can submit files separately and resubmit as
+needed. Be aware that my upload limit is 16M; your files shouldn't
+need to be that big anyway.</p>
+
+<!-- <p>I only need one submission per group. Just be sure to indicate the
+names of all your group members.</p> -->
+
+<p>Do not upload Word documents. They make me cranky.</p>
+
+<p style="color:red">Please include your name in all files you submit. You do not need to include your name in the filename, but do include it in any PDFs, because I might mass print all PDFs.</p>
+
+<form enctype="multipart/form-data" action="/p4p/handin.shtml" method="POST">
+<input type="hidden" name="MAX_FILE_SIZE" value="16000000" />
+Please enter your username: <input name="uid" type="text" /> <br />
+Please enter your name: <input name="name" type="text" /> <br />
+Please choose a (low-security) code for re-verifying your upload: <input name="pw" type="text" /> <br />
+Choose an archive (.zip, .tar.gz, .jar, etc) to upload: <input name="zip" type="file" /><br />
+<input type="submit" value="Upload A4" />
+</form>
+
+</div>
+
+</div>
+<!--#include virtual="/p4p/includes/footer.html" -->

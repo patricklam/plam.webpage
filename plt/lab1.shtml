@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 251: Programming Languages and Translators: Lab 1</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Assignment specification</h3>
+
+<p>Here is the original specification of <a href="files/a1.pdf">Lab
+1</a>. You may also consult
+the <a href="files/lab1-javadoc">Javadoc</a> of my sample solution, if
+you want.</p>
+
+<p>Here are the <a href="files/testcases.pdf">test case specifications</a>
+as well as a <a href="files/sample-lab1-testcase.zip">sample testcase</a>.
+</p>
+
+<p>Here are the final versions of <a href="files/a1/Interp.java"><code>Interp.java</code></a>, <a href="files/a1/TreeValue.java"><code>TreeValue.java</code></a> and <a href="files/a1/Expr.java"><code>Expr.java</code></a>. </p>
+
+<h3>Harness script</h3>
+
+<p>We intend to use this <a href="files/a1/harness.sh">harness script</a> 
+to check your files. This version will ignore all whitespace. I also will
+use a subset of the test cases which I've posted for marking, removing the
+ones that are bad. I don't have a clear idea right now of which ones are bad.
+</p>
+
+<h3>Classpath Problems</h3>
+
+<p>A number of people have trouble with the compiler not finding antlr
+classes. Be sure that <code>antlr3.jar</code> is in your classpath; our
+scripts should do that for you, if you're using bash. To check your classpath,
+type <code>echo $CLASSPATH</code> and see if you have any antlr jars in there.
+If not, you're probably not using bash.</p>
+
+<h3>Testcases</h3>
+
+<p>Here is the <a href="files/a1/part1-final.tar.gz">final first
+half</a> (revised so that it unpacks into the part1-final
+subdirectory).  and <a href="files/a1/part2-final.tar.gz">final second
+half</a>.  I've had reports that some test cases are incorrect. I will
+look through the test cases before marking. If you choose to trust the
+reports, here is a list of <a href="files/a1/broken-tests.txt">broken
+first half test cases</a> (now readable).</p>
+
+<h3>Notes on <code>TreeValue</code> and <code>AtomValue</code></h3>
+
+<p>For the supplied <code>TreeValue</code> to work properly, your
+<code>IdExpr</code> implementation should make a copy of the value
+from the store. Then <code>AtomValue</code> should perform in-place
+changes on its fields. You should also simultaneously initialize both 
+<code>intVal</code> and <code>stringVal</code> on the <code>AtomValue</code>
+so that <code>TreeValue</code> works right (i.e. if you have an int,
+make sure you also set the stringVal to the right thing.)
+</p>
+
+<p>If you are confused by the <code>AtomValue</code> constructors, just
+rearrange them as you'd like and change your <code>TreeValue</code>
+implementation to call the appropriate ones.</p>
+
+<h3>Handin Instructions</h3>
+
+<p> Please submit a <code>tar.gz</code> file generated as follows: run "tar czvf ece251-lab1-[watid].tar.gz grammar src" in your ece251-lab1 directory and submit the resulting file. It should contain your grammar and all of your source files. </p>
+
+<h3>Test harness for Atom Values</h3>
+
+<p>Jon has provided a <a href="files/a1/atom-harness.tar.gz">test harness for Atom values</a>. The 10 tests in this suite are worth 40% of the Lab 1 mark. The other tests will be worth 60%.</p>
+
+<h3>Default Environment</h3>
+
+<p>Jon has provided a script to configure your environment on ecelinux.
+If you need help setting up an environment, you can follow these directions.
+</p>
+
+<h4>Windows</h3>
+
+<ul>
+<li>Download and install PuTTy.</li>
+<li>Open PuTTY. In the connect box, type <code>ecelinux.uwaterloo.ca</code> for the host and hit "Open".</li>
+<li>Type in your WatID when prompted.</li>
+</ul>
+
+<h4>Mac/Linux</h4>
+
+<ul>
+<li>Type <code>ssh yourwatid@ecelinux.uwaterloo.ca</code>.</li>
+</ul>
+
+<h4>Next steps, on both</h4>
+
+<ul>
+<li>Type in your password.</li>
+<li>Type <code>wget http://www.eyolfson.com/lab1setup.sh</code>.</li>
+<li>Type <code>chmod +x lab1setup.sh</code>.</li>
+<li>Type <code>./lab1setup.sh</code>.</li>
+</ul>
+
+<p>Note that the default script on <code>ecelinux</code> doesn't seem to be <code>bash</code>. So you can either run <code>bash</code> after ssh'ing to the server, or change your shell at <a href="http://ece.uwaterloo.ca/change_password/">this link</a>.</p>
+
+<p>(In general, you should trust and/or verify scripts before you run them.)</p>
+
+<p>Now you should have a folder called <code>ece251-lab1</code>. All your files should go in here. Your grammar should be in the folder called <code>grammar</code>, and all the java files should be in <code>src/ca/uwaterloo/ece251</code>. When you want to compile everything (including the code to generate a new lexer and parser) just go to <code>~/ece251-lab1</code> and type <code>./compile.sh</code>. The script will take care of everything and display compiler errors for you if you have them. Finally, to run your program, type <code>java ca.uwaterloo.ece251.ADL &lt;file.adl&gt;</code> in any directory.</p>
+
+<h3>Test cases and harness</h3>
+
+<p>Note that I've refreshed the Javadoc to include private fields and updated the test cases (04 Oct).</p>
+
+<p>Download the <a href="files/a1/tests.tar.gz">test harness and test cases (v2)</a>
+here.  Run <code>harness.sh</code> on ecelinux or any other Unix
+machine; you need to have your program in the Java classpath. diffxml is
+no longer required.
+</p>
+
+<p>The full set of test cases is <a href="files/a1/tests.zip">here</a>
+and the expected output is <a href="files/a1/expectedOutput.zip">here</a>,
+but we won't evaluate on that set yet, because it takes too long to run.
+Start with the test cases above. I'll put up better test cases later.</p>
+
+
+<h3>List of Clarifications</h3>
+
+<p>Clarification on mixed-type lists and trees: if a list or a tree contains both strings and ints, convert the ints to strings
+and treat the list or tree as a list or tree of strings. The test cases will illustrate this.</p>
+
+<p>For instance, if you have an input file with the lines <code>hi</code> and <code>5</code> and apply <code>map + 6</code> to this
+file, then you get an output list <code>hi6</code>, <code>56</code>.</p>
+
+<p>Output paths: use a constant (final) static string <code>"output" + java.io.File.separator</code>.</p>
+
+<p>Having trouble using ANTLR and Eclipse? Try this <a href="http://antlrv3ide.sourceforge.net/">IDE</a>. You can also watch this <a href="http://vimeo.com/groups/29150/videos/8001326">video</a> for hints on how to install it.</p>
+
+<p>Grading rubric for tests:</p>
+
+<ul>
+<li> 0.5 points for handing in any test cases at all. </li>
+<li> 0.5 points for including 3 operations on atoms and having vaguely 
+correct test outputs.</li>
+<li> 0.5 points for including 3 operations on lists and trees each. </li>
+<li> 0.5 points for including testcases which combine operations. </li>
+<li> 1 point for overall comprehensiveness ("test cases look reasonably
+complete"); should contain some legal edge cases. </li>
+<li> up to -1 point for obvious syntax errors in your ADL files. </li>
+</ul>
+
+<p>Meta-clarification on clarifications: Please hand in your test
+cases on time. We will not deduct marks for mildly incorrect test case
+output. (So, you have to hand in expected output that looks vaguely
+correct, but not absolutely correct.) Then, I will run my solution on
+the big pile of test cases, fix my solution to conform to the
+behaviour I want, and post the test harness and
+solutions. <strong>This defines the correct behaviour.</strong>
+Recall that whitespace doesn't count.</p>
+
+<p>How complete should your test cases be? They should be complete 
+enough that you can reasonably believe that your program works if it
+passes your test cases.</p>
+
+<p>Ethics is important. In fairness to all of the students, I will run
+<a href="http://theory.stanford.edu/~aiken/moss/">MOSS</a> on your
+submissions and manually check any suspicious cases. Please let me know
+if you have any concerns about MOSS.</p>
+
+<p>See also Chapter 4.2 of the course textbook for information on
+parser actions; ANTLR's parser actions look a lot like the contents of
+Figure 4.1.</p>
+
+<p>Pooja Sardesai has asked some clarifying questions. Here are some answers. <a href="files/l1-clarifications.txt">Lab 1 Clarifications, 25 Sep, 6:55M</a>. Thanks Pooja!</p>
+
+<p><b>Parentheses:</b> I've decided to flip-flop and declare that your parsers
+have to handle parentheses. In fact, while you are not required to handle any
+other error conditions, you must ensure that expressions contain balanced
+parentheses.</p>
+
+<p>Here is a useful tutorial for <a href="http://www.antlr.org/works/help/tutorial/calculator.html">ANTLR calculators</a>.</p>
+
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

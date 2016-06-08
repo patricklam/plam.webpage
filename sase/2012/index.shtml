@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 750-T05: Static Analysis for Software Engineering</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<p>Homework: watch this <a href="http://www.youtube.com/watch?v=meBXuTIPJQk">presentation on effective slide design</a> by Jean-luc Duomont.</p>
+ 
+<p><a href="/sase/2012/files/f.pdf">Final exam</a> posted; Q1 has been solved. Q2: accepting solutions. Q3: assume that data from the database is untrustworthy and ignore addslashes (start at line 7); checking a solution. Q4: accepted a largely-correct solution.</p>
+
+<table class="alternate_rows" id="calendar" cellpadding="1" cellspacing="0">
+<tr><td>L1: May 2</td><td>
+Introduction.</td></tr>
+<tr><td>L2: May 9</td><td>
+Finitization. Type systems. JavaCOP. Interprocedural analysis. Call graphs and pointer analysis. Summaries.
+</td></tr>
+<tr><td>L3: May 16</td><td>
+<b>Applications of Type Systems</b><br />
+
+Andrew Myers.
+<a href="http://www.cs.cornell.edu/andru/papers/popl99/popl99.pdf">
+Practical Mostly-Static Information Flow Control</a>. POPL '99. (Divam/Rafael L.)<br />
+
+Brian Demsky and Patrick Lam.
+<a href="http://patricklam.ca/papers/11.tosem.views.pdf">
+Views: Synthesizing Fine-Grained Concurrency Control</a>. To appear in TOSEM. (Patrick/Gaurav) [<a href="files/views.pdf">slides</a>]
+
+</td></tr>
+
+<tr><td>L4: May 23<br /><b>Proposals due</b></td><td>
+<b>Typestate (dynamic)</b><br />
+
+(PL will give a brief introduction to typestate.)<br />
+
+Matthew Arnold, Martin Vechev and Eran Yahav. 
+<a href="http://www.srl.inf.ethz.ch/papers/tosem11.pdf">QVM: An Efficient Runtime for Detecting Defects in Deployed Systems</a>. 
+TOPLAS, December 2011. (Rafael O./Vajih) <br />
+
+Madeline M. Diep, Matthew B. Dwyer, and Sebastian Elbaum. 
+<a href="http://dl.acm.org/citation.cfm?id=2063244">Lattice-Based Sampling for Path Property Monitoring</a>.
+TOPLAS, December 2011. (Vajih/tba)
+</td></tr>
+
+<tr><td>L5: May 30</td><td>
+<b>Pointer analysis</b><br />
+
+(PL will give a brief introduction to pointer analysis.)<br />
+
+Dacong Yan, Guoqing Xu, and Atanas Rountev. 
+<a href="http://www.ics.uci.edu/~guoqingx/papers/yan-issta11.pdf">
+Demand-Driven Context-Sensitive Alias Analysis for Java</a>. ISSTA 2011. (Divam/Vajih) <br />
+
+Ben Hardekopf and Calvin Lin. <a href="http://www.cs.ucsb.edu/~benh/papers/hardekopf11flow.pdf">
+Flow-Sensitive Pointer Analysis for Millions of Lines of Code</a>. CGO 2011. (Tian/Jon)
+
+</td></tr>
+
+<tr><td>L6: June 6</td><td>
+
+<b>Security</b><br />
+
+Sruthi Bandhakavi, Nandit Tiku, Wyatt Pittman, Samuel T. King, P. Madhusudan, Marianne Winslett.
+<a href="http://cacm.acm.org/magazines/2011/9/122787-vetting-browser-extensions-for-security-vulnerabilities-with-vex/abstract">
+Vetting Browser Extensions for Security Vulnerabilities with VEX</a>. CACM, September 2011. (Kirill/Divam)<br />
+
+Jean Yang, Kuat Yessenov, and Armando Solar-Lezama. <a href="http://people.csail.mit.edu/kuat/papers/jeeves.pdf">
+A Language for Automatically Enforcing Privacy Policies</a>. POPL 2012. (Marko/Jon) <br />
+
+<tr><td>L7: June 13(*)</td><td>
+
+<b>Interprocedural taint-style analyses</b><br />
+
+Cindy Rubio-Gonz&aacute;lez and Ben Liblit.
+<a href="http://pages.cs.wisc.edu/~crubio/includes/issta11.pdf">Defective Error/Pointer Interactions in the Linux Kernel</a>.
+ISSTA 2011. (Gaurav/Tian) <br />
+
+Salvatore Guarnieri, Marco Pistoia, Omer Tripp, Julian Dolby, Stephen Teilhet, and Ryan Berg. 
+<a href="http://www.cs.tau.ac.il/~omertrip/issta11/paper-guarnieri.pdf">
+Saving the World Wide Web from Vulnerable JavaScript</a>.
+ISSTA 2011. (Marko/Kirill) <br />
+
+</td></tr>
+
+<tr><td>L8: June 20</td><td>
+
+<b>Commutativity/Concurrency</b><br />
+
+Milind Kulkarni, Keshav Pingali, Bruce Walter, Ganesh Ramanarayanan, Kavita Bala and Paul Chew. 
+<a href="http://www.cs.cornell.edu/~kb/publications/galois_pldi07.pdf">
+Optimistic Parallelism requires Abstractions.</a> PLDI 2007. (Tian/Rafael O.)<br />
+
+Deokhwan Kim, Martin C. Rinard. 
+<a href="http://people.csail.mit.edu/rinard/paper/pldi11.commutativity.pdf">
+Verification of Semantic Commutativity Conditions and Inverse Operations on Linked Data Structures</a>. PLDI 2011. (Gaurav/tba)
+</td></tr>
+
+<tr><td>L9: June 27<br />
+<b>Midterm reports</b></td><td>
+
+<b>Testing (and Dynamic Analysis)</b><br />
+
+Sai Zhang, David Saff, Yingyi Bu, and Michael D. Ernst.
+<a href="http://www.cs.washington.edu/homes/mernst/pubs/palus-testgen-issta2011.pdf">
+Combined Static and Dynamic Automated Test Generation</a>. ISSTA 2011. (Kirill/Marko) <br />
+
+Eric Bodden, Patrick Lam and Laurie Hendren.
+ <a>
+Partially evaluating finite-state runtime monitors ahead of time</a>.  TOPLAS (to appear). (Patrick/tba)
+
+<!-- Mayur Naik, Hongseok Yang, Ghila Castelnuovo, and Mooly Sagiv, 
+<a href="http://www.cs.ox.ac.uk/people/hongseok.yang/paper/popl12.pdf">Abstractions From Tests</a>. 
+POPL 2012. (Paul/Rafael O.) -->
+
+</td></tr>
+
+<tr><td>L10: July 11</td><td>
+
+<b>Typestate (static)</b><br />
+
+Stephen J. Fink, Eran Yahav, Nurit Dor, G. Ramalingam, and Emmanuel Geay.
+<a href="http://dl.acm.org/citation.cfm?id=1348250.1348255">
+Effective typestate verification in the presence of aliasing</a>. TOSEM 2008. (Jon/tba)<br />
+
+Manuvir Das, Sorin Lerner and Mark Seigle. 
+<a href="http://dl.acm.org/citation.cfm?id=512538">
+ESP: path-sensitive program verification in polynomial time.
+</a>. PLDI 2002. (Rafael O./tba)
+</td></tr>
+
+<tr><td>L11: July 18</td><td>
+
+<b>Interpreting and using static analysis results</b><br />
+
+Isil Dillig, Thomas Dillig, Alex Aiken. 
+<a href="http://www.cs.wm.edu/~idillig/pldi022-dillig.pdf">
+Automated Error Diagnosis using Abductive Inference</a>. PLDI 2012. (Vajih/Kirill)<br />
+
+Fang Yu, Muath Alkhalaf, and Tevfik Bultan. 
+<a href="http://www.cs.ucsb.edu/~bultan/publications/icse11.pdf">
+Patching Vulnerabilities with Sanitization Synthesis</a>. ICSE 2011. (Jon/Divam)
+
+</td></tr>
+
+<tr><td>L12: July 25</td><td>
+
+<b>Project Reports &amp; Loose Ends</b><br />
+
+</td></tr>
+
+</table>
+
+  </div>
+</div>
+
+<!--#include virtual="/sase/includes/footer.html" -->

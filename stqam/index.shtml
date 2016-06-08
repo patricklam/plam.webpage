@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>SE465 (3A): Software Testing, Quality Assurance, and Maintenance</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+    <h3>git repo</h3>
+    <p>You'll find all course materials on bitbucket at <code><a href="https://bitbucket.org/testing-course/2015.git">https://bitbucket.org/testing-course/2015.git</a></code>.</p>
+    
+<h3>Syllabus</h3>
+
+<p>Here is the <a href="files/stqam.pdf">syllabus</a> for this class (but check bitbucket for the authoritative version).</p>
+
+<h3>Tutorials</h3>
+
+<p>The tutorials are
+<i>not mandatory</i> for this course.</p>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 453/CS 447/SE465: Software Testing, Quality Assurance, and Maintenance: Testing the Assignment Handin Site</title>
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<p>Here's how I tested the upload site. I am using ad-hoc testing
+techniques, which are not ideal, but better than nothing. I'm not
+using any coverage criteria at all. What class of test cases have I
+completely failed to test?</p>
+
+<ul>
+<li>Tested upload of <code>.patch</code> files.</li>
+<li>Tested upload of <code>.zip</code> files.</li>
+<li>Tested upload of <code>.tar.gz</code> files.</li>
+<li>Tested empty username/name entries.</li>
+<li>Tested submission of some and all files.</li>
+<li>Tested first-time submissions.</li>
+<li>Tested resubmissions.</li>
+</ul>
+
+<p>On Friday night, I came home at 9:30 after working out and received 
+several emails about failed submissions. One of the students helpfully 
+mailed the file that caused the error. I first changed my script to 
+display error messages when appropriate; it tells me that the test case 
+is too large. I then checked my PHP configuration, which looked fine.
+My Apache configuration was also fine. Odd. I downloaded a script from
+the Internet which tests file uploading, and it accepts the files
+in question perfectly happily. Turns out that the error was some HTML
+in the upload form which set a max upload size of 1M.</p>
+
+<p>Moral: cutting and pasting code can cause problems!</p>
+
+<p>Note that many of the coverage criteria we've discussed in class would 
+not detect such an error. Only testing small inputs would never find
+such an error.</p>
+
+</div>
+
+</div>
+<!--#include virtual="/sase/includes/footer.html" -->
+

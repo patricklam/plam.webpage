@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 251: Programming Languages and Translators: General Information</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Syllabus</h3>
+
+<p>Here is the <a href="plt.pdf">syllabus</a> for this class.
+Although there will not be major changes to the course outline, you should consider details on this webpage to be authoritative.
+</p>
+
+<h3>General Information</h3>
+
+<p><strong>Lectures:</strong> TWTh 9:30-10:20 (RCH302)</p>
+<p><strong>Extra Lectures:</strong> Th 10:30-11:20, on 09/23, 10/07, 10/21, 11/18, 12/02 (RCH302)</p>
+<p><strong>Midterm:</strong> 10:00-11:20, on 10/28 (MC 4021/RCH302)</p>
+<p><strong>Tutorials (to be announced beforehand):</strong>
+ Th 16:30-17:20 (RCH207), 
+ T 16:30-17:20 (DWE3517), 
+ F 09:30-10:20 (MC4045)</p>
+
+<h4>Instructor</h4>
+<blockquote>
+Professor Patrick Lam<br />
+Office: DC2534<br />
+Office Hours: Tuesdays 13:30-14:30, or by appointment<br />
+
+Email: <code>p.lam[at]ece.uwaterloo.ca</code><br />
+Phone: Use email instead!
+</blockquote>
+
+<h4>Teaching Assistants</h4>
+
+<blockquote>
+Jon Eyolfson<br />
+Office: DC2553<br />
+Office Hours: Wednesdays 13:30-14:30<br />
+Email: <code>jon[at]eyolfson.com</code>
+</blockquote>
+
+<blockquote>
+Mehdi Amoui Kalareh<br />
+Office: DC2542<br />
+Office Hours: Thursdays 15:00-16:00<br />
+Email: <code>mamouika[at]uwaterloo.ca</code>
+
+</blockquote>
+
+<blockquote>
+Samaneh Navabpour<br />
+Office: E5 4111<br />
+Office Hours: Tuesdays 13:30-14:30<br />
+Email: <code>snavabpo[at]uwaterloo.ca</code>
+</blockquote>
+
+<blockquote>
+Muhammad Shafique<br />
+Office: DC3577A<br />
+Office Hours: Wednesdays 15:30-16:30<br />
+Email: <code>m5shafiq[at]uwaterloo.ca</code>
+</blockquote>
+
+<h3>Topics</h3>
+
+<p>Regular expressions; lexing: scanners, finite automata; parsing: 
+grammars, top-down parsing, bottom-up parsing; abstract syntax trees;
+type checking; symbol tables; interpreters and virtual machines: 
+executing ASTs, executing bytecode (JIT compilers, binary translation);
+survey of domain-specific languages; programming paradigms: functional,
+logic, scripting.</p>
+
+<h3>Textbooks</h3>
+
+<p>The textbook for the class will be:
+
+<blockquote>
+    Michael L. Scott. Programming Language Pragmatics, Third Edition. Morgan Kaufmann, 2009.
+</blockquote>
+
+<h3>Evaluation</h3>
+
+<p>This course includes labs, midterms, a course project, and a final examination.</p>
+
+<table style="margin-left:4em">
+<tr><td>2 individual assignments&nbsp;&nbsp;</td><td>5% each</td><td>0%</td></tr>
+<tr><td>Course project (pairs)&nbsp;&nbsp;</td><td>30% (two equally-weighted milestones)</td><td>40%</td></tr>
+<tr><td>Midterm</td><td>10%</td><td>10%</td></tr>
+<tr><td>Final exam</td><td>50%</td><td>10%</td></tr>
+</table>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

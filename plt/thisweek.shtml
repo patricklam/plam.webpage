@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 251: Programming Languages and Translators: Week 5</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Week 11: November 22-November 28. This week's schedule:</h3>
+
+<p><b>Lectures</b>: MapReduce. Logic programming.</p>
+
+<p><b>Office hours</b>: PL Tu 13:30-14:30, DC2534; MK Th 15:00-16:30, E2-1302B; SN W 14:30-15:30, E2-1302B; JE W 13:30-14:30, E2-1302B; MS W 15:30-16:30 Th 14:30-15:00, E2-1302B.</p> 
+
+<!-- <p><b>Office hours</b>: PL T 13:30-14:30, DC2534; MK Th 15:00-16:00, DC2542; SN <span style="color:red">away this week</span>; JE W 13:30-14:30, DC2553; MS Th 15:30-16:30, DC3577A.</p>-->
+
+<!-- <p><b>Office hours</b>: PL Tu 13:30-14:30, DC2534; MK Th 15:00-16:00, DC2542; SN Tu 13:30-14:30, E5 4111; JE W 13:30-14:30, DC2553; MS W 15:30-16:30, DC3557A.</p> -->
+
+<!-- <p><b>Tutorials</b>: general coding help sessions. Th 17:30-18:20 (RCH207), T 16:30-17:20 (DWE3517), F 09:30-10:20 (MC4045). </p> -->
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

@@ -1,0 +1,541 @@
+/********************************************/
+/* General Comments                         */
+/********************************************/
+
+/********************************************
+ * Colours
+ *
+ *
+ *    D8D8D8      light grey (15% black)
+ *                 - secondary navigation area
+ *                 -
+ *    400000      deep red
+ *                 - default color of links
+ *    AF231E      the maroon color
+ *                 - CMYK red + 20 black
+ *    A0A0A0      darker grey
+ *                 - copyright
+ ********************************************/
+
+/********************************************/
+/* **************************************** */
+/* *                                      * */
+/* *                HEAD                  * */
+/* *                                      * */
+/* **************************************** */
+/********************************************/
+
+/********************************************/
+/* **************************************** */
+/* *                                      * */
+/* *                BODY                  * */
+/* *                                      * */
+/* **************************************** */
+/********************************************/
+
+/********************************************/
+/* SEARCH BOX                               */
+/*   - search box is too far to the right   */
+/********************************************/
+
+body {
+	background-image: url(/Home/images/background.gif);
+	background-position: center;
+	background-repeat: repeat-y;
+}
+
+#searchbox {
+}
+
+#wordmark {
+	background-image: url(/files/banner.png);
+	padding: 0px 2px 0px 0px;
+}
+
+/******************************************/
+/* CONTENT BAR                            */
+/*   - by default, an image which is a    */
+/*     light grey in colour fading to     */
+/*     white to the left                  */
+/*   - the text is a black Arial          */
+/******************************************/
+
+#contentbar {
+	background: #D8D8D8;
+	background-image: url(/files/gradient.png);
+	background-repeat: no-repeat;
+}
+
+#contentbar h2 {
+	color: black;
+	font-weight: bold;
+	font-family: Arial;
+	text-indent: 0px;
+	padding: 5px 0px 4px 12px;
+}
+
+#contentbar h2 #picturescontentbar {
+	padding: 0px 2px 0px 2px;
+}
+
+/********************************************/
+/*  PRIMARY NAVIGATION AREA                 */
+/********************************************/
+
+#primarynavarea li a {
+	width: 100%;
+	margin-top: 2px;
+	color: #400000;
+}
+
+#primarynavarea li.home a {
+	font-size: 80%;
+}
+
+#primarynavarea li.title a {
+	background-color: #F0F0F0;
+}
+
+#primarynavarea li.program a {
+	background-color: #F8F8F8;
+}
+
+#primarynavarea li.current a {
+	font-weight: bold;
+}
+
+#primarynavarea li.current_title a {
+	font-weight: bold;
+	background-color: #F0F0F0;
+}
+
+#primarynavarea li a:hover {
+	background-image: url(/files/hover.png);
+	color: #AF231E;
+}
+
+#primarynavarea li a:focus {
+	color: #400000;
+}
+
+/********************************************/
+/*  SECONDAYRY NAVIGATION AREA              */
+/********************************************/
+
+#secondnavarea {
+	background: none;
+}
+
+#secondnav div {
+	background-color: #AF231E;
+	margin: 0px 0px 6px 0px;
+	padding: 2px 2px 4px 6px;
+}
+
+#secondnav div.greyblock {
+	background-color: #F0F0F0;
+}
+
+#secondnav ul {
+	list-style: circle inside;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	text-indent: 0px;
+	color: #400000;
+}
+#secondnav li {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	text-indent: 0px;
+	color: #400000;
+}
+
+#secondnav a {
+	color: #400000;
+	text-decoration: underline;
+}
+
+#secondnav a:hover {
+	color: #AF231E;
+}
+
+#secondnav a:focus {
+	color: #400000;
+}
+
+#secondnav h4 {
+	margin: 0px 0px 0px 0px;
+	padding: 2px 0px 4px 0px;
+	font-size: 120%;
+	font-weight: bold;
+	color: #AF231E;
+}
+#secondnav p {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	color: #400000;
+}
+#secondnav img {
+	border: 1px solid white;
+	margin: 6px 2px 0px 2px;
+	padding: 0px 0px 0px 0px;
+}
+
+#secondnav a:hover img {
+	border-color: #AF231E;
+}
+
+#supplementary {
+	font-size: 70%;
+	float: right;
+	padding: 6px 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+ 	width: 15.8em;
+}
+
+#supplementary div {
+	background-color: #AF231E;
+	margin: 0px 0px 6px 0px;
+	padding: 2px 2px 4px 6px;
+}
+
+#supplementary div.greyblock {
+	background-color: #F0F0F0;
+}
+
+#supplementary ul {
+	list-style: circle inside;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	text-indent: 0px;
+	color: #400000;
+}
+#supplementary li {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	text-indent: 0px;
+	color: #400000;
+}
+
+#supplementary a {
+	color: #400000;
+	text-decoration: underline;
+}
+
+#supplementary a:hover {
+	color: #AF231E;
+}
+
+#supplementary a:focus {
+	color: #400000;
+}
+
+#supplementary h4 {
+	margin: 0px 0px 0px 0px;
+	padding: 2px 0px 4px 0px;
+	font-size: 120%;
+	font-weight: bold;
+	color: #AF231E;
+}
+#supplementary p {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	color: #400000;
+}
+#supplementary img {
+	border: 1px solid white;
+	margin: 6px 2px 0px 2px;
+	padding: 0px 0px 0px 0px;
+}
+
+#supplementary a:hover img {
+	border-color: #AF231E;
+}
+
+
+/********************************************/
+/*  PRIMARY CONTENT AREA                    */
+/********************************************/
+
+#primarycontent a img {
+	border: 1px solid white;
+}
+
+#primarycontent a:hover img {
+	border-color: #AF231E;
+}
+
+#primarycontent h1 {
+	color: #AF231E;
+}
+
+#primarycontent .quoteblock {
+	padding: 20px 20px 20px 20px;
+}
+
+#primarycontent .quote {
+	font-style: italic;
+}
+
+#primarycontent .attributed-to {
+	text-align: right;
+}
+
+#primarycontent h2 {
+	color: #AF231E;
+	font-weight: bold;
+	background: #D8D8D8;
+	background-image: url(/files/gradient.png);
+	padding: 0px 0px 0px 0px;
+}
+
+#primarycontent tt {
+	font-size: 120%;
+}
+
+#primarycontent .boldred {
+	font-weight: bold;
+	color: #FF0000;
+}
+
+#primarycontent .boldcyan {
+	font-weight: bold;
+	color: #0093DD;
+}
+
+#primarycontent pre.codeblock {
+	background-color: #EEEEEE;
+}
+
+#primarycontent pre {
+	font-size: 120%;
+}
+
+#primarycontent h3 {
+	color: #AF231E;
+}
+
+#primarycontent p {
+/*	text-align: justify; */
+}
+
+#primarycontent a {
+	color: #400000;
+	text-decoration: underline;
+}
+
+#primarycontent a:hover {
+	color: #AF231E;
+}
+
+#primarycontent .container img {
+	float: left;
+	margin: 0px 0px 0px 0px;
+	padding: 6px 18px 6px 3px;
+}
+#primarycontent .container p {
+	margin: 0px 0px 0px 0px;
+	padding: 3px 3px 3px 0px;
+}
+
+#primarycontent .title {
+	background-image: url(/files/gradient.png);
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 5px;
+}
+
+#primarycontent .title h1 {
+	color: black;
+}
+
+#primarycontent .title td {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+#primarycontent .title tr {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+
+#pictures .clearfloats {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	clear: both;
+}
+#pictures .container img {
+	float: left;
+	margin: 0px 0px 0px 0px;
+	padding: 6px 6px 6px 3px;
+}
+#pictures .container p {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 3px 6px 0px;
+}
+#pictures .container h4 {
+	margin: 0px 0px 0px 0px;
+	padding: 6px 0px 2px 0px;
+}
+#pictures .container a {
+	color: #400000;
+	text-decoration: underline;
+}
+#pictures .container a:hover {
+	color: #AF231E;
+}
+
+/********************************************/
+/*  SEMINARS                                */
+/********************************************/
+
+#news_top p {
+	margin: 0px 0px 0px 5px;
+}
+
+#news_top table {
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+#news_top h3 {
+	font-weight: bold;
+	color: #AF231E;
+	text-align: justify;
+	margin: 0px 0px 0px 0px;
+}
+
+#news_top hr {
+	width: 100%;
+	height: 0px;
+	color: red;
+	margin: 1px 0px 1px 0px;
+}
+
+#news_top a {
+	color: #400000;
+	text-decoration: none;
+}
+
+#seminar_top dt {
+	margin: 0px 0px 0px 10px;
+}
+
+#seminar_top a {
+	color: #330000;
+}
+
+#seminar_top span.seminar_full {
+	display: none;
+}
+
+#seminar_top span.seminar_summary {
+}
+
+#this_week .datetime {
+	font-weight: bold;
+}
+
+/********************************************/
+/*  NEWS ITEMS                              */
+/********************************************/
+
+#newsitems {
+	font-size: 90%;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+#newsitems .container h4 {
+	margin: 6px 0px 2px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+#newsitems .container a {
+	color: #400000;
+	text-decoration: underline;
+}
+
+#newsitems .container a:hover {
+	color: #AF231E;
+}
+
+#newsitems .container a:focus {
+	color: #400000;
+}
+
+#newsitems .container p {
+	text-align: justify;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+/********************************************/
+/*  FOOTER                                  */
+/********************************************/
+
+/********************************************/
+/*  FOOTER LOGO                             */
+/*    - the ece logo in the footer          */
+/********************************************/
+
+#departmentaddress a {
+	color: #400000;
+}
+
+#departmentaddress a:hover {
+	color: #AF231E;
+}
+
+#departmentaddress a:focus {
+	color: #400000;
+}
+
+#copyright {
+	color: #A0A0A0;
+}
+
+#footerlogo {
+	float: left;
+	padding: 12px 12px 12px 12px;
+}
+
+/********************************************/
+/*  FOOTER                                  */
+/********************************************/
+
+ul.course {
+	list-style: inside;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	text-indent: 0px;
+}
+
+#codeblock {
+	background-color: #EEEEEE
+}
+
+span.math {
+	font-family: "Times New Roman", Courier, Garamond, serif;
+	font-weight: normal;
+	font-style: normal;
+}
+
+span.mathbold {
+	font-family: "Times New Roman", Courier, Garamond, serif;
+	font-weight: bold;
+	font-style: normal;
+}
+
+span.mathitalic {
+	font-family: "Times New Roman", Courier, Garamond, serif;
+	font-weight: normal;
+	font-style: italic;
+}
+
+span.mathbolditalic {
+	font-family: "Times New Roman", Courier, Garamond, serif;
+	font-weight: bold;
+	font-style: italic;
+}

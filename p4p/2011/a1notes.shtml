@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 459: Programming for Performance: Assignment 1 Notes</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<p>Here is <a href="files/a1.pdf">Assignment 1</a>.</p>
+
+<p>Here is a <a href="files/a1-soln-outline.tex">LaTeX template</a>
+you may choose to use for your solutions to Assignment 1.</p>
+
+<h3>Notes on Assignment 1</h3>
+
+<p>Thanks to Paul and Sean for the following recap of what I said today about
+assignment 1.</p>
+
+<pre>
+- How to collect results:
+  - Run multiple times -> How many?: 10 sounds good.
+    - Throw out first couple of runs, if they're outliers; 
+      you may need to prime the cache. Things will eventually stabilize.
+  - Make things more deterministic: if you really cared, you could either
+    1) unplug the network cable; or
+    2) start from an ssh connection and be sure that there isn't any other
+       network traffic.
+  - Get the running time of your app
+    - Wall clock is acceptable (eg UNIX 'time' command)
+
+- Reporting Results:
+  - Description of work load / how long it took your system to run
+work load (before and after)
+    - Either inputs (if feasible) or some description of the inputs
+  - Profiling: Show the profiler output and evidence of independent thought
+    - Screen shots show HALF of that statement.
+  - Identify Hotspots and generally interpret profiler output.
+
+- Grading Samples:
+  - 50 -> Subpar effort: "I can't believe you handed this in."
+  - 85 -> Reasonable effort: "I wish I knew more about XYZ"
+  - 100 -> "Wow"
+
+- Submit DIFF of changes and anything else you submit (tar'd)
+
+- What am I looking for?
+  - Evidence of speed up always wins.
+  OR
+  - Describe something you tried that ought to work
+
+- Grace Days
+  - Up to 4 days cumulative over the deliverables.
+</pre>
+
+<p>I've posted a useful link in the <a href="resources.shtml">resources</a>
+about one potential optimization: converting recursion to iteration.
+Another optimization is generally known as <i>memoization</i>.</p>
+
+<p>In class today I said I'd give you more guidance on Assignment 1.
+I've looked at a couple of programs. Here are some suggestions.</p>
+
+<ul>
+<li>Mathomatic: <a href="https://launchpad.net/mathomatic"><code>https://launchpad.net/mathomatic</code></a>. It is relatively easy to build, contains 15k lines of code, and contains some test cases. The test cases don't quite take long enough, but you can make them bigger pretty easily. I ran it through <code>oprofile</code> and noticed some potential for optimization.</li>
+<li>Subversion: <a href="http://subversion.tigris.org"><code>http://subversion.tigris.org</code></a>. Not hard to compile, has extensive test suites. Test suites don't seem to be spending lots of time in Subversion. I think that there should be a lot of room for optimization in Subversion.</li>
+<li>Libxml2: <a href="http://xmlsoft.org"><code>http://xmlsoft.org</code></a>. Written in standard C, should be easy to compile. Has a test suite which executes in 3 seconds. Might be hard to find things to optimize here; I don't know.</li>
+</ul>
+
+<p>I won't insist on a runtime of 15 seconds, but be sure that it is measurable (so at least 5 seconds would be good). Also, one optimization strategy that I alluded to in class today is caching: you can introduce caches in your software to make things go faster. It may even be worth a separate lecture at some point.</p>
+
+<p>Let me know if this helps or if you'd like more guidance.</p>
+
+<h3>Other Notes</h3>
+
+<p>01/19: We agreed to change the weightings on A1 from 60/30 to 66/33+1.
+Also, assignment due dates will be: January 27; February 10; March 3; March 31.
+The midterm will be February 17.</p>
+
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

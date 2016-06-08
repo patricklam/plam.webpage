@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 750-T05: Static Analysis for Software Engineering</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<p><a href="files/f.pdf">Final exam, version 0</a>. I've received submissions for Q1, Q2, Q4 and Q5 ("a fun problem"). Q3 isn't really the kind of problem where you send me a solution.</p>
+<p>Homework: watch this <a href="http://www.youtube.com/watch?v=meBXuTIPJQk">presentation on effective slide design</a> by Jean-luc Duomont.</p>
+ 
+<table class="alternate_rows" id="calendar" cellpadding="1" cellspacing="0">
+<tr><td>L1: May 9</td><td>
+Introduction.</td></tr>
+<tr><td>L2: May 16</td><td>
+Dataflow analysis. Finitization. Type systems. JavaCOP. Interprocedural analysis. Call graphs and pointer analysis. Summaries.
+</td></tr>
+<tr><td>L3: May 23</td><td>
+<b>Applications of Type Systems</b><br />
+
+Alexander J. Summers and Peter M&uuml;ller. 
+<a href="http://pm.inf.ethz.ch/publications/getpdf.php?bibname=Own&id=SummersMueller11.pdf">
+Freedom Before Commitment: A Lightweight Type System for Object Initialisation</a>. OOPSLA '11. (Edward) <br />
+
+Brian Demsky and Patrick Lam.
+<a href="http://patricklam.ca/papers/11.tosem.views.pdf">
+Views: Synthesizing Fine-Grained Concurrency Control</a>. TOSEM 2012. (Patrick) [<a href="files/views.pdf">slides</a>]
+
+</td></tr>
+
+<tr><td>L4: May 30<br /><b>Proposals due</b></td><td>
+<b>Dynamic Heap Analysis</b><br />
+
+Michael D. Bond, Nicholas Nethercote, Stephen W. Kent, Samuel Z. Guyer, and Kathryn S. McKinley.
+<a href="http://valgrind.org/docs/origin-tracking2007.pdf">Tracking Bad Apples: Reporting the Origin of Null and Undefined Value Errors</a>. 
+OOPSLA '07. (Matthew) <br />
+
+Dacong Yan, Guoqing Xu, and Atanas Rountev. 
+<a href="http://www.cse.ohio-state.edu/~rountev/presto/pubs/icse12.pdf">
+Uncovering Performance Problems in Java Applications with Reference Propagation Profiling</a>.
+ICSE&nbsp;'12. (Quinn)
+</td></tr>
+
+<tr><td>L5: June 6</td><td>
+<b>Deeper Heap Analyses</b><br />
+
+Malay Ganai, Dongyoon Lee, and Aarti Gupta.
+<a href="http://web.eecs.umich.edu/~dongyoon/papers/FSE-12-DTAM.pdf">
+DTAM: Dynamic Taint Analysis of Multi-threaded Programs for Relevancy</a>.
+SIGSOFT/FSE '12. (Xavier) <br />
+
+ThanhVu Nguyen, Deepak Kapur, Westley Weimer, and Stephanie Forrest. 
+<a href="http://www.cs.virginia.edu/~weimer/p/weimer-icse2012-invariants.pdf">
+Using Dynamic Analysis to Discover Polynomial and Array Invariants</a>. 
+ICSE&nbsp;'12. (Wenbin)
+
+</td></tr>
+
+<tr><td>L6: June 13</td><td>
+
+<b>Pointer and Heap Analyses</b><br />
+
+Isil Dillig, Thomas Dillig, Alex Aiken, and Mooly Sagiv.
+<a href="http://theory.stanford.edu/~aiken/publications/papers/pldi11a.pdf">
+Precise and Compact Modular Procedure Summaries for Heap Manipulating Programs</a>.
+PLDI '11. (Xavier)
+<br />
+
+Mario M&eacute;ndez-Logo, Augustine Mathew, and Keshav Pingali.
+<a href="http://clip.dia.fi.upm.es/~mario/files/res0000030-mendezlojo.pdf">
+Parallel Inclusion-based Points-to Analysis</a>. 
+OOPSLA/SPLASH '10. (Matthew) <br />
+
+<tr><td>L7: June 20(*)</td><td>
+
+<b>Test Generation via Program Analysis</b><br />
+
+Razieh Nokhbeh Zaeem and Sarfraz Khurshid.
+<a href="https://webspace.utexas.edu/rn4294/fse12.pdf">
+Test Input Generation Using Dynamic Programming</a>.
+SIGSOFT'12/FSE-20. (Wenzhu)<br />
+
+Michael Pradel and Thomas R. Gross.
+<a href="http://mp.binaervarianz.de/icse2013.pdf">
+Automatic Testing of Sequential and Concurrent Substitutability</a>.  ICSE 2013. (Jinqiu) <br />
+
+</td></tr>
+
+<tr><td>L8: June 27</td><td>
+
+<b>Program Transformations (three papers!)</b><br />
+
+Greg Dennis, Felix Sheng-Ho Chang, and Daniel Jackson.
+<a href="http://dl.acm.org/citation.cfm?id=1146251">Modular verification of code with SAT</a> (must download
+from campus or through library proxy).
+ISSTA '06. (Atulan)<br />
+
+Ying Zhang, Gang Huang, Xuanzhe Liu, Wei Zhang, Hong Mei, and Shunxiang Yang.
+<a href="http://hal.inria.fr/docs/00/75/16/56/PDF/Refactoring_Android_Java_Code_for_On-Demand_Computation_Offloading.pdf">
+Refactoring Android Java Code for On-Demand Computation Offloading</a>.
+OOPSLA '12. (Wenbin)<br />
+
+Stephen Magill, Michael Hicks, and Suriya Subramanian.
+<a href="http://www.cs.umd.edu/~mwh/papers/tos.pdf">
+Automating Object Transformations for Dynamic Software Updating</a>. 
+OOPSLA '12. (Felix)<br />
+
+</td></tr>
+
+<tr><td>L9: July 4(*)<br />
+<b>Midterm reports</b></td><td>
+
+<b>Dynamic Analysis for dealing with unsafety and overflows</b><br />
+
+Emery D. Berger and Benjamin G. Zorn.
+<a href="http://www.cs.umass.edu/~emery/pubs/fp014-berger.pdf">
+DieHard: Probabilistic Memory Safety for Unsafe Languages</a>. 
+PLDI '06. (Wenzhu) <br />
+
+Will Dietz, Peng Li, John Regehr, and Vikram Adve.
+<a href="http://www.cs.utah.edu/~regehr/papers/overflow12.pdf">
+Understanding Integer Overflow in C/C++.</a>. 
+ICSE '12. (Jinqiu)
+
+</td></tr>
+
+<tr><td>L10: July 11</td><td>
+
+<b>Automatic Program Repair</b><br />
+
+Francesco Logozzo and Thomas Ball.
+<a href="http://research.microsoft.com/pubs/170385/res0099-logozzo.pdf">
+Modular and Verified Automatic Program Repair</a>. 
+OOPSLA '12. (Felix)<br />
+
+Claire Le Goues, Michael Dewey-Vogt, Stephanie Forrest, and Westley Weimer.
+<a href="http://www.cs.virginia.edu/~weimer/p/weimer-icse2012-genprog-preprint.pdf">
+A Systematic Study of Automated Program Repair: Fixing 55 out of 105 Bugs for $8 Each</a>. 
+ICSE&nbsp;'12. (Edward)
+</td></tr>
+
+<tr><td>L11: July 18</td><td>
+
+<b>Security</b><br />
+
+Benjarmin Livshits and Stephen Chong.
+<a href="http://people.seas.harvard.edu/~chong/pubs/popl13-automatic-placement.pdf">
+Towards Fully Automatic Placement of Security Sanitizers and Declassifiers</a>. 
+POPL '13. (Quinn) <br />
+
+Anders M&oslash;ller and Mathias Schwarz.
+<a href="http://cs.au.dk/~amoeller/papers/clientstate/paper.pdf">
+Automatic Detection of Client-State Manipulation Vulnerabilities</a>.
+ICSE '12. (Atulan)
+
+</td></tr>
+
+<tr><td>L12: July 25</td><td>
+
+<b>Project Reports &amp; Loose Ends</b><br />
+
+</td></tr>
+
+</table>
+
+  </div>
+</div>
+
+<!--#include virtual="/sase/includes/footer.html" -->

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 459: Programming for Performance: Assignment 3 Notes</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>OpenMP tip</h3>
+
+<p>I found a useful page on common OpenMP errors. This goes beyond
+what I've talked about in class, but you might still find it useful.
+
+<a href="http://www.viva64.com/en/a/0054/"><code>http://www.viva64.com/en/a/0054/</code></a>
+
+<h3>Perf tip</h3>
+
+<p>Some people have been getting 2% perf increase, while others have
+been getting 200% increases. I'll let you hand it in tomorrow
+(Tuesday) without burning grace days if you want to improve your
+perf. It may be the case that calling <code>omp_set_threads</code> may
+help.</p>
+
+<h3>Individual Assignments</h3>
+
+<p>Assignment 3 is an individual assignment.</p>
+
+<h3>What to hand in</h3>
+
+<p>For Part 1a, please hand in the diff to <code>dither.c</code> with
+your changes.</p>
+
+<h3>meschach parallelization</h3>
+
+<p>A number of people have asked whether they should parallelize
+torture.c or other places. It's way better to parallelize something
+that's not in torture.c.</p>
+
+<h3>Software you need</h3>
+
+<table>
+<tr><th>Package</th><th>Git repo</th></tr>
+<tr><td><a href="files/meschach-1.2b-pl.tar.gz">meschach 1.2b</a></td><td><code>http://patricklam.ca/p4p/meschach.git</code></td></tr>
+<tr><td><a href="files/a3-computepps-code.tar.gz">antiword 0.37 excerpt, computepps</a><td>no git repository</td></tr>
+<tr><td><a href="files/antiword-0.37-pl.tar.gz">antiword 0.37</a></td><td><code>http://patricklam.ca/p4p/antiword.git</code></td></tr>
+</table>
+
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

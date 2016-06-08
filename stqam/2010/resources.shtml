@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 453/CS 447/SE465: Software Testing, Quality Assurance, and Maintenance: Resources</title>
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Test Plans</h3>
+
+<p>Some of these pages have good sample test plans. Look at them yourself and see if you want to emulate them.</p>
+
+<ul>
+<li><a href="https://fedoraproject.org/wiki/QA/TestPlans">Fedora Project Test Plans</a>.</li>
+<li><a href="http://opensolaris.org/os/community/testing/testplans/">OpenSolaris Test Plans</a>.</li>
+<li><a href="http://members.tripod.com/~bazman">Bazman's Testing Pages</a>.</li>
+</ul>
+
+<p>The book that I used to prepare my test plans lecture on is: <em>Testing Computer Software</em>, by Cem Kaner, Jack Falk and Hung Quoc Nguyen.</p>
+
+<h3>Performance</h3>
+
+<p>This is a good article about making your software run faster: <a href="http://www.ddj.com/architect/184414637">Surviving Performance Fire Drills</a>, by Benson Margulies, Dr. Dobb's, August 2000.</p>
+
+<h3>Reporting Bugs</h3>
+
+<ul>
+<li><a href="http://www.chiark.greenend.org.uk/~sgtatham/bugs.html">How to Report Bugs Effectively</a>, by Simon Tatham.</li>
+<li><a href="http://bugzilla.gnome.org/page.cgi?id=bug-writing.html">GNOME bug reporting guidelines</a>.</li>
+<li><a href="http://fedoraproject.org/wiki/BugsAndFeatureRequests">Fedora project bug reporting guidelines</a>.</li>
+</ul>
+
+<h3>Concurrency</h3>
+
+<ul>
+<li><a href="http://msdn.microsoft.com/en-us/magazine/cc163744.aspx">What Every Dev Must Know About Multithreaded Apps.</a> (MSDN).</li>
+</ul>
+
+<h3>JML</h3>
+
+<p>Thanks to Mehdi Amoui.</p>
+
+<ul>
+<li>Some <a href="/stqam/files/jml_tutorial.pdf">slides</a> on JML.</li>
+</ul>
+
+<h3>JUnit</h3>
+
+<p><a href="http://www-128.ibm.com/developerworks/java/library/j-junit4.html">A description of JUnit and the differences between v3 and v4.</a> Probably useful for A1Q7.</p>
+
+<h3>Links: Revision Control</h3>
+
+<p>Thanks to Zarrin Langari for providing these links about revision control systems.</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Revision_control">Wikipedia article on revision control.</a></li>
+<li><a href="http://en.wikipedia.org/wiki/List_of_revision_control_software">Wikipedia list of revision control software.</a></li>
+<li><a href="http://www.smashingmagazine.com/2008/09/18/the-top-7-open-source-version-control-systems/">Article on open source version control systems.</a></li>
+<li><a href="http://www.cvshome.org">Official web site of CVS.</a></li>
+<li><a href="http://cvsgui.sourceforge.net/">CvsGui, a GUI front-end for CVS.</a></li>
+<li><a href="http://www.sunsource.net/nonav/scdocs/ddCVS_cvsglossary.html">CVS glossary.</a></li>
+<li><a href="http://subversion.tigris.org">Official web site of SVN.</a></li>
+<li><a href="http://tortoisesvn.tigris.org">TortoiseSVN, a GUI front-end for Subversion.</a></li>
+</ul>
+
+<p>Here are some resources on the concepts of branching and merging.</p>
+
+<ul>
+<li><a href="http://svnbook.red-bean.com/en/1.1/ch04.html#svn-ch-4-sect-1">SVN book reference on branching and merging.</a></li>
+<li><a href="http://kb.wisc.edu/middleware/page.php?id=4087">Documentation on branching and merging in CVS.</a></li>
+</ul>
+
+</div>
+
+</div>
+<!--#include virtual="/sase/includes/footer.html" -->

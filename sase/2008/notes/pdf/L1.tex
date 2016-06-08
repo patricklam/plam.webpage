@@ -1,0 +1,764 @@
+\documentclass{beamer}
+
+\usetheme{Darmstadt}
+
+%\includeonlyframes{current}
+
+\usepackage{times}
+\usefonttheme{structurebold}
+
+\usepackage{listings}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{alltt}
+\usepackage[normalem]{ulem}
+\usetikzlibrary{arrows}
+\usetikzlibrary{automata}
+\usetikzlibrary{shapes}
+\usepackage{amsmath,amssymb}
+\usepackage{rotating}
+\usepackage{array}
+
+%\setbeamercovered{dynamic}
+
+\title{Lecture 1: Compiler Fundamentals}
+
+\author{Patrick Lam}
+\date{September 12, 2008}
+
+\colorlet{redshaded}{red!25!bg}
+\colorlet{shaded}{black!25!bg}
+\colorlet{shadedshaded}{black!10!bg}
+\colorlet{blackshaded}{black!40!bg}
+
+\colorlet{darkred}{red!80!black}
+\colorlet{darkblue}{blue!80!black}
+\colorlet{darkgreen}{green!80!black}
+
+\newcommand{\rot}[1]{\rotatebox{90}{\mbox{#1}}}
+\newcommand{\gray}[1]{\mbox{#1}}
+\newtheorem{prop}{Proposition}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{Example}
+
+\lstset{%
+ basicstyle=\ttfamily
+}
+
+\begin{frame}[fragile]
+  \frametitle{Example Method}
+  \begin{lstlisting}
+    public int f(int x) {
+      int y, z;
+
+      y = x;
+      z = 1;
+      while (y > 1) {
+        z = z * y;
+        y = y - 1;
+      }
+      y = 0;
+      return z;
+    }
+  \end{lstlisting}
+
+\end{frame}
+
+\section{Abstract Syntax Trees}
+
+\begin{frame}
+\frametitle{Abstract Syntax Tree}
+\begin{center}
+\begin{tikzpicture} [every node/.style={fill=red!60,draw=black,rectangle},
+                     sibling distance=5.8em]
+\node {method {\tt f}}
+  child {node {\tt y = z}}
+  child {node {\tt z = 1}}
+  child {node {\tt while (y>1)}
+    child {node {\tt z = z*y}}
+    child {node {\tt y = y-1}}}
+  child {node {\tt y = 0}}
+  child {node {\tt return z}};
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\section{Control Flow Graphs}
+
+\begin{frame}
+\frametitle{Control Flow Graph}
+\begin{center}
+\begin{tikzpicture} [auto,
+                     row sep=.8em]
+\matrix [every node/.style={draw=black,fill=blue!60,rectangle}]
+{
+  \node (yx) { \tt y = x}; \\
+  \node (z1) { \tt z = 1}; \\
+  \node (if) { \tt if (y>1)}; \\
+  \node (zz) { \tt z = z*y}; \\
+  \node (ym) { \tt y = y-1}; \\
+  \node (y0) { \tt y = 0}; \\
+  \node (rz) { \tt return z}; \\
+};
+
+\begin{scope}[->,thick,>=latex]
+  \draw (yx) -- (z1);
+  \draw (z1) -- (if);
+  \draw (if) -- (zz);
+  \draw (zz) -- (ym);
+  \draw (ym.west) to [bend left=85] (if.west);
+  \draw (if.south) .. controls (2,0.5) and (2,-1.5) .. (y0.north);
+  \draw (y0) -- (rz);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Three-Address Code}
+
+\begin{center}
+{\tt x = f(a+b*c, g(d)) }
+\end{center}
+
+\begin{center}
+\small
+\begin{tabular}[b]{m{8em}cm{12em}}
+3-Address Code & \quad vs. \quad & \begin{center}Expression Tree\end{center} \\
+\begin{minipage}{8em} \tt 
+t0 = b*c \\
+t1 = a+t0 \\
+t2 = g(d) \\
+x = f(t1, t2)
+\end{minipage} && \begin{center} \begin{tikzpicture} [level distance=7mm]
+\node {{\tt =}}
+  child {node {\tt x}}
+  child {node {\tt f}
+    child {node {\tt +}
+      child {node {\tt a}}
+        child {node {\tt *}
+          child {node {\tt b}}
+          child {node {\tt c}}}}
+    child {node {\tt g}
+      child {node {\tt d}}}};
+\end{tikzpicture}
+\end{center}
+
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{CFG on Basic Blocks}
+\begin{center}
+\begin{tikzpicture} [auto,
+                     row sep=.8em]
+\matrix [every node/.style={draw=black,fill=blue!60,rectangle}]
+{
+  \node (yx) { \tt \begin{minipage}{4em} y = x \\ z = 1 \end{minipage}}; \\
+  \node (if) { \tt if (y>1)}; \\
+  \node (zz) { \tt \begin{minipage}{5em} z = z*y \\ y = y-1 \end{minipage}}; \\
+  \node (y0) { \tt \begin{minipage}{5em} y = 0\\ return z \end{minipage}}; \\
+};
+
+\begin{scope}[->,thick,>=latex]
+  \draw (yx) -- (if);
+  \draw (if) -- (zz);
+  \draw (zz.west) to [bend left=85] (if.west);
+  \draw (if.south) .. controls (2,0.5) and (2,-1.5) .. (y0.north);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{Basic Block Definition}
+
+A \alert{basic block} is a sequence of statements with no jumps into
+or out of the block.
+\end{frame}
+
+\section{Dataflow Analysis I}
+
+\begin{frame}
+  \frametitle{Dataflow Analysis in Brief}
+
+\Large
+Set up an abstract domain and calculate the effect of each program
+statement with respect to your abstract domain, until the
+fixed point.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Analysis 1: Reaching Definitions}
+\begin{center}
+Q: Which definitions reach a given variable use?
+
+\begin{tikzpicture} [auto,
+                     row sep=.8em]
+\matrix [every node/.style={draw=black,fill=blue!60,rectangle}]
+{
+  \node (yx) { \tt 1: y = x}; \\
+  \node (z1) { \tt 2: z = 1}; \\
+  \node (if) { \tt 3: if (y\only<2>{$^{1}$}\only<3>{$^{1,5}$}>1)}; \\
+  \node (zz) { \tt 4: z = z\only<2>{$^{2}$}\only<3>{$^{2,4}$}*y\only<2>{$^{1}$}\only<3>{$^{1,5}$}}; \\
+  \node (ym) { \tt 5: y = y\only<2>{$^{1}$}\only<3>{$^{1,5}$}-1}; \\
+  \node (y0) { \tt 6: y = 0}; \\
+  \node (rz) { \tt 7: return z\only<3>{$^{4}$}}; \\
+};
+
+\begin{scope}[->,thick,>=latex]
+  \draw (yx) -- (z1);
+  \draw (z1) -- (if);
+  \draw (if) -- (zz);
+  \draw (zz) -- (ym);
+  \draw (ym.west) to [bend left=85] (if.west);
+  \draw (if.south) .. controls (3,0.75) and (3,-1.5) .. (y0.north);
+  \draw (y0) -- (rz);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Setting up a Dataflow Analysis}
+
+Six steps:
+
+\begin{enumerate}
+\item What is your problem?
+\item Forward or backward?
+\item What's in your dataflow sets?
+\item Merge: union or intersection?
+\item What are your transfer functions?
+\item What are the initial values?
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Reaching Definitions Problem Statement}
+
+A definition $d$ of variable $v$ \alert{reaches} a use $u$ if
+there exists a path of control-flow edges from $d$ to $u$ that
+does not contain any redefinitions of $v$.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Reaching Definitions: A Forward Analysis}
+
+We move information \alert{forward} through the CFG.
+
+\begin{center}
+\begin{tikzpicture} [auto,
+                     row sep=.8em]
+\matrix [every node/.style={draw=black,fill=blue!60,rectangle}]
+{
+  \node (yx) { \tt 1: y = x}; \\
+  \node (z1) { \tt 2: \alert<2>{z} = 1}; \\
+  \node (if) { \tt 3: if (y>1)}; \\
+  \node (zz) { \tt 4: z = \alert<2>{z}*y}; \\
+  \node (ym) { \tt 5: y = y-1}; \\
+  \node (y0) { \tt 6: y = 0}; \\
+  \node (rz) { \tt 7: return z}; \\
+};
+
+\begin{scope}[->,thick,>=latex]
+  \draw (yx) -- (z1);
+  \draw (z1) -- (if);
+  \draw (if) -- (zz);
+  \draw (zz) -- (ym);
+  \draw (ym.west) to [bend left=85] (if.west);
+  \draw (if.south) .. controls (3,0.75) and (3,-1.5) .. (y0.north);
+  \draw (y0) -- (rz);
+\end{scope}
+
+\draw [very thick, red] (-3, 2.8) -- (-3, -2);
+\draw [very thick, red] (-3.1, 2.8) -- (-3.1, -2);
+\draw [very thick, red] (-2.85, -1.8) -- (-3.05, -2.1);
+\draw [very thick, red] (-3.3, -1.8) -- (-3.05, -2.1);
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Reaching Definitions: Abstraction}
+
+Keep a list of definitions for each variable.
+
+\begin{center}
+\begin{tikzpicture} [auto,
+                     row sep=.8em]
+\matrix [every node/.style={draw=black,fill=blue!60,rectangle}]
+{
+  \node (yx) { \tt 1: y = x}; \\
+  \node (z1) { \tt 2: z = 1}; \\
+  \node (if) { \tt 3: if (y>1)}; \\
+  \node (zz) { \tt 4: z = z*y}; \\
+  \node (ym) { \tt 5: y = y-1}; \\
+  \node (y0) { \tt 6: y = 0}; \\
+  \node (rz) { \tt 7: return z}; \\
+};
+\node [red,right] at (yx.south east) {\small y: (1)};
+\node [red,right] at (z1.south east) {\small y: (1); z: (2)};
+\node [red,right] at (if.south east) {\small y: (1),(5); z: (2),(4)};
+\node [red,right] at (zz.south east) {\small \qquad ~ y: (1),(5); z: (4)};
+\node [red,right] at (ym.south east) {\small \qquad  y: (5); z: (4)};
+\node [red,right] at (y0.south east) {\small y: (6); z: (2),(4)};
+
+\begin{scope}[->,thick,>=latex]
+  \draw (yx) -- (z1);
+  \draw (z1) -- (if);
+  \draw (if) -- (zz);
+  \draw (zz) -- (ym);
+  \draw (ym.west) to [bend left=85] (if.west);
+  \draw (if.south) .. controls (3,0.75) and (3,-1.5) .. (y0.north);
+  \draw (y0) -- (rz);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Reaching Definitions: Merge Operator}
+
+A definition reaches if \alert{any} path exists from def to use: \alert{union}.
+
+\begin{center}
+\begin{tikzpicture} [auto,
+                     row sep=.8em]
+\matrix [every node/.style={draw=black,fill=blue!60,rectangle}]
+{
+  \node (yx) { \tt 1: y = x}; \\
+  \node (z1) { \tt 2: z = 1}; \\
+  \node (if) { \tt 3: if (y>1)}; \\
+  \node (zz) { \tt 4: z = z*y}; \\
+  \node (ym) { \tt 5: y = y-1}; \\
+  \node (y0) { \tt 6: y = 0}; \\
+  \node (rz) { \tt 7: return z}; \\
+};
+\node [red,right] at (if.north east) {\small y: (1),(5); z: (2),(4)};
+
+\begin{scope}[->,thick,>=latex]
+  \draw (yx) -- (z1);
+  \draw (z1) -- (if);
+  \draw (if) -- (zz);
+  \draw (zz) -- (ym);
+  \draw (ym.west) to [bend left=85] (if.west);
+  \draw (if.south) .. controls (3,0.75) and (3,-1.5) .. (y0.north);
+  \draw (y0) -- (rz);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Reaching Definitions: Transfer Functions}
+
+For a some-paths analysis like reaching definitions:
+
+\[ \mbox{out}(s) = \left( \bigcup_{i \in \mbox{\scriptsize preds}(s)} 
+\mbox{out}(i) - \mbox{kill}(s) \right) \cup \mbox{gen}(s)
+\]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Reaching Definitions: Kill Sets}
+
+At an assignment statement,
+\[ s: v = \mbox{RHS}, \]
+we kill all extant definitions for variable $v$:
+\[ v:*. \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Reaching Definitions: Gen Sets}
+
+At an assignment statement,
+\[ s: v = \mbox{RHS}, \]
+we generate a new definition $s$ for variable $v$:
+\[ v:s. \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Reaching Definitions: Initial Values}
+
+\begin{itemize}
+\item At the beginning of the procedure, no definitions reach any
+variables; for all variables $v$, we use $\emptyset$.
+\item At all other program points $p$, we start by assuming that no
+definitions reach $p$ either: also use $\emptyset$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Dataflow Analysis Discussion}
+
+Six steps:
+
+\begin{enumerate}
+\item What is your problem?
+\item Forward or backward?
+\item What's in your dataflow sets?
+\item Merge: union or intersection?
+\item What are your transfer functions?
+\item What are the initial values?
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Forward Analysis: Reaching Defs}
+  \begin{alltt}
+    public int f(int x) \{
+      int y, z;
+
+      y = x;
+\( \downarrow \)   \alert{z} = 1; 
+      while (y > 1) \{
+        z = \alert{z} * y;
+        y = y - 1;
+      \}
+      y = 0;
+      return z;
+    \}
+  \end{alltt}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Backward Analysis: Live Locals}
+  \begin{alltt}
+    public int f(int x) \{
+      int y, z;
+
+      y = x;                   // \{ y \}
+      z = 1;                   // \{ y, z \}
+      while (y > 1) \{
+        z = z * y;             // \{ z \}
+        y = y - 1;             // \{ y, z \}
+      \}
+      y = 0;                   // \{ z \}
+      return z;
+\( \uparrow \) \}
+  \end{alltt}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Dataflow Sets}
+
+Some more examples:
+\begin{itemize}
+\item ``$x$ points to {\tt null} / non-{\tt null} / don't-know''
+\item ``$y$ is positive / negative / zero / don't-know''
+\end{itemize}
+
+\vspace*{1em}
+$\perp$ (``bottom'') represents ``don't know''---no information yet.
+
+\vspace*{1em}
+$\top$ (``top'') represents ``overdetermined''---e.g. our analysis wants one
+precise answer (e.g. constant propagation: $y=5$) and we have more than one answer ($y=5$ \emph{and} $y=3$).
+\end{frame}
+
+\begin{frame}
+  \frametitle{Merge operator}
+
+\Large
+$\bigcup$: some-path analysis\\ $\qquad \qquad$ (e.g. reaching defs)
+
+\vspace*{1em}
+
+$\bigcap$: all-paths analysis\\ $\qquad \qquad$ (e.g. available expressions)
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transfer functions}
+
+\Large
+
+  Assignment statements and invoke statements are most interesting.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Initial Values}
+
+\Large
+
+At entry point, need conservative underapproximation.
+
+\vspace*{1em}
+
+At other points, use overapproximation; it gets refined later.
+
+\end{frame}
+
+\begin{frame}
+
+  \frametitle{Beware}
+
+\Huge
+Dataflow analysis is subtle!
+
+\end{frame}
+
+\section{Alternatives}
+
+\begin{frame}
+  \frametitle{Alternatives}
+
+  \huge 
+  \begin{itemize}
+  \item Constraint Systems
+  \item Type and Effect Systems
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Constraint Systems}
+
+\begin{tabular}{cc}
+\begin{minipage}{.4\textwidth}
+\begin{center}
+\begin{tikzpicture} [auto,
+                     row sep=.8em]
+\matrix [every node/.style={draw=black,fill=blue!60,rectangle}]
+{
+  \node (yx) { \tt y = x}; \\
+  \node (z1) { \tt z = 1}; \\
+  \node (if) { \tt if (y>1)}; \\
+  \node (zz) { \tt z = z*y}; \\
+  \node (ym) { \tt y = y-1}; \\
+  \node (y0) { \tt y = 0}; \\
+  \node (rz) { \tt return z}; \\
+};
+
+\begin{scope}[->,thick,>=latex]
+  \draw (yx) -- (z1);
+  \draw (z1) -- (if);
+  \draw (if) -- (zz);
+  \draw (zz) -- (ym);
+  \draw (ym.west) to [bend left=85] (if.west);
+  \draw (if.south) .. controls (2,0.5) and (2,-1.5) .. (y0.north);
+  \draw (y0) -- (rz);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+\end{minipage}
+&
+\begin{minipage}{.4\textwidth}
+\begin{eqnarray*}
+\mbox{RD}_{\mbox{\scriptsize exit}}(1) &\supseteq& \{ (y, 1) \} \\
+\mbox{RD}_{\mbox{\scriptsize entry}}(3) &\supseteq& \mbox{RD}_{\mbox{\scriptsize exit}}(2) \\
+\mbox{RD}_{\mbox{\scriptsize entry}}(3) &\supseteq& \mbox{RD}_{\mbox{\scriptsize exit}}(5) \\
+\end{eqnarray*}
+\end{minipage}
+\end{tabular}
+
+
+\end{frame}
+
+\section{Dataflow Analysis II}
+
+\begin{frame}
+  \frametitle{Example 2: Available Expressions}
+
+Which expressions have been computed and not changed since?
+
+\begin{center}
+\begin{tikzpicture} [auto,
+                     row sep=.8em]
+\matrix [every node/.style={draw=black,fill=blue!60,rectangle}]
+{
+  \node (yx) { \tt 1: y = x}; \\
+  \node (z1) { \tt 2: z = 1}; \\
+  \node (if) { \tt 3: if (y>1)}; \\
+  \node (zz) { \tt 4: z = z*y}; \\
+  \node (ym) { \tt 5: y = y-1}; \\
+  \node (y0) { \tt 6: y = 0}; \\
+  \node (rz) { \tt 7: return z}; \\
+};
+\node [red,right] at (zz.south east) {\small \qquad \{z*y\}};
+\node [red,right] at (ym.south east) {\small \qquad \{y-1\}};
+
+\begin{scope}[->,thick,>=latex]
+  \draw (yx) -- (z1);
+  \draw (z1) -- (if);
+  \draw (if) -- (zz);
+  \draw (zz) -- (ym);
+  \draw (ym.west) to [bend left=85] (if.west);
+  \draw (if.south) .. controls (2.5,0.75) and (2.5,-1.5) .. (y0.north);
+  \draw (y0) -- (rz);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Available Expressions Problem Statement}
+
+An expression {\tt v1 op v2} is \alert{available} at statement $t$ if it
+has been computed at statement $s$ and all paths from $s$ to $t$ have
+no redefinitions of {\tt v1} or {\tt v2}.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Available Expressions is a Forward Analysis}
+
+Expressions are available if they've already been computed.
+
+\begin{center}
+\begin{tikzpicture} [auto,
+                     row sep=.8em]
+\matrix [every node/.style={draw=black,fill=blue!60,rectangle}]
+{
+  \node (yx) { \tt 1: y = x}; \\
+  \node (z1) { \tt 2: z = 1}; \\
+  \node (if) { \tt 3: if (y>1)}; \\
+  \node (zz) { \tt 4: z = z*y}; \\
+  \node (ym) { \tt 5: y = y-1}; \\
+  \node (y0) { \tt 6: y = 0}; \\
+  \node (rz) { \tt 7: return z}; \\
+};
+
+\begin{scope}[->,thick,>=latex]
+  \draw (yx) -- (z1);
+  \draw (z1) -- (if);
+  \draw (if) -- (zz);
+  \draw (zz) -- (ym);
+  \draw (ym.west) to [bend left=85] (if.west);
+  \draw (if.south) .. controls (3,0.75) and (3,-1.5) .. (y0.north);
+  \draw (y0) -- (rz);
+\end{scope}
+
+\draw [very thick, red] (-3, 2.8) -- (-3, -2);
+\draw [very thick, red] (-3.1, 2.8) -- (-3.1, -2);
+\draw [very thick, red] (-2.85, -1.8) -- (-3.05, -2.1);
+\draw [very thick, red] (-3.3, -1.8) -- (-3.05, -2.1);
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Available Expressions: Abstraction}
+
+Sets of expressions.
+
+\begin{center}
+\begin{tikzpicture} [auto,
+                     row sep=.8em]
+\matrix [every node/.style={draw=black,fill=blue!60,rectangle}]
+{
+  \node (yx) { \tt 1: y = x}; \\
+  \node (z1) { \tt 2: z = 1}; \\
+  \node (if) { \tt 3: if (y>1)}; \\
+  \node (zz) { \tt 4: z = z*y}; \\
+  \node (ym) { \tt 5: y = y-1}; \\
+  \node (y0) { \tt 6: y = 0}; \\
+  \node (rz) { \tt 7: return z}; \\
+};
+\node [red,right] at (zz.south east) {\small \qquad \{z*y\}};
+\node [red,right] at (ym.south east) {\small \qquad \{y-1\}};
+
+\begin{scope}[->,thick,>=latex]
+  \draw (yx) -- (z1);
+  \draw (z1) -- (if);
+  \draw (if) -- (zz);
+  \draw (zz) -- (ym);
+  \draw (ym.west) to [bend left=85] (if.west);
+  \draw (if.south) .. controls (2.5,0.75) and (2.5,-1.5) .. (y0.north);
+  \draw (y0) -- (rz);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Available Expressions: Merge Operator}
+An expression must be available on \alert{all} paths: \alert{intersection}.
+
+\begin{center}
+\begin{tikzpicture} [auto,
+                     row sep=.8em]
+\matrix [every node/.style={draw=black,fill=blue!60,rectangle}]
+{
+  \node (yx) { \tt 1: y = x}; \\
+  \node (z1) { \tt 2: z = 1}; \\
+  \node (if) { \tt 3: if (y>1)}; \\
+  \node (zz) { \tt 4: z = z*y}; \\
+  \node (ym) { \tt 5: y = y-1}; \\
+  \node (y0) { \tt 6: y = 0}; \\
+  \node (rz) { \tt 7: return z}; \\
+};
+
+\begin{scope}[->,thick,>=latex]
+  \draw (yx) -- (z1);
+  \draw (z1) -- (if);
+  \draw (if) -- (zz);
+  \draw (zz) -- (ym);
+  \draw (ym.west) to [bend left=85] (if.west);
+  \draw (if.south) .. controls (3,0.75) and (3,-1.5) .. (y0.north);
+  \draw (y0) -- (rz);
+\end{scope}
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Available Expressions: Transfer Functions}
+
+For an all-paths analysis like available expressions:
+
+\[ \mbox{out}(s) = \left( \bigcap_{i \in \mbox{\scriptsize preds}(s)} 
+\mbox{out}(i) - \mbox{kill}(s) \right) \cup \mbox{gen}(s)
+\]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Available Expressions: Kill Sets}
+
+At an assignment statement,
+\[ s: v = \mbox{RHS}, \]
+we kill all expressions containing $v$,
+\[ \mbox{e.g.~~} v + q, v * z, v.f \]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Available Expressions: Gen Sets}
+
+At a statement,
+\[ s: \cdots = \mbox{\tt v1 op v2}, \]
+we generate the expression {\tt v1 op t2}.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Available Expressions: Initial Values}
+
+\Large
+\begin{itemize}
+\item At entry points, no expressions are available; use $\emptyset$.
+\item At all other program points, assume all expressions available; use $\top$.
+\end{itemize}
+\end{frame}
+
+
+\end{document}

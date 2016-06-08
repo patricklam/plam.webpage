@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 459: Programming for Performance: Assignment 1 Notes</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>New Due Date</h3>
+
+<p>Following the discussion on class, A2 is due on Monday, February 14.
+A3 will still be available on Thursday.</p>
+
+<h3>libexif on ecelinux</h3>
+
+<p>You should be able to compile the code on ecelinux, which now has libexif
+installed.</p>
+
+<h3>New version v3: montages work</h3>
+
+<p>Check out version 3 of the skeleton. It works with libjpeg8b 
+(read the README: you'll need to hack the makefile) as well as libjpeg6b.
+Montages work, too. Pushed to the git repository.</p>
+
+<h3>Clarification: scope of assignment</h3>
+
+<p>You can parallelize at a file level. You do not have to go into the
+code that does the rotation and parallelze that; rotation code is
+beyond the cope of this assignment.</p>
+
+<p>Assignment 2 is an individual assignment.</p>
+
+<h3>Git repository</h3>
+
+<p>I've made a git repository of the sample skeleton available.
+To get it, install git and run:</p>
+
+<pre>git clone http://patricklam.ca/p4p/p4p-a2-skel.git</pre>
+
+<p>You can update it by commiting your changes and then running
+<code>git pull</code> to pull any subsequent changes.</p>
+
+<h3>Older news</h3>
+
+<p>You can find a sample sequential solution
+<a href="files/sample-sequential-a2-v1.tar.gz">here (v1)</a>. This version
+does do the autorotate.
+Please don't use OpenMP to parallelize this code: that defeats the purpose
+of the assignment. You'll get to use it in later assignments.
+ </p>
+
+<p>Note that you need libjpeg6b's development headers to compile the code;
+in particular, you need <code>jconfig.h</code>, <code>jerror.h</code>
+and <code>jmorecfg.h</code>.</p>
+
+<p>(Thanks to Jonathan Thomas): With v0, you need the input file (e.g. 
+<code>car.jpg</code>) to be in both the <code>src</code> and your output 
+directory.</p>
+
+<table>
+<tr><th>Skeleton version</th><th>Diffs</th></tr>
+<tr><td><a href="files/sample-sequential-a2-v3.tar.gz">v3</a></td><td><a href="files/a2-v2-to-v3.diff">a2-v2-to-v3.diff</a></td></tr>
+<tr><td><a href="files/sample-sequential-a2-v2.tar.gz">v2</a></td><td><a href="files/a2-v1-to-v2.diff">a2-v1-to-v2.diff</a></td></tr>
+<tr><td><a href="files/sample-sequential-a2-v1.tar.gz">v1</a></td><td><a href="files/a2-v0-to-v1.diff">a2-v0-to-v1.diff</a></td></tr>
+<tr><td><a href="files/sample-sequential-a2-v0.tar.gz">v0</a></td><td>N/A</td></tr>
+</table>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 750-T05: Static Analysis for Software Engineering: Project Ideas</title>
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Characteristics of an Excellent Project</h3>
+
+<p>Here is what I'd love to see in a course project.</p>
+
+<ul>
+<li><b>Problem selection:</b> Pick an appropriately-sized problem.
+Implementing it is going to be harder than you
+thought. I prioritize having something well-defined and moderately
+useful over solving all of the world's problems. <br />
+Given the topic of this course, your problem should also be
+related to analyzing either program code or execution traces. 
+(Talk to me if you'd like to study something else.)</li>
+<li><b>Implementation:</b> Whatever you choose to investigate,
+I'd like to see some code supporting your investigation.
+I welcome the use of any experimental framework. The code does
+not need to be production-quality, but I would like to see
+something working. </li>
+<li><b>Experimental results:</b> Your implementation should at least work
+on micro-benchmarks (i.e. tiny hand-crafted pieces of code). It's
+more impressive to come up with an implementation that works on at
+least one real-world program, but it's quite hard to do so. </li>
+<li><b>Presentation (written and oral):</b> Both the oral presentation
+and write-up greatly influence your grade, since I'll be reading
+them to figure out what you did. Make sure that they are as clear
+as possible. </li>
+</ul>
+
+<p>Please refer to <a href="files/thiago-final-project.pdf">Thiago's course project</a> for a model project.</p>
+
+<h3>Project Ideas</h3>
+
+<p>Here are a couple of project ideas, in no particular order. You
+should come see me to discuss your project idea. You are, of course,
+free to choose a project that is not on this list; students often do
+well choosing something that's related to their research.</p>
+
+<ul>
+
+ <li><b>Extend the Java type system.</b> We've seen non-null types as 
+part of Spec#. The <a href="http://jastadd.org">JastAdd</a> project implements
+non-null types as a Java extension. In this project, your job is to explore
+an extension to the Java type system that enables developers to specify
+some program property and to verify it. Past examples of type system extensions
+include non-null types and stationary fields; suggest a new type system
+extension and implement it.<br />
+Here are two specific examples: 1) a type system that 
+identifies "tuple-like" classes, with only primitive-type fields; 
+2) a type system that identifies numeric values guaranteed to not
+overflow.
+</li>
+
+ <li><b>Making sound static analysis results available to Eclipse.</b> Evaluate
+the static analysis results currently available to Eclipse plugins and
+see how they are sound or unsound. Eclipse plugins need analysis results
+quickly, but sound pointer analyses need the whole program. One way to
+get around this problem is to create summaries of the whole program
+and to update the summaries when any file changes. </li>
+
+ <li><b>Dynamic analysis.</b> Consider two ways of implementing a
+dynamic analysis: 1) use dynamic binary instrumentation (like PIN); or
+2) statically instrument the code (i.e. with AspectJ) to collect
+information about program executions. Some possible properties: "this
+loop may execute at most N iterations", or "in configuration X, the
+program never calls method Y". Test case generation or modification,
+based on dynamic analysis results, is another possibility.</li>
+
+<!-- <li><b>Verify a runtime property statically.</b> The obvious
+runtime property is an assertion. </li>-->
+
+ <li><b>Compare your intuition with profiling information.</b> A famous
+saying: "Premature Optimization is the Root of All Evil". (attributed to
+Donald Knuth). See <a href="http://weblogs.mozillazine.org/roc/archives/2005/11/immature_optimization.html">Rob O'Callahan</a> for an alternate take
+on the saying. The key point here, I think, is that people have terrible
+intuition about where the bottlenecks are going to be. This experimental
+project would compare intuition about performance with profiling results.</li>
+
+</ul>
+
+  </div>
+</div>
+<!--#include virtual="/sase/includes/footer.html" -->

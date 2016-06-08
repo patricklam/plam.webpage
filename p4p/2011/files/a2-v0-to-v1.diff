@@ -1,0 +1,545 @@
+diff -ruN v0/src/a2jpeg/dither.c v1/src/a2jpeg/dither.c
+--- v0/src/a2jpeg/dither.c	1969-12-31 19:00:00.000000000 -0500
++++ v1/src/a2jpeg/dither.c	2011-02-01 22:27:45.000000000 -0500
+@@ -0,0 +1,193 @@
++/*
++ * ordered dither rotines
++ *
++ * stolen from The GIMP and trimmed for speed
++ *
++ */
++
++#include <stdlib.h>
++#include "dither.h"
++
++#define DITHER_LEVEL 8
++
++void (*dither_line)(unsigned char *, unsigned char *, int, int);
++
++static long     red_mult, green_mult;
++static long     red_dither[256];
++static long     green_dither[256];
++static long     blue_dither[256];
++static long     gray_dither[256];
++
++typedef unsigned long vector[DITHER_LEVEL];
++typedef vector  matrix[DITHER_LEVEL];
++
++#if DITHER_LEVEL == 8
++#define DITHER_MASK 7
++static matrix   DM =
++{
++    {0, 32, 8, 40, 2, 34, 10, 42},
++    {48, 16, 56, 24, 50, 18, 58, 26},
++    {12, 44, 4, 36, 14, 46, 6, 38},
++    {60, 28, 52, 20, 62, 30, 54, 22},
++    {3, 35, 11, 43, 1, 33, 9, 41},
++    {51, 19, 59, 27, 49, 17, 57, 25},
++    {15, 47, 7, 39, 13, 45, 5, 37},
++    {63, 31, 55, 23, 61, 29, 53, 21}
++};
++
++#endif
++
++#if DITHER_LEVEL == 4
++#define DITHER_MASK 3
++static matrix   DM =
++{
++    {0, 8, 2, 10},
++    {12, 4, 14, 6},
++    {3, 11, 1, 9},
++    {15, 7, 13, 5}
++};
++
++#endif
++
++void
++init_dither(int shades_r, int shades_g, int shades_b, int shades_gray)
++{
++    int             i, j;
++    unsigned char   low_shade, high_shade;
++    unsigned short  index;
++    float           red_colors_per_shade;
++    float           green_colors_per_shade;
++    float           blue_colors_per_shade;
++    float           gray_colors_per_shade;
++
++    red_mult = shades_g * shades_b;
++    green_mult = shades_b;
++
++    red_colors_per_shade = 256.0 / (shades_r - 1);
++    green_colors_per_shade = 256.0 / (shades_g - 1);
++    blue_colors_per_shade = 256.0 / (shades_b - 1);
++    gray_colors_per_shade = 256.0 / (shades_gray - 1);
++
++    /* this avoids a shift when checking these values */
++    for (i = 0; i < DITHER_LEVEL; i++)
++	for (j = 0; j < DITHER_LEVEL; j++)
++	    DM[i][j] *= 0x10000;
++
++    /*  setup arrays containing three bytes of information for red, green, & blue  */
++    /*  the arrays contain :
++     *    1st byte:    low end shade value
++     *    2nd byte:    high end shade value
++     *    3rd & 4th bytes:    ordered dither matrix index
++     */
++
++    for (i = 0; i < 256; i++) {
++
++	/*  setup the red information  */
++	{
++	    low_shade = (unsigned char) (i / red_colors_per_shade);
++	    high_shade = low_shade + 1;
++
++	    index = (unsigned short)
++		(((i - low_shade * red_colors_per_shade) / red_colors_per_shade) *
++		 (DITHER_LEVEL * DITHER_LEVEL + 1));
++
++	    low_shade *= red_mult;
++	    high_shade *= red_mult;
++
++	    red_dither[i] = (index << 16) + (high_shade << 8) + (low_shade);
++	}
++
++	/*  setup the green information  */
++	{
++	    low_shade = (unsigned char) (i / green_colors_per_shade);
++	    high_shade = low_shade + 1;
++
++	    index = (unsigned short)
++		(((i - low_shade * green_colors_per_shade) / green_colors_per_shade) *
++		 (DITHER_LEVEL * DITHER_LEVEL + 1));
++
++	    low_shade *= green_mult;
++	    high_shade *= green_mult;
++
++	    green_dither[i] = (index << 16) + (high_shade << 8) + (low_shade);
++	}
++
++	/*  setup the blue information  */
++	{
++	    low_shade = (unsigned char) (i / blue_colors_per_shade);
++	    high_shade = low_shade + 1;
++
++	    index = (unsigned short)
++		(((i - low_shade * blue_colors_per_shade) / blue_colors_per_shade) *
++		 (DITHER_LEVEL * DITHER_LEVEL + 1));
++
++	    blue_dither[i] = (index << 16) + (high_shade << 8) + (low_shade);
++	}
++
++	/*  setup the gray information  */
++	{
++	    low_shade = (unsigned char) (i / gray_colors_per_shade);
++	    high_shade = low_shade + 1;
++
++	    index = (unsigned short)
++		(((i - low_shade * gray_colors_per_shade) / gray_colors_per_shade) *
++		 (DITHER_LEVEL * DITHER_LEVEL + 1));
++
++	    gray_dither[i] = (index << 16) + (high_shade << 8) + (low_shade);
++	}
++    }
++}
++
++void
++dither_line_color(unsigned char *src, unsigned char *dest, int y, int width)
++{
++    register long   a, b;
++    long           *ymod, xmod;
++
++    ymod = DM[y & DITHER_MASK];
++
++    while (width--) {
++	xmod = width & DITHER_MASK;
++
++	b = red_dither[*(src++)];
++	if (ymod[xmod] < b)
++	    b >>= 8;
++
++	a = green_dither[*(src++)];
++	if (ymod[xmod] < a)
++	    a >>= 8;
++	b += a;
++
++	a = blue_dither[*(src++)];
++	if (ymod[xmod] < a)
++	    a >>= 8;
++	b += a;
++
++	*(dest++) = b & 0xff;
++    }
++}
++
++void
++dither_line_gray(unsigned char *src, unsigned char *dest, int y, int width)
++{
++    long           *ymod, xmod;
++    register long   a,g;
++
++    ymod = DM[y & DITHER_MASK];
++
++    while (width--) {
++	xmod = width & DITHER_MASK;
++
++#if 1
++	g = (src[0]*3 + src[1]*6 + src[2]) / 10;
++	a = gray_dither[g];
++	src += 3;
++#else
++	a = gray_dither[*(src++)];
++#endif
++	if (ymod[xmod] < a)
++	    a >>= 8;
++
++	*(dest++) = a & 0xff;
++    }
++}
+diff -ruN v0/src/a2jpeg/dither.h v1/src/a2jpeg/dither.h
+--- v0/src/a2jpeg/dither.h	1969-12-31 19:00:00.000000000 -0500
++++ v1/src/a2jpeg/dither.h	2011-02-01 22:27:52.000000000 -0500
+@@ -0,0 +1,6 @@
++
++extern void (*dither_line)(unsigned char *, unsigned char *, int, int);
++
++void init_dither(int, int, int, int);
++void dither_line_color(unsigned char *, unsigned char *, int, int);
++void dither_line_gray(unsigned char *, unsigned char *, int, int);
+diff -ruN v0/src/a2jpeg/jpegtools.c v1/src/a2jpeg/jpegtools.c
+--- v0/src/a2jpeg/jpegtools.c	2011-01-31 16:10:56.000000000 -0500
++++ v1/src/a2jpeg/jpegtools.c	2011-02-01 22:25:38.000000000 -0500
+@@ -192,7 +192,7 @@
+     }
+ }
+ 
+-static int get_orientation(ExifData *ed)
++int get_orientation(ExifData *ed)
+ {
+     ExifEntry *ee;
+ 
+diff -ruN v0/src/a2jpeg/jpegtools.h v1/src/a2jpeg/jpegtools.h
+--- v0/src/a2jpeg/jpegtools.h	2011-01-31 16:10:56.000000000 -0500
++++ v1/src/a2jpeg/jpegtools.h	2011-02-01 22:25:38.000000000 -0500
+@@ -11,6 +11,7 @@
+ #define JFLAG_FILE_KEEP_TIME       0x0200
+ 
+ #include "transupp.h"
++#include "exif-data.h"
+ 
+ /* functions */
+ int jpeg_transform_fp(FILE *in, FILE *out,
+@@ -28,3 +29,5 @@
+ 			   unsigned char *comment,
+ 			   char *thumbnail, int tsize,
+ 			   unsigned int flags);
++
++int get_orientation(ExifData *ed);
+diff -ruN v0/src/a2jpeg/writers.c v1/src/a2jpeg/writers.c
+--- v0/src/a2jpeg/writers.c	2011-01-31 16:10:56.000000000 -0500
++++ v1/src/a2jpeg/writers.c	2011-02-01 22:25:38.000000000 -0500
+@@ -8,8 +8,3 @@
+ /* ----------------------------------------------------------------------- */
+ 
+ LIST_HEAD(writers);
+-
+-void write_register(struct ida_writer *writer)
+-{
+-    list_add_tail(&writer->list, &writers);
+-}
+diff -ruN v0/src/a2jpeg/writers.h v1/src/a2jpeg/writers.h
+--- v0/src/a2jpeg/writers.h	2011-01-31 16:10:56.000000000 -0500
++++ v1/src/a2jpeg/writers.h	2011-02-01 22:25:38.000000000 -0500
+@@ -1,14 +1,3 @@
+ #include "list.h"
+-#include <X11/Intrinsic.h>
+-
+-/* save image files */
+-struct ida_writer {
+-    char  *label;
+-    char  *ext[8];
+-    int   (*write)(FILE *fp, struct ida_image *img);
+-    int   (*conf)(Widget widget, struct ida_image *img);
+-    struct list_head list;
+-};
+ 
+ extern struct list_head writers;
+-void write_register(struct ida_writer *writer);
+Binary files v0/src/jpegr and v1/src/jpegr differ
+diff -ruN v0/src/jpegr.c v1/src/jpegr.c
+--- v0/src/jpegr.c	2011-02-01 01:48:25.000000000 -0500
++++ v1/src/jpegr.c	2011-02-01 22:25:38.000000000 -0500
+@@ -1,5 +1,11 @@
+ /**
+  * Sample code for ECE 459, assignment 2 
++ *
++ * The code uses modified library functions from the
++ * project fbida (http://linux.bytesex.org/fbida/)
++ * that is released under GPL.
++ *
++ * @author: Xavier Noumbissi
+  */
+ 
+ #include "jpegr.h"
+@@ -14,10 +20,24 @@
+ #include <sys/stat.h>
+ #include <unistd.h>
+ 
++#include <math.h>
++
++#include <exif-data.h>
++
+ #define FALSE 0
+ 
+ #define TRUE 1
+ 
++static JXFORM_CODE transmagic[] = {
++  [1] = JXFORM_NONE,
++  [2] = JXFORM_FLIP_H,
++  [3] = JXFORM_ROT_180,
++  [4] = JXFORM_FLIP_V,
++  [5] = JXFORM_TRANSPOSE,
++  [6] = JXFORM_ROT_90,
++  [7] = JXFORM_TRANSVERSE,
++  [8] = JXFORM_ROT_270,
++};
+ 
+ /**
+  * Max data size of a thumbnail
+@@ -41,7 +61,7 @@
+  * You specify the maximum number of row per column
+  * that will appear in the montage file here.
+  */
+-#define MAX_ROW 2
++static const int MAX_ROW = 5;
+ 
+ static int createMontageFile (UserRequest * uRequest);
+ 
+@@ -79,12 +99,15 @@
+ 
+     switch (choice) {
+     case '9':
++      auto_rotate_flag = 0;
+       uRequest->rotation = JXFORM_ROT_90;
+       break;
+     case '1':
++      auto_rotate_flag = 0;
+       uRequest->rotation = JXFORM_ROT_180;
+       break;
+     case '2':
++      auto_rotate_flag = 0;
+       uRequest->rotation = JXFORM_ROT_270;
+       break;
+     case 't':
+@@ -106,6 +129,8 @@
+     }
+   }
+ 
++
++
+   if (outdir_flag) {
+     if (TRUE == processUserRequest (uRequest, argv, argc, optind))
+       printUserRequest (uRequest);
+@@ -127,12 +152,10 @@
+ 			char *argv[], int argc, int optind)
+ {
+ 
+-  if (JXFORM_NONE == uRequest->rotation)
+-    return FALSE;
+-
+   int curFile = optind;
+   int transform = FALSE;
+   int max_files = argc - curFile;
++  ExifData *exifData = 0;
+ 
+   int i;
+   for (i = 0; i < max_files; ++i) {
+@@ -162,10 +185,28 @@
+     int tsize = create_thumbnail (uRequest->fileIn[i], uRequest->thumbnail[i],
+ 				  THUMB_MAX);
+ 
++    JXFORM_CODE exif_orientation = JXFORM_NONE;
++
++    if (1 == auto_rotate_flag) {
++      exifData = exif_data_new_from_data (uRequest->thumbnail[i], tsize);
++      if (FALSE == getExifOrientation (exifData, &uRequest->auto_rotation[i]) )
++      {
++	printf ("Could not read exif data from jpeg %s, so not"
++		"rotation will be done\n", uRequest->fileIn[i]);
++
++	continue;
++      }
++      exif_orientation = uRequest->auto_rotation[i];
++    }
++    else {
++      exif_orientation = uRequest->rotation;
++    }
++
++
+     //Rotate the jpeg file
+     jpeg_transform_files (uRequest->fileIn[i],
+ 			  uRequest->fileRotIn[i],
+-			  uRequest->rotation,
++			  exif_orientation,
+ 			  uRequest->comment,
+ 			  uRequest->thumbnail[i], tsize, uRequest->flags);
+ 
+@@ -221,9 +262,9 @@
+ 
+   montageJpeg->data = (unsigned char *) calloc (uRequest->nrFiles, THUMB_MAX);
+ 
+-  /**
+-   * Write input thumbnails data to the montage file.
+-   */
++    /**
++     * Write input thumbnails data to the montage file.
++     */
+ 
+   unsigned int y, x;
+ 
+@@ -232,7 +273,7 @@
+   int step = (uRequest->nrFiles % MAX_ROW);
+ 
+   int x_max = 0;
+-  int y_max = (0 == step) ? 1 : (uRequest->nrFiles / step) + 1;
++  int y_max = ceil ((float) uRequest->nrFiles / MAX_ROW);
+ 
+   for (y = 0; y < y_max; ++y) {
+ 
+@@ -257,6 +298,8 @@
+ 
+   }
+ 
++  max_height *= y_max;
++
+   montageJpeg->i.width = max_width;
+   montageJpeg->i.height = max_height;
+ 
+@@ -267,6 +310,20 @@
+   return TRUE;
+ }
+ 
++int getExifOrientation (ExifData * exifData, JXFORM_CODE * exifOrientation)
++{
++  if (0 == exifData)
++    return FALSE;
++
++  int orientation = get_orientation (exifData);
++  if (orientation >= 1 && orientation <= 8)
++    *exifOrientation = transmagic[orientation];
++  else
++    *exifOrientation = JXFORM_NONE;
++
++  return TRUE;
++}
++
+ void destroyUserRequest (UserRequest ** uRequest)
+ {
+   int i;
+@@ -279,7 +336,6 @@
+   free (*uRequest);
+ }
+ 
+-
+ int initUserRequest (UserRequest ** uRequest)
+ {
+   (*uRequest) = (UserRequest *) calloc (1, sizeof (UserRequest));
+@@ -297,6 +353,8 @@
+ 
+   copyStr (&((*uRequest)->outDir), currentPath);
+ 
++  memset (&(*uRequest)->auto_rotation, JXFORM_NONE, MAX_INPUT_FILE);
++
+   (*uRequest)->rotation = JXFORM_NONE;
+   (*uRequest)->threads = 2;
+   (*uRequest)->nrFiles = 0;
+@@ -415,7 +473,9 @@
+ 	  "\t-o dir, --outdir  dir The directory where to store the modified files\n\n");
+   printf ("Generated files are appended the suffix %s\n"
+ 	  "2 threads are used by default to perform the rotation.\n", ENDING);
+-} inline void abort_message ()
++}
++
++inline void abort_message ()
+ {
+   printf ("An error occured. Execution was aborted! Try again.\n");
+ }
+diff -ruN v0/src/jpegr.h v1/src/jpegr.h
+--- v0/src/jpegr.h	2011-02-01 00:46:23.000000000 -0500
++++ v1/src/jpegr.h	2011-02-01 22:25:38.000000000 -0500
+@@ -1,3 +1,13 @@
++/**
++ * Sample code for ECE 459, assignment 2 
++ *
++ * The code uses modified library functions from the
++ * project fbida (http://linux.bytesex.org/fbida/)
++ * that is released under GPL.
++ *
++ * @author: Xavier Noumbissi
++ */
++
+ #ifndef ECE459__JPEGR__H
+ #define ECE459__JPEGR__H
+ 
+@@ -17,7 +27,8 @@
+  * Structure to control a user operation request
+  ******************************************************/
+ typedef struct {
+-  JXFORM_CODE rotation;
++  JXFORM_CODE rotation; //when processing from the command line
++  JXFORM_CODE auto_rotation[MAX_INPUT_FILE];
+   unsigned int nrFiles;		//Number of valid files of the user request
+   unsigned int threads;		//Number of threads to be used
+   unsigned int flags;
+@@ -33,6 +44,7 @@
+  ******************************************************/
+ static int threads_flag = 0;
+ static int outdir_flag = 0;
++static int auto_rotate_flag = 1;
+ 
+ static struct option prog_options[] = {
+   {"help", no_argument, 0, 'h'},
+@@ -53,6 +65,8 @@
+ int processUserRequest (UserRequest * uRequest,
+ 			 char *argv[], int argc, int optind);
+ 
++int getExifOrientation (ExifData * exifData, JXFORM_CODE * exifOrientation);
++
+ void getThreads (UserRequest * uRequest, char *optarg);
+ 
+ int isValidFile (const char *fName);
+diff -ruN v0/src/makefile v1/src/makefile
+--- v0/src/makefile	2011-01-31 16:10:56.000000000 -0500
++++ v1/src/makefile	2011-02-01 22:25:38.000000000 -0500
+@@ -13,9 +13,11 @@
+ 
+ FBIDA_DIR=../fbida-2.07
+ 
+-HEADERS=-Ia2jpeg\
+-	-I/usr/include/glib-2.0\
+-	-I/usr/lib/glib-2.0/include
++HEADERS=-I/usr/include/glib-2.0\
++	-I/usr/lib/glib-2.0/include\
++	-I/usr/include/libexif\
++	-Ia2jpeg
++
+ 
+ SRC=jpegr.c
+ 
+@@ -34,7 +36,7 @@
+ 
+ jpeg:
+ 	$(CC) -c -g -Ia2jpeg a2jpeg/transupp.c
+-	$(CC) -c -g -Ia2jpeg a2jpeg/jpegtools.c
++	$(CC) -c -g $(HEADERS) a2jpeg/jpegtools.c
+ 	$(CC) -c -g -Ia2jpeg a2jpeg/readers.c
+ 	$(CC) -c -g -Ia2jpeg a2jpeg/filter.c
+ 	$(CC) -c -g -Ia2jpeg a2jpeg/op.c
+@@ -42,7 +44,7 @@
+ 	$(CC) -c -g -Ia2jpeg a2jpeg/writers.c
+ 	$(CC) -c -g -Ia2jpeg a2jpeg/write-jpeg.c
+ 	$(CC) -c -g -Ia2jpeg a2jpeg/dither.c
+-	$(CC) -c -g -Ia2jpeg a2jpeg/genthumbnail.c
++	$(CC) -c -g $(HEADERS) a2jpeg/genthumbnail.c
+ 
+ libjpega2: jpeg $(OBJLIB)
+ 	$(AR) crsu libjpega2.a $(OBJLIB)

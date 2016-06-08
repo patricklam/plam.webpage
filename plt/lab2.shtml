@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 251: Programming Languages and Translators: Lab 2</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Test cases</h3>
+
+<p>Here are the Lab 2 <a href="files/a2/tests_v0.5.tar.gz">testcases v0.5</a>. Corrected output.</p>
+
+<p>Note that it seems that <code>TRUE</code> and <code>FALSE</code> get picked up as identifiers. The skeleton will also cause that. Let's just say that this is OK. (Thanks to Bethany McCollum for noticing this.)</p>
+
+Changes:
+<pre>
+tc13-to.sql fixed.
+tc13-to.out updated.
+
+For bad-tc04.sql depending on your OS, you may get different outputs:
+For Linux: bad-tc04.new (added)
+Windows: bad-tc04.out
+
+bad-tc11.sql fixed.
+bad-tc11.out updated.
+
+bad-tc11.sql updated.
+bad-tc11.out updated.
+</pre>
+
+<p>Paul Roukema asks about these testcases. v0.4 fixes these issues. Mehdi writes:</p>
+<pre>
+* tokenonly/tc13-to.sql : No newline at end of file (space at end),
+lexer produces bad token
+
+Fixed: The testcase had newline, but it also contained few spaces as well.
+ 
+* bad-tc04.sql  : No newline, lexer produces bad token
+
+The problem here is an incomplete sql (even the semi colon is
+missing). So, I can say this testcase is correct.
+
+* bad-tc11.sql  : Appears to be a valid SQL statement to me
+
+Sounds valid to me too. It should be a problem with our sample
+solution. We will fix it.
+</pre>
+
+<p>We will replace all instances of <code>ID.*</code> with just <code>*</code>.</p>
+
+<h3>Clarifications</h3>
+
+<p>Please consider <code>result_column</code> to be
+defined as follows: <code> result_column : '*' | expr;</code>.</p>
+
+<p>New <a href="files/a2/ece251-lab2-skeleton-nov4.tar.gz">skeleton</a>: I forgot to visit some classes. I've posted some <a href="files/a2/nov1-nov4.diff">diffs</a> as well.</p>
+
+<p>Somehow a bunch of keywords got dropped from the latest version of
+<code>Token</code>. You should add them, since they're in the testcases.
+The keywords seem to be <code>LEFT</code>, <code>JOIN</code>, <code>ON</code>,
+<code>AND</code>, and <code>OR</code>. These keywords appear only in the lexer.</p>
+
+<p>Aly Hirani pointed out that the provided lexer misses the final character
+under some circumstances. It doesn't miss characters if files have trailing
+newlines, and all testcases will have trailing newlines.</p>
+
+<p>I removed "explain query plan" from the grammar specification
+and fixed a bug in the <code>XMLVisitor</code>. Now ignore the
+<code>explain</code> and <code>queryPlan</code> fields in
+<code>Stmt</code>. (Nov 1)</p>
+
+<p>I also forgot a ? in <code>CREATE TABLE</code>, which I've now added.
+(Nov 2)</p>
+
+<p>I seem to have forgotten to mention precedence in the lab sheet.
+The order is unary, then times/divide/mod, then plus/minus, then
+isnull, notnull, and comparison.</p>
+
+<p>Also, here are the helper functions.</p>
+
+<pre>
+    /* ------------- Helper functions -------------- */
+
+    /** Returns true iff the current token is the same type as t. */
+    public boolean accept(Token.Type t) {
+        return current.t == t;
+    }
+
+    /** Consumes the current token, which must be the same type as t;
+        else throws a syntax error. */
+    public Token consume(Token.Type t) {
+        Token prev = current;
+        if (current.t != t) syntax_error();
+        current = ts.nextElement();
+        return prev;
+    }
+
+    /** Stops the program, printing out the syntax error. */
+    public void syntax_error() {
+        System.out.println("Syntax error at "+current);
+        if (true) throw new RuntimeException();
+        System.exit(-1);
+    }
+</pre>
+
+<h3>Assignment specification</h3>
+
+<p>You can now download the <a href="files/a2/ece251-l2.pdf">instructions sheet</a>
+and the <a href="files/a2/ece251-lab2-skeleton-nov1.tar.gz">skeleton code (Nov 2)</a>. Thanks to
+the class reps, Eric Jia and Michael Seliske, for their helpful comments. Also thanks to Steven Yang and Paul Roukema for a fix to the token parser.</p>
+
+<p>Due on Friday, November 5 at
+11:59PM. Here's a quick summary.</p>
+
+<ol>
+<li> You'll need to provide regular expressions to classify inputs as
+various kinds of <code>Token</code>s.</li>
+<li> You'll need to implement a recursive descent parser which takes a
+stream of tokens and creates an AST from that stream.</li>
+</ol>
+
+<p>I will provide a grammar for a subset of SQL. I will also provide
+scaffolding for the lexer (so that you need only provide the regular
+expressions) and implementations for the AST classes, including
+pretty-printing code. Finally, I'll provide correct test cases,
+hopefully automatically-generated.
+</p>
+
+<p>You will use two drivers, one for testing just the lexer
+(LexerDriver), and one for testing the parser (ParserDriver). We will
+run both of these drivers through a test harness and automatically
+grade your programs based on the results.
+</p>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 251: Programming Languages and Translators</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Stale Final Marks</h3>
+
+<p>I haven't been able to upload the final marks with the revised
+project marks yet. I'll keep on trying to do that.</p>
+
+<p>I've contacted all of the people whose code looks too similar,
+so if you haven't heard from me, you're OK.</p>
+
+<h3>Project marks</h3>
+
+<p>I've readjusted the project marks. The new scheme uses P2 as one
+part and P1/P3 as the other part. I've also adjusted the P3 marks
+downwards; however, the total marks still go up. The new formula is
+1/2 ((100 - (100-P1) - (100-P3)) + P2). The new project average is
+88.6.</p>
+
+<p>I've uploaded the project marks. The two equally-weighted parts of
+the project from the syllabus are P1) the symbol table/type checker;
+and P2) the code generation. To compute the project mark, I took
+100 - (100-P1) - (100-P2). This yields a project average of 82.3.</p>
+
+<p>By the way, the final course average is 79.5 (using the 40% project
+weighting if it helps you) and the exam average is 76.3. No one with
+a project mark above 30 got below 50 on the course.
+</p>
+
+<h3>Final Exam Outline</h3>
+
+<p>Here is the <a href="files/f-outline.pdf">final exam outline</a>.</p>
+
+<h3>Patrick's Office Hours Wednesday and Thursday</h3>
+
+<p>I will be available all day in my office (DC2534) on Wednesday and
+Thursday before the exam. All day means from 10AM to 4:30PM.</p>
+
+<p>Jon will have office hours in EIT3142 from 3:30 to 5:00 on Thursday.</p>
+
+<h3>Grace Days Clarification</h3>
+
+<p>I computed the number of grace days everyone used. Everyone is OK.
+Some people submitted something for Lab 1 4 days late and got either a
+0 or a very low mark. In those cases I'm just going to divide that
+very low mark by 2 and not count the grace days for Lab 1.
+</p>
+
+<p>Two and a half clarifications on grace days. (1) I will count parts
+2 and 3 of the project as one submission for the purpose of grace
+days. For example, if you hand in part 2 on Tuesday and part 3 on
+Wednesday, then you will use 2 grace days, based on the Wednesday
+submission.  (2) I announced earlier that groups of 2 get to sum their
+grace days. This is unfair for people in groups of 1. Singletons
+get 2 extra grace days for their project submission. (2.5) Please
+submit your project before the final exam!</p>
+
+<h3>Upload problems</h3>
+
+<p>I've received a report that someone had trouble uploading their
+submission on Windows using Firefox 3.6.12. If you have this problem,
+let me know and try another browser.</p>
+
+<h3>Final review session</h3>
+
+<p>I've obtained RCH112 for a final exam review session on Monday,
+December 6 from 3:30 to 5:30. Please give me your feedback on how you'd like
+the review session to be organized (on the handin site).</p>
+
+<p>Here are the <a href="files/f-abstract-questions.txt">abstract
+questions</a>, <a href="files/f-concrete-questions1.txt">concrete questions 1</a>, and <a href="files/f-concrete-questions2.txt">concrete questions 2</a>. </p>
+
+<h3>Midterm solutions</h3>
+
+<p>Here are some <a href="files/Midterm.PDF">midterm solutions</a> and marking
+guide, as provided by the TAs.</p>
+
+<h3>E-mail etiquette</h3>
+
+<p>If you are going to send mail to a TA and to me, please send email
+to both of us simultaneously (e.g. CC'd) so that we don't both
+independently answer the question.  This is quite annoying. Don't do
+it!</p>
+
+<h3>Project</h3>
+
+<p>Added a project page. Last updates: skeleton v12 (12/2), skeleton v10 (11/25), skeleton v9+proj-cg.pdf (11/25), r2 of proj-st.pdf (11/24), symbol table/type checker, skeleton v8 (11/23), notice about symbol table (11/20), instructions on running your code on the server (11/19), <code>ID</code>, <code>STRING_LITERAL</code> (11/17), <code>WIGToken</code> (11/16), <code>\+</code>, <code>svn merge</code> insturctions.</p>
+
+<p>Bonuses: 5% bonus on part 2 for submissions by Sunday. 5% bonus on part 3 for submissions by Thursday, December 2, at 11:59PM.</p>
+
+<p>The final part of the project is some code generation for a subset of WIG.
+The skeleton now includes a <code>CodeGenVisitor</code> which you'll extend
+(r1413).</p>
+
+<p>The second part of the project will be to write a symbol table/type checker. I've posted a <a href="files/proj/proj-st.pdf">description</a> (Nov 22).</p>
+
+<p>The first part of the project will be to create a parser. I've posted
+an <a href="files/proj/proj.pdf">updated description</a> (Nov 14, 00:51). 
+You want to fetch the files from the repository using the credentials that you'll acquire from Sam. Before you get the credentials, you can download a <a href="files/proj/proj-skeleton-v7.tar.gz">skeleton (v8 = svn r1283)</a> (update Symbol visitors for singletons). </p>
+
+<p>Please add your groups to the CMS.</p>
+
+<p>We will have a code sprint on Monday evening in RCH302 from
+6:00-8:00.  This is a good time to get started with your project. I'll
+be there to help you out with issues that you may have in getting started.</p>
+
+<p>Here are <a href="files/a1-solns.tar.gz">solutions for Lab 1</a>. I'm going to take them down after you hand in part 1 to the project. I may also put up solutions for Lab 2, briefly. Please do not share these with future classes.</p>
+
+<h3>Tutorial on SVN</h3>
+
+<p>You can find Muhammad Shafique's <a href="files/SubversionSVN.pdf">tutorial notes</a> here. They contain excerpts from the Subversive documentation at <code> http://www.eclipse.org/subversive/documentation/ </code>.
+
+<h3>New marking scheme</h3>
+
+<p>I've added an additional marking scheme. Your mark will not go down
+under this scheme. It will be: max(0.5f+0.3p+0.1l+0.1m,
+0.5f+0.4p+0.1m).</p>
+
+<p>Note that even if the lab ends up worth 0% for you, the fact that you
+did the labs will help you in doing the final project, since it builds on
+many of the same skills!</p>
+
+<h3>Lab 2 clarifications</h3>
+<p>Last clarified on Friday November 5, at 16:45: v0.5 out.</p>
+
+<h3>Concrete practice questions</h3>
+
+<p>If you post solutions to the concrete questions on your class wiki 
+and let me know about them, I'll evaluate the solutions for you. Also,
+if you want to suggest questions for the midterm for me, I'll post any
+that I receive, and I may use them.</p>
+
+<p>(posted 10/22) Here are <a href="files/mt-clarifications.txt">answers</a>
+to the questions that Prof. Rayside passed on to me.</p>
+
+<p>Here are the <a href="files/mt-concrete-practice-questions.pdf">concrete
+practice questions</a> for the midterm.</p>
+
+<h3>Tutorial slides for Lab 2</h3>
+
+<p>Here are <a href="files/tut5-lab2.pdf">tutorial slides</a> courtesy of Jon.
+This material will help you do Lab 2.</p>
+
+<h3>Lab 2 available</h3>
+
+<p>See the Lab 2 page linked to on the left for the lab 2 specification.</p>
+
+<h3>Abstract Question List</h3>
+
+<p>Here is the list of <a href="files/mt-abstract-questions.txt">abstract
+questions</a> for the midterm. I will refine it to a list of concrete
+questions this week (some questions may evaporate), and variants of these
+questions will be the midterm questions.</p>
+
+<h3>Lab 2</h3>
+
+<p>As discussed in class
+today, the due date will be Friday, November 5th at 11:59PM. (By the way,
+submissions that are about an hour late don't consume grace days.)</p>
+
+
+<h3>Tutorial slides</h3>
+
+<p>Here are the <a href="files/t02.pdf">week 2 tutorial slides</a>, courtesy
+of Jon. They should help you get started on the programming for Lab 1.</p>
+
+<p>I've also added more resources on regular expressions and XML from tutorial 1 in the "Resources" tab on the left.</p>
+
+
+<h3>Poll results</h3>
+
+<p>Open-notes: 11; open-book, closed-notes: 2; closed-notes, closed-book: 40.</p>
+
+<h3>Syllabus</h3>
+
+<p>Here is the <a href="plt.pdf">syllabus</a> for this class.</p>
+
+<h3>Grace days</h3>
+
+<p>You have 4 days of lateness to use on submissions throughout the
+term. Each day you hand in something late consumes one of the days of
+lateness. The fifth day of lateness causes your lowest lab mark to be
+halved, while the sixth day causes both lab marks to be halved. If you
+hand in something and you have more than 6 days of lateness, I'll
+start converting marks to 0 and dropping the associated late days. You
+can only hand in a submission up to the time I return all of the
+submissions. You don't get any credit for unused late days.</p>
+
+<h3>Labs</h3>
+
+<p>No. You don't have to show up for lab sessions or tutorials.</p>
+
+<h3>Textbooks</h3>
+
+<p>The textbook for the class will be:
+
+<blockquote>
+    Michael L. Scott. Programming Language Pragmatics, Third Edition. Morgan Kaufmann, 2009.
+</blockquote>
+
+<p>You can buy it from Amazon, or from the University bookstore. Also,
+I intend to post reasonably complete lecture notes for the material
+that I'm lecturing on. The textbook contains a lot of material that's
+not in this course, but which you may well find useful in your later
+career, including content on functional programming. It will also help
+you understand what you're implementing in Lab 1. You could probably
+get by without the book, but then you might be at a disadvantage
+should there be a open-book final.
+</p>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

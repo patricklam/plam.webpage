@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 459: Programming for Performance</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<p>March 20, 2014: <a href="files/a4.pdf">Assignment 4</a> posted (<a href="files/provided-assignment-04.tar.gz">starting point</a>).</p>
+    
+<p>March 5, 2014: <a href="files/2014-midterm-solutions.txt">Midterm solutions</a> posted.</p>
+
+<p>March 3, 2014: <a href="files/a3.pdf">Assignment 3</a> posted.</p>
+    
+<p>February 19, 2014: <a href="files/2014-abstract-midterm-questions.txt">Topics to think about for the midterm.</a></p>
+    
+<p>February 3, 2014: <a href="files/a2.pdf">Assignment 2</a> and <a href="files/a2-rubric.txt">A2 rubric</a> posted.</p>
+
+<p>January 27, 2014: <a href="files/a1-rubric.txt">A1 rubric</a>.</p>
+
+<p>January 19, 2014: <a href="files/a1.pdf">Assignment 1</a> posted.</p>
+
+<p>January 5, 2014: See you in class on Tuesday! -PL</p>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

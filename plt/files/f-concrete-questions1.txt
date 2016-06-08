@@ -1,0 +1,197 @@
+Here's another concrete question I thought up, about parsing.
+
+* parsing
+
+1. Your language contains identifiers ID, operators +, -, and two
+kinds of brackets, [] and (), which may both be used, in pairs, to
+parenthesize expressions; however, you can't close a ) with a ], or
+vice-versa.  A valid expression: $2 + (4 - 3 + [2 + 2])$. An invalid
+expression: $2 + (4 - 3]$. Write a context-free grammar for this
+language.
+
+* abstract syntax trees
+
+1. Draw both a parse tree and an AST for the following code:
+
+\begin{tikzpicture}
+  \node   (terms)         {terms};
+  \node   (constants) [right of=terms,xshift=1em]     {constants};
+
+  \draw[-] (structures) edge node {} (fa);
+\end{tikzpicture}
+
+2. Write down a series of calls which a Visitor pattern, with "enter"
+and "leave" calls, might execute on the AST that you drew above.
+Write down the call to make a Visitor start visiting the AST.
+
+3. Why did you have to deploy multiple visitors simultaneously in your
+project? Which Visitors were they?
+
+4. What AST properties did you verify in your project?
+
+* symbol tables
+
+1. Write down some code which behaves differently in a
+statically-scoped language and in a dynamically-scoped language; provide
+the output in both cases.
+
+2a. Name two symbol table operations and give pseudocode implementing
+them. (Or, I might name the operations and ask you what they do.)
+
+2b. In Lab 1, you implemented the interpreter state using a simple
+HashMap. You might also think of implementing a symbol table that way. 
+Why doesn't this simple implementation work?
+
+2c. What information do you need to keep in a symbol table? 
+
+3. Draw the symbol tables that you need to maintain to compile this
+WIG code:
+
+   service {
+     int a, i;
+
+     session m() {
+       int i;
+       string q;
+       if (true) {
+         int i;
+         i = 5;
+       }
+       i = 3;
+     }
+   }
+
+Draw arrows from the code to the various parts of the symbol table.
+
+4. In the course project, you implemented a two-pass symbol table,
+with a separate SymbolDefVisitor and SymbolUseVisitor. What language
+construct requires separate visitors? How could you avoid the need
+for separate visitors, thereby enabling one-pass compilation? Name 
+a language which supports one-pass symbol lookup.
+
+* type checking
+
+1a. A static type checker ensures that programs avoid certain types
+of errors at run time. Give an example of code with a type error. 
+Give an example of a class of errors that type checking typically
+cannot prevent.
+
+1b. Consider compiler A, which type-checks code at compile time
+(static checking), and compiler B, which generates dynamic type checks
+at runtime (dynamic checking). What are the advantages of each 
+compiler? 
+
+1c. A type-safe language is one where programs cannot execute code
+with type errors. Is it possible to write a static checker guarantees
+type safety? What do you give up? What about a dynamic checker?
+
+1d. What happens if your language doesn't have any type checker?
+
+2. What are the advantages and disadvantages of automatic type inference?
+
+3. When is it inappropriate to do an automatic type coercion?
+Consider the following code. When would you do automatic type coercion,
+and when would you report an error?
+
+  {
+     int i, j;
+     float f; double d;
+     string s;
+
+     f = i * 2.0;
+     f = d / 2;
+     j = (int)f + s;
+     s = s + i - d;
+  }
+
+4. Use the type checking formalism seen in class to manually type-check 
+the following code. You may assume that x:int, y:int, z:int are in 
+your environment.
+
+   {
+      int x, y, z;
+      y = x * (2 + z) % 3; 
+   }
+
+5. Consider the type rule:
+     e1 : int    e2 : int
+    --------------------
+     e1 + e2 : int
+
+What's a good implementation for this rule in a TypeCheckingVisitor?
+What are the possible errors when checking the + operator?
+
+* code generation
+
+1a. Convert the expression 4 + (8 * x) / y into three-address code.
+1b. Convert the following program into a control-flow graph:
+
+     while (x < 4) {
+       if (y > 3)
+         y--;
+       else
+         x++;
+     }
+
+2. Name one potential issue which arises in writing a source-to-source
+translator from Java to C. Describe how you can overcome this issue.
+
+3. Name some potential applications of source-to-source transformations.
+
+4. Consider this code:
+
+   z = x + (y * 2) / (w + q);
+   q = z + 2;
+
+Write three-address code corresponding to this program fragment.  We
+now add the additional restriction that a three-address statement can
+either be a read, rN = var; a write, var = rN; or an arithmetic
+operator between registers, rM = rN OP rP. Write three-address code
+for a machine with 4 registers (r0-r3) for this code.
+
+5. Name some possible outputs from code generation.
+
+* execution: interpretation and JIT compilation
+   1. Fill in parts of the code for a bytecode interpreter
+   2. Name and compare different the three interpreter designs
+   3. What are the advantages and disadvantages of JIT compilers?
+       when would you use them?
+   4. What state does an interpreter need to store? why?
+   5. Why is it hard to handle goto statements in an AST-walking interpreter?
+   6. Compare and contrast the state that an AST needs vs. the state a
+       VM needs.
+   7. Why would you use a JIT compiler to convert x86 code to x86 code?
+
+* functional languages
+   1. Convert imperative code (e.g. a loop) to use higher-order functions,
+       like some of the loops in the project code.
+   2. Solve some problem (which I give you) using map, fold, filter, etc.
+       e.g. write map in terms of fold.
+   3. Be able to deploy or interpret a fold statement.
+   4. Infer type of a given expression (which includes a higher-order fn).
+   5. Currying: why would you use it?
+   6. mapreduce: I specify a problem, you tell me the map and reduce phases.
+   7. mapreduce: be able to draw the block diagram for map reduce, 
+       including phases.
+
+* logic programming languages
+   1. I give you a logic program and a query. You tell me the output.
+   2. Tell me about search as the execution strategy, and how unification
+       fits in.
+   3. "Which of these clauses unify?"
+
+* scripting languages
+   1. Give me a use case for a scripting language.
+   2. Name some properties of scripting (and all other kinds of) languages.
+        (Here's a bunch of applications, which is the best language?)
+
+* domain-specific languages
+   1. Do you ever *need* a DSL? Why or why not?
+   2. What are disadvantages of using DSLs?
+   3. Why would you use a DSL versus a general-purpose language?
+   4. I give you a scenario where you might use a DSL.
+        You tell me about the characteristics of the appropriate DSL,
+        e.g. internal vs. external, and describe what you need to code.
+        For instance, dealing with XML.
+
+

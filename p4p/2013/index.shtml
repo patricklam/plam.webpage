@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 459: Programming for Performance</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Midterm</h3>
+
+<p>Someone asked for the <a href="files/2013-midterm.pdf">2013 midterm</a>. Enjoy!</p>
+
+<h3>Extended office hours</h3>
+
+<p>I'll be generally available the week of April 22nd. On April 24, there will be extended office hours in EIT 3142
+from 1:00 to 3:00pm.</p>
+
+<h3>Assignment 4 guidance</h3>
+
+<p>You can find some sample results at <a href="files/assignment04-sample-results.tar.bz2">files/assignment04-sample-results.tar.bz2</a> (or in <a href="files/assignment04-sample-results.tar.gz">gz</a> form). That's the level of accuracy that I'm looking for with the approximation; you don't have to get exactly the same results. I've boosted the number of points to 5000 to get better timings and included them in the tarball as well.</p>
+
+<h3>OpenCL tips</h3>
+
+<p>OpenCL appears to work on <code>ece459-1</code> now. You can get information
+on the setup by running <code>/usr/local/bin/clinfo</code>. And you can compile
+OpenCL binaries by adding -lOpenCL to either your <code>gcc</code> or <code>g++</code>
+commandlines. Let me know if it crashes or doesn't work. Please use the C++ bindings. Thanks!</p>
+
+<p>The OpenCL examples from lecture do run. I've made the C++ example available
+at <a href="files/vector_add.cpp">patricklam.ca/p4p/files/vector_add.cpp</a> and
+<a href="files/vector_add_kernel.cl">patricklam.ca/p4p/files/vector_add_kernel.cl</a>.</p>
+
+<h3>Assignment 4 posted</h3>
+
+<p>I've posted assignment 4 to the left. Due date is the last day of classes. For both A3 and A4, if you work in groups of 2, you consume late days for each group member. There's also a <a href="files/provided-assignment-04.tar.gz">tarball</a>.</p>
+
+<h3>Assignment 3 posted</h3>
+
+<p>Assignment 3 is now available. I've made the due date 2 weeks from now; we'll discuss that in class tomorrow, along with the marking scheme for the leaderboard. The git repo is at <code>git://patricklam.ca/nm-morph.git</code>. </p>
+
+<p>NOTE: I've posted a new workload for A3. This shouldn't affect your results, since you weren't supposed to modify the harness anyway. Pushed the change to the git repo and uploaded <a href="http://patricklam.ca/p4p/assignments/provided-assignment-03-v2.tar.gz">v2</a>.</p>
+
+<h3>Minor updates to Assignment 2</h3>
+
+<p>I had a new copy of the template report somewhere but blew it away.
+Anyhow, I've put up a fixed template in the current provided-assignment-02.tar.gz file.
+Also, I'm not allowed to make things due during Reading Week, so the assignment
+is now due on February 25.</p>
+
+<h3>Submission for Assignment 1</h3>
+
+<p>Please submit your code to the course Subversion repository at <code>https://ecesvn.uwaterloo.ca/courses/ece459/w13/students/[your-userid]/a1</code></p>
+
+<h3>Course materials git repository</h3>
+
+<p>You can find the git repository for this course at <code>git://patricklam.ca/p4p.git</code>.
+
+<h3>Expected Audience / Background</h3>
+
+<p>I'm aiming this course at fourth-year students with interest in
+software.  I expect students to know about basic concurrency concepts
+(threads and locks), for instance from an Operating Systems class. I
+don't expect any particular hardware background; the course should be
+self-contained in terms of hardware knowledge.
+</p>
+
+<h3>Topics</h3>
+
+<p>Here is a list of topics. </p>
+
+<h4>Introduction</h4>
+
+<p>We'll talk about Amdahl's Law, which describes the limits to
+speedups by parallelization (because you always have to execute some
+sequential code), as well as Gustafson's Law, which points out that
+you can handle bigger problems than before using parallelization.
+</p>
+
+<h4>Multicore processors and vector architectures</h4>
+
+<p>We'll next examine modern hardware in some detail. The idea of
+vector architectures has been around for quite a while, but has been
+gaining some traction recently, especially in the context of
+GPUs. Streaming architectures are related to vector architectures, but
+specialized to high-throughput streams of data. Massively multicore
+processors may be coming to our desktops and laptops. Many of these
+architectures have problems with cache consistency, so we'll define
+cache consistency and see what cache models these architectures
+implement.</p>
+
+<h4>Concurrency and parallelism</h4>
+
+<p>Processors aren't getting faster anymore, so hardware designers
+have been giving us more processing cores. To exploit these cores, our
+software designs need to somehow use parallelism. In this course, I
+expect to start by briefly reviewing what you saw in your Operating
+Systems course about threads and locks, and then going beyond it
+by discussing new programming models for concurrency control:
+atomicity and transactional memory. Transactional memory enables
+optimistic parallelization. We'll also see lock-free data structures.
+</p>
+
+<p>We'll also talk about automatic parallelization by the compiler
+as well as OpenMP, which tells the compiler how to parallelize your code.
+MPI is good for distributed programming. GPU programming is also
+becoming possible, and you'll have an assignment on that.</p>
+
+<h4>Profiling and bottlenecks</h4>
+
+<p>The scientific way to speed up your code is to figure out why it
+runs slowly. We'll see how to estimate the location of the bottlenecks
+in your code. Because we'll discuss the fundamentals of profiling,
+you'll understand the limitations of profiling tools that you might
+encounter later. (Did you know that Java profilers all lie?)</p>
+
+<h4>High-performance programming languages</h4>
+
+<p>Recent programming languages, language constructs, and libraries 
+attempt to help developers write better high-performance code. These
+include MapReduce and Scala. We'll survey the language features of these
+languages and see what they can do for you.</p>
+
+<h3>Evaluation</h3>
+
+<p>
+Since many students tend to be overrun by course projects in 4B, this
+course does not include a project. The evaluation
+scheme will be 50% final, 40% over 4 assignments and 10% midterm.
+</p>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

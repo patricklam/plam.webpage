@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 750-T05: Static Analysis for Software Engineering</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<p>I've added a link to my thoughts on talks to the resources page. - September 29, 2008.</p>
+<p>I've created the <a href="resources.shtml">resources</a> page. - September 19, 2008.</p>
+<p>I have updated the <a href="static-analysis-outline.pdf">blurb</a> (PDF format). - September 12, 2008</p>
+
+<p>Lecture 1 info is on the sidebar to the left (Lecture Notes).</p>
+
+<table class="alternate_rows" id="calendar" cellpadding="1" cellspacing="0">
+<tr><td>L1: Sep 12</td><td>
+Compilers + static analysis. Abstract Syntax Trees. Three-address
+code.  Dataflow analysis. Static checking and
+program verification. Developer-specified versus implicit properties.</td></tr>
+<tr><td>L2: Sep 19</td><td>
+Interprocedural Analysis. Pointer analysis. (I followed Michael Schwartzbach's <a href="http://www.brics.dk/~mis/static.pdf">notes</a>.)
+</td></tr>
+<tr><td>L3: Sep 26</td><td>
+<b>SLAM and Spec#</b><br />
+
+Thomas Ball, Ella Bounimova, Byron Cook, Vladimir Levin,
+Jakob Lichtenberg, Con McGarvey, Bohus Ondrusek, Sriram
+K. Rajamani, and Abdullah Ustuner. 
+<a href="http://www.cs.kuleuven.be/conference/EuroSys2006/papers/p73-ball.pdf">Thorough
+static analysis of device drivers</a>. ECCS '06. (Thiago/Patrick)<br />
+
+Mike Barnett, K. Rustan M. Leino, and Wolfram Schulte.
+<a href="http://research.microsoft.com/~leino/papers/krml136.pdf">
+The Spec# Programming System: An Overview</a>. KRML 136. (Mohamed/Patrick)
+
+</td></tr>
+
+<tr><td>L4: Oct 3<br /><b>Proposals due</b></td><td>
+<b>Procedure summaries</b><br />
+
+Greta Yorsh, Eran Yahav, Satish Chandra. <a href="http://www.cs.tau.ac.il/~gretay/papers/summaries.pdf">Precise and Concise Procedure Summaries</a>. POPL '08. (Steven/Jonathan)<br />
+
+Viktor Kuncak, Patrick Lam, Karen Zee and Martin
+Rinard. <a href="http://patricklam.ca/papers/06.tse.mpa.pdf">Modular
+Pluggable Analyses for Data Structure Consistency.</a> Transactions on
+Software Engineering, December 2006. (Jiewen/Mohamed)
+</td></tr>
+
+<tr><td>L5: Oct 10<br />(Todd moderating)</td><td>
+<b>Demand-driven analyses</b><br />
+
+Xin Zheng and Radu
+Rugina. <a href="http://www.cs.cornell.edu/~rugina/papers/popl08.pdf">Demand-Driven
+Alias Analysis for C</a>. POPL 2008. (Hang/Weining) <br />
+
+Manu Sridharan, Denis Gopan, Lexin Shan, and Rastislav Bodik. 
+<a href="http://www.cs.berkeley.edu/~manu_s/oopsla05.pdf">Demand-driven points-to analysis for Java</a>. OOPSLA 2005. (Nomair/Steven) 
+
+</td></tr>
+
+<tr><td>L6: Oct 17</td><td>
+
+<b>Null derefence checking</b><br />
+
+Domagoj Babic and Alan J. Hu. <a href="http://www.domagoj-babic.com/uploads/Pubs/ICSE08/icse08.pdf">Calysto: Scalable and Precise
+Extended Static Checking</a>. ICSE 2008. (Weining/Hang)<br />
+
+A. Loginov, E. Yahav, S. Chandra, S. Fink, N. Rinetzky,
+M. G. Nanda. <a href="http://portal.acm.org/citation.cfm?id=1390630.1390657">Verifying Derefence Safety via Expanding-Scope
+Analysis</a>. ISSTA 2008. (Jonathan/Steven) <br />
+
+Extra paper: Cormac Flanagan, K. Rustan M. Leino,
+Mark Lillibridge, Greg Nelson, James B. Saxe, and Raymie Stata.
+<a href="http://research.microsoft.com/~leino/papers/krml103.ps">
+Extended Static Checking for Java</a>. PLDI '02. 
+
+<tr><td>L7: Oct 24</td><td>
+
+<b>Verification via testing</b><br />
+
+Nels E. Beckman, Aditya V. Nori, Sriram K. Rajamani, and
+Robert J. Simmons. <a href="ftp://ftp.research.microsoft.com/pub/tr/TR-2008-17.pdf">Proofs from Tests</a>. MSR TR, January 2008. (Jiewen/Thiago)
+A <a href="http://portal.acm.org/ft_gateway.cfm?id=1390634"> conference version</a> also appeared in ISSTA 2008.
+
+</td></tr>
+
+<tr><td>L8: Oct 31<br />
+<b>Midterm reports</b></td><td>
+
+<b>Concurrency</b><br />
+
+A. Bouajjani, S. Fratani, and S. Qadeer. <a href="http://research.microsoft.com/~qadeer/docs/cav07.cb.pdf">Context-bounded analysis of
+multithreaded programs with dynamic linked structures</a>.  Proceedings of
+the 19th International Conference on Computer Aided Verification,
+2007. (Mohamed/Jonathan) <br />
+
+Ravi Chugh, Jan Wen Vuong, Ranjit Jhala, and Sorin Lerner. <a href="http://pho.ucsd.edu/rjhala/papers/radar.pdf">Dataflow analysis
+for concurrent programs using datarace detection</a>. PLDI 2008. (Jonathan/Jiewen)
+</td></tr>
+
+<tr><td>L9: Nov 7</td><td>
+
+<b>Typestate and tracematches</b><br />
+
+Stephen Fink, Eran Yahav, Nurit Dor, G. Ramalingam, and Emmanuel Geay.
+<a href="http://www.st.cs.uni-sb.de/edu/recommendation-systems/papers/issta06.pdf">Effective typestate verification in the presence of aliasing</a>. ISSTA 2006. (Nomair/Hang)<br />
+
+Eric Bodden, Patrick Lam and Laurie Hendren. <a href="/papers/08.fse.rt-ahead.pdf">Finding Programming
+Errors Earlier by Evaluating Runtime Monitors Ahead-of-Time</a>. FSE
+2008. (Patrick/Thiago)
+</td></tr>
+
+<tr><td>L10: Nov 14</td><td>
+
+<b>Novel program properties</b><br />
+
+(FSE conference report)<br />
+
+
+Christopher Unkel and Monica
+S. Lam. <a href="http://suif.stanford.edu/papers/popl08.pdf">Automatic
+Inference of Stationary Fields: a Generalization of Java's Final
+Fields</a>. POPL 2008. (Hang/Nomair) <br />
+
+David Greenfieldboyce and Jeffrey
+S. Foster. <a href="http://www.cs.umd.edu/~jfoster/papers/oopsla07-jqual.pdf">Type
+Qualifier Inference for Java</a>.  OOPSLA 2007. (Weining/Jiewen)
+
+</td></tr>
+
+<tr><td>L11: Nov 21</td><td>
+
+<b>Programming Tools</b><br />
+
+
+David Mandelin, Lin Xu, Ras Bodik and Doug
+Kimelman. <a href="http://www.cs.berkeley.edu/~mandelin/ProspectorPLDI05.pdf">Jungloid
+Mining: Helping to Navigate the API Jungle</a>. PLDI 2005. (Thiago/Nomair)<br />
+
+Suresh Thummalapenta and Tao Xie. <a href="http://people.engr.ncsu.edu/txie/publications/ase07-parseweb.pdf">
+PARSEWeb: A Programmer Assistant for Reusing
+Open Source code on the Web</a>. ASE 2007. (Steven/Weining)
+
+</td></tr>
+
+<tr><td>L12: Nov 28</td><td>
+
+<b>Project Reports &amp; Loose Ends</b><br />
+
+Bonus paper: Sriram Sankaranarayanan, Swarat Chaudhuri, Franjo
+Ivancic, and Aarti Gupta. Dynamic Inference of LIkely Data
+Preconditions over Predicates by Tree Learning. ISSTA 2008.
+
+</td></tr>
+
+</table>
+
+  </div>
+</div>
+
+<!--#include virtual="/sase/includes/footer.html" -->

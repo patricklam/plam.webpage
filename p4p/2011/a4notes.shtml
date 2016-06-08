@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 459: Programming for Performance: Assignment 4 Notes</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>More on workgroups</h3>
+
+<p>Never mind re: workgroups. OpenCL can assign it automatically,
+which is good enough for this assignment.</p>
+
+<p>I've solved Assignment 4. Part 2 is fairly straightforward.
+I recommend that you first code sequential code for part 2. Then
+you can compare outputs for the OpenCL version and the sequential version.
+The thing that took me the most time was a <code>float</code> versus
+<code>float4</code> mismatch, which caused bogus results and took
+a long time to debug.</p>
+
+<p>I also thought you might be interested in timings. Check them out:</p>
+
+<pre>
+plam@ece459-2 ~/a4-skel $ time ./nbody-seq > unopt-out
+real1m50.225s
+user1m50.220s
+sys0m0.000s
+
+plam@ece459-2 ~/a4-skel $ time ./nbody-seq-opt > opt-out
+real0m17.307s
+user0m17.270s
+sys0m0.030s
+
+plam@ece459-2 ~/a4-skel $ time ./nbody > opencl-out2
+real0m1.426s
+user0m0.460s
+sys0m0.190s
+
+plam@ece459-2 ~/a4-skel $ time ./nbody-opt > opencl-out
+real0m1.003s
+user0m0.520s
+sys0m0.190s
+</pre>
+
+<p>I'm also installing <code>unison</code> on the machines.
+You could use that to keep your code in synch on the three
+machines, although <code>git</code> is a better solution.</p>
+
+<p>Good luck!</p>
+
+<h3>Sample Code</h3>
+
+<p>You might consider using <code>rsqrt</code>, which computes the
+reciprocal of the square root. In creating the buffers, you might also
+find it useful to give the flag <code>CL_MEM_COPY_HOST_PTR</code>.</p>
+
+<p>Getting OpenCL compilation errors? Try this.</p>
+
+<pre>
+  const char * source = loadFile("nbody-kernel.cl");
+  cl_program program = clCreateProgramWithSource( context,
+                                                  1,
+                                                  &source,
+                                                  NULL, NULL );
+  r = clBuildProgram( program, 1, &device, NULL, NULL, NULL );
+  if (r != CL_SUCCESS) {
+    char *build_log;
+    size_t ret_val_size;
+    clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 
+                          0, NULL, &ret_val_size);
+    build_log = malloc(ret_val_size+1);
+    clGetProgramBuildInfo(program, device, CL_PROGRAM_BUILD_LOG, 
+                          ret_val_size, build_log, NULL);
+        
+    // to be carefully, terminate with \0
+    // there's no information in the reference 
+    // whether the string is 0 terminated or not
+    build_log[ret_val_size] = '\0';
+        
+    printf("BUILD ERROR: %s\n", oclErrorString(r));
+    printf("BUILD LOG: \n%s\n", build_log);
+    free(build_log);
+    exit(1);
+  }
+</pre>
+
+<p>I've defined <code>loadFile()</code> as follows:</p>
+
+<pre>
+// Helper function to load file
+const char * loadFile(char * fname) {
+  FILE * f = fopen (fname, "r");
+  if (!f) { printf("loadFile: couldn't open %s\n", fname); exit(1); }
+  fseek(f, 0L, SEEK_END); 
+  size_t sz = ftell(f); 
+  fseek(f, 0L, SEEK_SET);
+  char * buf = malloc(sz+1);
+  fread(buf, sz, 1, f);
+  buf[sz] = 0;
+  fclose(f);
+  return (const char *) buf;
+}
+</pre>
+
+<p>You also don't need any weird pragmas in the <code>.cl</code> file.
+Just be sure to define <code>EPS</code> and you should
+be fine.</p>
+
+<h3>Explanation of workitems and workgroups</h3>
+
+<p>Didn't catch my explanation? Try <a href="http://www.acooke.org/cute/APractical0.html">this one</a>.</p>
+
+<h3>Small tweaks</h3>
+
+<p>I've coded a sequential version of the optimized algorithm. 
+To make it work out, I changed some of the constants. In particular,
+<code>SPACE</code> should be <code>1000.0f</code>, and the bins should
+have sides of length <code>100.0f</code>. I also decided to make the
+weight of all points 1.0, to make your life easier.</p>
+
+<table>
+<tr><th>Skeleton version</th><th>Diffs</th></tr>
+<tr><td><a href="files/nbody-seq.c">v2</a></td><td><a href="files/a4-v1-to-v2.diff">a4-v1-to-v2.diff</a></td></tr>
+<tr><td><a href="files/nbody-seq-v0.c">v1</a></td><td>N/A</td></tr>
+</table>
+
+
+<h3>Where stuff is installed</h3>
+
+<p>You'll find the OpenCL SDK binaries in <code>/opt/cuda/sdk/OpenCL/bin/linux/release/</code>. Test it out by running <code>oclQuery</code>. To compile an application:</p>
+
+<pre> $ gcc sample.c -o sample -lOpenCL -lm</pre>
+
+<p>Currently, the SDK is only installed on <code>ece459-1</code>, but Jon should install it on <code>-2</code> in the near future. I should be able to power up <code>-3</code> once I get back to Waterloo on Monday.</p>
+
+<p>Have fun!</p>
+
+<h3>Instructions on generating SSH keys</h3>
+
+<p>Here are instructions for generating SSH keys on Linux/Unix systems.
+(You can also find <a href="http://ask-leo.com/how_do_i_create_and_use_public_keys_with_ssh.html">Windows instructions</a> on the Internet.)
+Type the command:</p>
+
+<code>$ ssh-keygen -t rsa -C "your_email@youremail.com"</code>
+
+<p>You should get the following output. If you set a passphrase, you
+have to type it every time you use the key (unless you cache it with
+an ssh-agent). However, if you don't set a passphrase, anyone who
+gets your private key can log in as you. It's up to you!</p>
+
+<pre>
+Generating public/private rsa key pair.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+</pre>
+
+<p>Afterwards, your keys should be in</p>
+
+<pre>$HOME/.ssh/id_rsa
+$HOME/.ssh/id_rsa.pub</pre>
+
+<p>Send a login name (e.g. your WatID) and <code>id_rsa.pub</code> to <code>mrudafsh[at]engmail.uwaterloo.ca</code>
+Keep <code>id_rsa</code> to yourself. </p>
+
+<p>For now, if you're trying to get an early start on the assignment,
+cc me (PL) with the public key and I'll create it myself.</p>
+
+<p>You will then be able to ssh in to <code>ece459-N</code>, where <code>N</code> will range between 1 and 3, eventually.</p>
+
+<p>You can connect to a machine using PuTTY as follows (thanks
+Jonathan Thomas): Enter the host name, put your username in Connection
+-> Data -> Auto-login username, load your key in Connection -> SSH ->
+Auth -> Private key file for authentication, then click Open to
+connect.</p>
+
+<h3>N-body simulations with CUDA</h3>
+
+<p>Here is a very readable introduction to computing forces in
+an N-body simulation in CUDA:</p>
+
+<code>http://http.developer.nvidia.com/GPUGems3/gpugems3_ch31.html</code>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

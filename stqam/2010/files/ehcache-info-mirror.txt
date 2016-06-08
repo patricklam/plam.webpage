@@ -1,0 +1,174 @@
+Mirror from: http://twasink.net/blog/2005/10/ehcache-dissected/
+
+Author: Robert Watkins. Mirrored without permission while the above site is down.
+
+At work, we are a heavy user of ehcache. Well, we would be... it was initially written at Wotif, to overcome problems with the Jakarta JCS project. I recently had to sit down and figure out exactly how it works, and thought I’d take a moment to write it up.
+
+*Update*: I tested the Hibernate serialization behaviour. See below for more.
+
+Background
+
+As I said, ehcache was originally written at Wotif, but it was written by Thoughtworkers who have since moved on to other clients (we have a very good relationship with Thoughtworks, and have a number of them on site; it’s just that the ones who worked on ehcache moved on. Hi, Greg!). Because open source development is more about individuals than organisations, Wotif staff members don’t really have much to do with ehcache development. So this is strictly a third-party commentary. Heck, I wasn’t even at Wotif at the time.
+
+Since it was originally released, ehcache has grown somewhat and has a modest direct following. It has quite a large indirect following, as it has been picked up by the Hibernate project as the default caching implementation (again, replacing JCS). So it is very widely used.
+Architecture Overview
+net.sf.ehcache.Cache
+
+The heart of ehcache is the net.sf.ehcache.Cache class. This critter allows you to insert items (with a key), then fetch them out using the key, like a Map. There a number of features to a Cache@ that make it more than just a @Map, though:
+
+    * Caches have a maximum size; if you insert an entry into a full Cache, you evict another one (exactly which one is determined by an Expiry Strategy[1])
+    * Entries in a cache can expire, due to age. There is a background thread running that removes expired elements; they are also removed if you try to access them.
+    * Entries in a cache are actually Elements – an Element encapsulates a lot of the important stats (such as last access time). Elements are made from a key and a value – both must be serializable. You “put” Elements into the Cache, and “get” them back out using a key.
+    * Finally, a Cache has an optional backing disk store – you can have excess elements go to disk rather than simply be tossed away. As I’ll discuss later, this is both a good and a bad thing.
+
+net.sf.ehcache.store.MemoryStore
+
+All Caches have two Stores. A Store is, as the name suggests, a place to “store” cache Elements. The main one is the MemoryStore. The guts of MemoryStore is a LinkedHashMap. There isn’t that much that’s interesting about this:
+
+    * you can put Elements into it;
+    * you can get them out again;
+    * Elements stay in memory until removed, or until they are accessed when expired – there is no background thread removing expired Elements in the MemoryStore;
+    * All methods that work on Elements are synchronised for thread safety.
+    * MemoryStore has an optional backing DiskStore. If activated, all the cache operations are transparently passed on through; e.g. get(key) will look in the DiskStore if no entry is found in the MemoryStore. If it finds it there, it removes it from the DiskStore and puts it in the MemoryStore.
+    * The MemoryStore has a maximum size (in terms of number of elements). If this is exceeded, the oldest entry is moved to the DiskStore, unless it has expired or the DiskStore is not enabled, in which case it is simply discarded.
+
+net.sf.ehcache.store.DiskStore
+
+The DiskStore, like its name suggests, is a Store that backs onto the disk (well, file system). It has a number of key features:
+
+    * New Elements are placed into a spool. There is a background thread that writes the contents of the spool to disk; this is meant to make it asynchronous (but doesn't quite get there... see more below)
+    * Elements end up being written out to a File. An index to the file is kept in memory (in a Map, keyed by the Element's key). This makes disk access fairly efficient.
+    * When you get an Element from the DiskStore, it uses the index to determine if the Element actually is in the store; if it is, it then deserializes the object and returns it to you.
+    * There is a background thread that runs around removing expired elements.
+    * It does a fairly decent job of avoiding fragmentation of the backing file – not perfect, and there is no option to compact the backing file, but not bad.
+
+Summary of the architecture
+
+So, broadly speaking: you create new Elements using a key and a value, both of which must be serializable. You put the Element into a Cache. This will place it into a MemoryStore. If the MemoryStore gets full, the excess will overflow to a DiskStore.
+
+Elements have various stats, such as last access time. Caches have expiry times (both to live and to idle – live but idle Elements in the MemoryStore are candidates to be overflowed to the DiskStore).
+
+When you ask a Cache for an Element by its key, you know the Element you get back (if any) is live – expired Elements are removed from the Cache instead of being returned.
+Usage Tips
+Cache Sizing
+
+The main usage tip lies around the size of the MemoryStore, and whether you have a DiskStore enabled (e.g. you have set the cache to overflow to disk). Simply put: you should have the MemoryStore large enough that it covers the bulk of the items you want cached. If you regularly see the same set of objects going in and out of the cache, you know you need a larger cache to be truly effective.
+
+You can monitor cache hits and misses in detail by turning the logging for the net.sf.ehcache.store.MemoryStore up. General hit/miss counts can be obtained from the Cache itself.
+
+In general, keeping an eye on cache hits and miss will tell you a lot about the cache effectiveness. A low hit-to-miss ratio, for example, means that the cache is not that good. Either it is too small, or there are no truly popular entries (caches work best if popularity is clustered), or the entries are expiring too fast.
+
+The other thing to keep an eye on is how much the DiskStore is used. If items are constantly being pulled out of the DiskStore, this says that your MemoryStore is too small – you have popular cache entries, but not enough space in memory to keep them. Also, remember that the DiskStore cache has no size limit – in theory, it could fill up your entire file system, particularly if you have your objects marked as eternal (which means they will never expire).
+Serialization issues
+
+Serialization can be, um, interesting. Let's go for a simple example: I have an Order object, which contains 3 OrderItems. OrderItem, in turn, has a reference back to Order.
+
+When I serialise an OrderItem, I end up serializing the Order, plus the other two OrderItems. I don't re-serialise the first OrderItem because Java's smart enough to spot when it is going in circles.
+
+If I put the three OrderItems into a Cache, and they end up being overflowed to the DiskStore, then retrieve the three OrderItems, you end up with:
+
+    * three different instances of Order (none of which is the original)
+    * nine instances of OrderItem (three that you expect, each of which has references to clones of the other two).
+
+What this means is that using a DiskStore to store arbitrary nodes of an object graph is a Bad Idea(tm). What you should store are what Evans calls “aggregate roots” – nodes in an object graph that represent logical entry points. In this example, Order is an aggregate root, while OrderItem is not.
+
+With normal objects, determining good aggregate roots are a little hard. For example, Order probably has a reference to Customer (which would also be an aggregate root).
+
+In general, however, if you've got object graphs with interrelated aggregate roots (like most rich domain models), then using the DiskStore is a bad idea for you. Save
+the DiskStore for objects that are not intertwined with other objects.
+DiskStore locking issues.
+
+Cache methods (and those of the Stores) are synchronised when needed for thread safety. This means, for example, when you put an Element into a Cache, you need to get a lock first on the Cache, then on the MemoryStore, and possibly on the DiskStore. Now, each cache instance has its own stores, so once you get the lock on the Cache, there is no contention, so this isn't too bad.
+
+Except when you overflow to disk. When you overflow to disk, a SpoolThread[2] is notified that a new Element is in the DiskStore spool. It is this daemon thread that will actually write the element to disk. The reason for this is that writing to disk is orders of magnitude slower than using the MemoryStore. This is the case even if you use a RAM disk for the backing file – the cost of serialising the objects is high. By using a background thread to write Elements to disk, your application is free to go off and do other things.
+
+But... the spool thread locks the DiskStore as well. Nor does it run at a low priority. Because it doesn't run at a low priority, it tends to obtain the lock on the DiskStore the instant that it becomes available. So if I'm put two Elements in the Cache, and they both result in an overflow, then my code is sitting around waiting for the first one to be spooled to disk. So, with batch updates or under load, a Cache that is full degrades in performance a lot.
+
+(This is yet another reason to use aggregate roots with a Cache, BTW)
+
+In a similar manner, the ExpiryThread locks the DiskCache when it runs. Having it occur too frequently would lead to bad performance on a frequently accessed Cache.
+
+These problems are mitigated by correctly sizing the MemoryStore – overflowing to disk or retrieving from disk should be the exception, not the rule. Also remember that any miss in the MemoryStore will result in a call to the DiskStore, which needs a lock as well – so if you are using a DiskStore, you want to pay even more attention to cache misses.
+Configuration
+
+The ehcache documentation covers configuration fairly well, so I'm not going to go into it here.
+Hibernate Integration
+Caches
+
+Hibernate has a pluggable second-level cache. This complements the first-level cache, and is shared between all active Hibernate sessions. Essentially, it's an application level cache. ehcache is one of the various implementations pre-packaged with Hibernate 2, and the only one packaged with Hibernate 3.
+
+(The comments in this section refer to Hibernate 2; the behaviour in Hibernate 3 is similar enough)
+
+When you load an object in Hibernate, it will place it into the second-level cache (assuming the object is marked as cachable, etc, etc). When you next try to reload the object by id, it's fetched from the cache.
+
+When you execute a query, Hibernate first looks at the id column(s) in the resultset. If that ID is in the cache, it will fetch the object from the cache instead of recreating it.
+
+Okay, that's the simple case. Now lets talk about query caches. Queries, like objects, can be cached. In the case of a query, what you cache is a list of the “disassembled” query results. When you retrieve a query from its cache, the results are “reassembled”.
+
+The assembly/disassembly process depends on the Hibernate type in question. For most objects (that is, anything of an Object type), what this means is that the identifier gets cached on disassembly, then it is the object is reloaded, using the identifier, on reassembly. This, of course, will result in a cache lookup for the identifier.
+
+What's the implication of this? Well, it means that when you do a query returning a lot of results, you get a lot of activity around the object cache (whether or not the query itself is cached). So go back and re-read the issues around the DiskStore locking.
+Serialisation issues
+
+In an earlier draft of this article, I said that lazy-loaded classes used their proxies to resolve on deserialization. This turns out not to be the case – at least in Hibernate 2, serializing a proxy serialises the entire class, and deserialising it will give you a new object graph.
+
+What this means in practice is that you should be very careful using a DiskStore with Hibernate classes, and only use it with aggregate roots. But in general, I would avoid the DiskStore for domain classes (it would be okay with query caches, as these only store ids)
+
+Querying only for aggregate roots is a good practice for Hibernate in any case. As you only need to cache objects that are queried directly, this provides an effective way of solving the serialisation issues (if that's how it works, of course).
+ehcache constructs
+
+ehcache has an optional add-on package. Mostly, it provides different styles of caches.
+
+(It's worth stressing here that none of these are used by Hibernate. If the Hibernate usage is all you care about, jump to the next section)
+net.sf.ehcache.constructs.blocking.BlockingCache
+
+BlockingCache wraps a Cache, but it has a special difference. Reading from the BlockingCache is not synchronized (though the underlying Cache still is). However: when you try to read an entry, you obtain a lock based on the key. If another thread already has the lock, you block until the lock is made available?
+
+How is the lock made available? By putting a value in, for the same key. This doesn't have to be done by the thread that acquired the lock, BTW.
+
+This particular behaviour (which scares the bejeezus out of me) means that if you read from a BlockingCache and don't get a value out for it, you'd better put one back in quick.
+net.sf.ehcache.constructs.blocking.SelfPopulatingCache
+
+SelfPopulatingCache extends BlockingCache. The big difference is that when you make it, you give it a class which implements the CacheEntryFactory interface. When you retrieve an entry from the cache, if it is not present, then the CacheEntryFactory is used to fetch the entry automatically.
+
+This means that a client class doesn't have to worry about handling cache misses – it will already have been taken care of.
+
+SelfPopulatingCache has a very powerful method: refresh(). This method basically goes through and recreates every Element in the cache.
+net.sf.ehcache.constructs.blocking.UpdatingSelfPopulatingCache
+
+UpdatingSelfPopulatingCache extends, not suprisingly, SelfPopulatingCache. The big difference here is that when you retrieve an Element, it will be automatically updated, by the provided implementation of UpdatingCacheEntryFactory.
+How to kill an application in 5 minutes
+
+Okay, here's why I started looking into ehcache. As I mentioned, we use ehcache heavily at Wotif. In addition to using it inside Hibernate, we use SelfPopulatingCaches to store HTML snippets and some query results (though we should probably be using Hibernate Query Caches for at least some of those).
+
+These caches are layered. HTML snippet caches are backed by query caches, which in turn are backed by Hibernate caches.
+
+When you refresh a top-layer cache, especially a large one, you can kill an application very fast.
+
+Here's how we did it. We had a cache which serves up the active deals (ie what you see on the main pages). At any given time, there are about 150000 deals in the system, though you won't see that many on a page. We had several SelfPopulatingCaches built on top of data from several deals. We were worried about database load, so we increased the size of these caches. And we promptly killed the database.
+
+Why? Because we periodically refresh these caches. When they refreshed, they would go and fetch the deals again. So: we had several dozen caches trying to refresh. When they refreshed, they performed a search to obtain deals. These deals promptly got placed into the Hibernate second level cache for deals. This then overflowed immediately, because at least a few of these searches actually brought back more deals than would fit in the cache. This meant that we had a lot of contention for the DiskStore for the deals cache. Remember what I said
+about DiskStore synchronisation?
+
+Now for the interesting part: When Hibernate runs a query to fetch back, oh say, about 2000 objects, it keeps the connection open while it updates the caches. This is because it updates the caches as it builds up each object graph. And what this meant is while the SelfPopulatingCaches were busy trying to update their deals, database connections were kept open. Which meant that the database started to slow down. This meant that other activity started to take longer as well, which meant that more database connections were opened. I think you can see where this went. In short, we could kill our application in about 5 minutes.
+
+This was fixed by turning off the DiskStore for the deals cache. Oh, and led to me doing the investigation which in turn led to this article.
+Code critique
+
+Okay, the above was, to the best of my knowledge, fact. The rest of this is my opinion.
+
+ehcache externally is fairly easy to use. It would be better if the fact that a Cache stores Elements was a bit more transparent – a helper method which took keys and values would be good, with the get() method returning the value instead of the Element
+
+From a design point of view, the biggest issue is around the DiskStore. The SpoolThread is too aggresive (it should run at a reduced priority), and should not stop entries being added or removed from the DiskStore, This could be done simply by locking just the one entry in the spool that is being written out. This would drastically reduce the contention we saw in production.[3]
+
+I personally don't rate the actual implementation that highly. It does the job (other than the contention around DiskStore), but, well, it's too procedural for my taste, and there isn't enough real use of objects. Case in point: there is a Store interface that is implemented by both DiskStore and MemoryStore. But it's not actually used anywhere. The Cache has an explict MemoryStore and an exclipit DiskStore. The MemoryStore also has an explicit DiskStore@. Personally, I would have gone with a "chain" of @Stores, each of which overflowed to the next one (with the last one being a NullStore that just discarded the elements). At the very least, I would have used the Store interface. But like I said, it does the job.
+
+The ehcache-constructs stuff, OTH, scares me. The fact that the BlockingCache relies on the client to insert a value to remove the lock is a disaster waiting to happen. The inheritance hierarchy of the various caches is annoying, too... they each have their own Managers (which are responsible for creating them): why there isn't just own manager I don't know. Furthermore, the construct caches are not designed for extension: we wanted to make an asynchronously updating cache (which would return expired values while the real value was updated), but this didn't prove as easy as we would have liked. We also wanted to do true layered caches – where an update at a bottom level cache would inform the higher level caches so that they update as required (preferably asynchronously). Not easy to do...
+Summary
+
+For all of that, for a non-distributed cache, it performs well enough as long as you configure it okay. For standard Hibernate usage, all you really need to pay attention to are the object graphs – avoid the DiskStore and you shouldn't have problems.
+
+—
+[1] Actually, with the 1.1 source (the official release) the only strategy is least recently used. This tends to be “good enough”. The reason that the documentation mentions multiple strategies is that this is a feature of the upcoming 1.2 release (currently in beta)
+[2] SpoolThread is an inner class of DiskStore, as is ExpiryThread
+[3] A bug for this issue has been raised

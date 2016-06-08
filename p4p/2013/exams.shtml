@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 459: Programming for Performance: exam information</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Midterm information for 2013</h3>
+
+<h5>Logistical information</h5>
+
+<table>
+<tr><td><b>Date</b></td><td>Wednesday, February 27</td></tr>
+<tr><td><b>Time</b></td><td>19:00 to 20:20</td></tr>
+<tr><td><b>Place</b></td><td>RCH 301/309</td></tr>
+</table>
+
+<h5>Coverage</h5>
+
+<p>I may ask questions about all of the material up to Lecture 12.
+Lecture notes for Lectures 13 and 14 may also be helpful (I expand on
+some of the material I've previously discussed), but all of the
+answers should be in the notes for Lectures 1 through 12.
+</p>
+
+<h5>Format</h5>
+
+<p>There are four questions on the exam. The first question is
+short-answer, while the other three are multiple-part questions with
+longer answers.  Some of the questions do involve writing code. Since
+you don't have access to a compiler, I won't be picky about syntax,
+but I do expect you to use the correct concepts.
+</p>
+
+<h5>Topics</h5>
+
+<p>We saw the following concepts in class. Some will be on the exam.
+</p>
+
+<ul>
+<li>Bandwidth versus latency.</li>
+<li>Calculating speedups and maximum speedups: Amdahl's Law and Gustafson's Law.</li>
+<li>Concurrency vs Parallelism.</li>
+<li>Threads: Pthreads, simple locks, synchronizing threads, race conditions.</li>
+<li>Working with the compiler.</li>
+<li>Dependencies.</li>
+<li>Breaking dependencies: speculative execution, value speculation. </li>
+<li>Parallelization patterns.</li>
+<li>Automatic parallelization.</li>
+<li>OpenMP.</li>
+<li>Memory models, reordering, fences and barriers, atomic instructions.</li>
+</ul>
+
+<h5>Old exams</h5>
+
+<ul>
+<li><a href="files/2011-midterm.pdf">midterm from 2011</a></li>
+<li><a href="files/2011-final.pdf">final from 2011</a></li>
+<li><a href="files/2012-midterm.pdf">midterm from 2012</a></li>
+<li><a href="files/2012-final.pdf">final from 2012</a></li>
+<li><a href="files/2013-midterm.pdf">midterm from 2013</a></li>
+</ul>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

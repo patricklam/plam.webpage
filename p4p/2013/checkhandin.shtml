@@ -1,0 +1,102 @@
+<?php
+/* sanitize_file_name taken from WordPress, which is GPL. */
+/**
+ * Filters certain characters from the file name.
+ *
+ * Turns all strings to lowercase removing most characters except alphanumeric
+ * with spaces, dashes and periods. All spaces and underscores are converted to
+ * dashes. Multiple dashes are converted to a single dash. Finally, if the file
+ * name ends with a dash, it is removed.
+ *
+ * @since 2.1.0
+ *
+ * @param string $name The file name
+ * @return string Sanitized file name
+ */
+function sanitize_file_name( $name ) { // Like sanitize_title, but with periods
+    $name = strtolower( $name );
+    $name = preg_replace('/&.+?;/', '', $name); // kill entities
+    $name = str_replace( '_', '-', $name );
+    $name = preg_replace('/[^a-z0-9\s-.]/', '', $name);
+    $name = preg_replace('/\s+/', '-', $name);
+    $name = preg_replace('|-+|', '-', $name);
+    $name = trim($name, '-');
+    return $name;
+}
+
+$uid = sanitize_file_name($_POST["uid"]); $pw = $_POST["pw"];
+
+function getpw($uid) {
+    $fp = fopen('uploads/passwd', 'r');
+    if (!$fp) { echo 'passwd does not exist!?</body></html>'; exit;}
+    while (!feof($fp)) {
+      $line = fgets($fp, 1024);
+      list ($u, $p, $fn) = split ('\|', $line);
+      if ($u == $uid) $rv = $p;
+    }
+    fclose($fp);
+    return $rv;
+}
+
+function getfn($uid) {
+    $fp = fopen('uploads/passwd', 'r');
+    if (!$fp) { echo 'passwd does not exist!?</body></html>'; exit;}
+    while (!feof($fp)) {
+      $line = fgets($fp, 1024);
+      list ($u, $p, $fn) = split ('\|', $line);
+      if ($u == $uid) $rv = trim($fn);
+    }
+    fclose($fp);
+    return $rv;
+}
+
+$badpw = 0;
+if (isset($uid) && isset($pw)) {
+    if ($pw == getpw($uid)) {
+      $fn = getfn($uid);
+      $file = "uploads/latest/$uid-$fn";
+      header('Content-Description: File Transfer');
+      header('Content-Type: application/octet-stream');
+      header("Content-Disposition: attachment; filename=$fn");
+      header('Content-Transfer-Encoding: binary');
+      header('Expires: 0');
+      header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+      header('Pragma: public');
+      header('Content-Length: ' . filesize($file));
+      ob_clean();
+      flush();
+      readfile($file);
+      exit;
+    } else {
+      $badpw = 1;
+    }
+}
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 459: Programming for Performance: Assignment Check</title>
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<?php
+if ($badpw) {
+ echo '<p style="color:red">Bad password. Mail Patrick if you need help.</p>';
+}
+?>
+
+<form enctype="multipart/form-data" action="/p4p/checkhandin.shtml" method="POST">
+<input type="hidden" name="MAX_FILE_SIZE" value="12000000" />
+Please enter your username: <input name="uid" type="text" /> <br />
+Please enter your code: <input name="pw" type="text" /> <br />
+<input type="submit" value="Download Submitted Assignment" />
+</form>
+
+</div>
+
+</div>
+<!--#include virtual="/p4p/includes/footer.html" -->

@@ -1,0 +1,38 @@
+Here is the general abstract question list. Some of these questions may 
+disappear as I find that I can't convert them to satisfactory concrete
+questions.
+
+* bootstrapping question (final)
+   1. you have X and you want Y, how do you do it?
+
+* regular expression questions
+   1. create a regular expression for perl interpolation;
+         match vars in "$foo" but not in '$foo'.
+   2. regexp -> NFA conversion
+   3. run an NFA on a given word
+   4. divide into tokens (lex) following a given set of regexps
+   5. show the difference between the two semantics of regexp parsing 
+            (declarative vs operational)
+   6. why are regexps in practice more powerful than FAs?
+
+* interpreter
+   1. describe general structure of an interpreter
+   2. difference between interpreter and compiler
+
+* parsing questions: general
+   1. Convert a parse tree to an AST.
+   2. Write a context-free grammar for a language I describe in text.
+   3. Decide whether or not a given word can be derived from a grammar.
+   4. Know when to use regexps and when to use CFGs.
+
+* parsing questions: grammar manipulations
+   0. Convert EBNF to BNF.
+   1. Compute FIRST sets and decide when a production is nullable.
+   2. Generate pseudocode for a recursive-descent parser.
+   3. Convert left-recursion to/from right-recursion
+   4. Draw the two parse trees for dangling else and name 2 ways for
+       doing the right thing.
+   4. Eliminate ambiguity by stratifying
+   5. Fix shift-reduce conflicts by delaying decisions.
+   5'. Given a shift-reduce conflict, explain why parser would shift
+        and why it would reduce.

@@ -1,0 +1,50 @@
+Here is a list of abstract questions. The 5 concrete questions on the
+midterm, as well as the first half of the final exam questions, are
+going to be drawn from these questions.
+
+* Optimizations
+   - I give you some single-threaded code, you tell me how to make it
+     more efficient.
+   - Or, I give you an optimization (before vs after) and ask you to
+     estimate how much it would help on a given workload.
+
+* Parallelization patterns: 
+   - I describe a situation, you tell me which pattern to use.
+   - I name a pattern, you give me an example of a program that would use it.
+
+* Amdahl's Law / Gustafson's Law:
+   - Calculate the maximum number of threads that you can profitably
+     use, given a tolerance.
+   - I give you a model for runtime as a function of input size and an
+     allowed amount of time. Calculate how large a problem you can solve.
+
+* Profiling / Performance Data:
+   - Interpret some profiling output and be able to estimate inputs to
+     Amdahl's Law and Gustafson's Law from the output.
+   - Estimate bandwidth and latency from performance data I give you.
+     Figure out the amount of required resources to hit given 
+     bandwidth / latency targets.
+
+* Speculation:
+   - Calculate the expected running time of potential speculations.
+   - Propose more-sophisticated speculation schemes than the ones in the
+     notes, and reason about their expected performance.
+
+* Dependencies:
+   - Identify and fix dependencies (and antidependencies) in code that
+     I provide.
+
+* Automatic parallelization:
+   - Figure out whether some code is a candidate for automatic parallelization.
+   - Fix code to make it automatically parallelizable.
+
+* Thread pools:
+   - Give a sample use of a thread pool.
+   - Explain the parts of the thread pool implementation.
+
+* Races and locking primitives:
+   - Decide which locking primitive is most appropriate for a given
+     situation, or give a situation where you'd use a certain 
+     locking primitive.
+   - Find race conditions in code that I provide.
+

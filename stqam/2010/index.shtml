@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 453/CS 447/SE465: Software Testing, Quality Assurance, and Maintenance</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Numbers</h3>
+
+<p>We marked the exams. Here are the averages. CS447 exam: 82%; class average: 79.9%. CS647 exam: 80%, class average: 80.2%. ECE453 exam: 79%, class average: 76.6%. SE465 exam: 86%, class average: 86.0%. Overall exam: 83%, average: 81.2%.</p>
+
+<h3>Exam solutions</h3>
+
+<p>We're in the process of marking the exams. Here is the <a href="files/f.pdf">exam</a> and my <a href="files/f-solutions.pdf">solutions</a>.</p>
+
+<h3>A4 clarification</h3>
+
+<p>I meant to say that you had to use mock objects somewhere in Q3,
+not everywhere. If you lost marks for using mock objects somewhere but
+not everywhere, send me mail and I'll fix your mark.</p>
+
+<h3>Office Hours</h3>
+
+<p>I will be holding office hours all day on Friday, April 16
+(10:00-4:00) and Monday (10:00-1:00; 2:15-5:00, note the last minute
+change). I'll be around before then too, if you have any
+questions. I've posted solutions for A3 and A4.  I will bring your
+marks to date to the exam.</p>
+
+<p>By the way, someone noticed that I posted the wrong version of last
+year's final. I've now posted the
+proper <a href="files/f-2009.pdf">2009 final</a> and <a href="files/f-2009-solutions.pdf">2009 final solutions</a>.</p>
+
+<h3>End-of-semester schedule</h3>
+
+<p>Friday, March 26: no SE section (11:30). Monday, March 29: Guest lecture by Derek Rayside. Thursday, April 1: tutorial (bring questions). Friday, April 2: no class. Monday, April 5: no class. Exam period (dates TBA): extra office hours.</p>
+
+<h3>Project (v1)</h3>
+
+<p>Here is version 1 of the <a href="files/project.pdf">course project</a>. I've made a suggestion that <code>MoveOption</code> is quite complicated and that you might want to focus your attention more precisely.</p>
+
+<h3>Tutorial this week on Debugging</h3>
+
+<p>Bob Zhang will lead a tutorial (<a href="files/Debugging.pdf">slides</a>) this Thursday and Friday,
+March 11 and 12, on tools for debugging (replay debugging, valgrind,
+and stepping backwards through programs).</p>
+
+<h3>Assignment 4</h3>
+
+<p>Here is <a href="files/a4.pdf">Assignment 4 (v4)</a>. (PS: hint: "EasyMock Class Extension"). You may have to seek out EasyMock's dependencies <code>cglib-nodep-2.2.jar</code> and <code>objenesis-tck-1.2.jar</code>.</p>
+
+<h3>Tutorial this week on JML</h3>
+
+<p>Mehdi Amoui Kalareh will lead a tutorial (<a href="files/myJML_1.2.pdf">slides</a>) this Thursday and Friday,
+February 25 and 26, on 
+the Java Modelling Language.</p>
+
+<h3>Assignment 3</h3>
+
+<p>Here is <a href="files/a3.pdf">Assignment 3 (v1)</a>. Sorry for the delay.
+It is due in two weeks, on Wednesday, March 3. As discussed in class, I'll 
+continue using my homebrew assignment handin system, but you'll be able
+to retrieve your submitted assignments.</p>
+
+<p>Inconveniently, the website I mentioned in the assignment is down. I've <a href="files/ehcache-info-mirror.txt">mirrored</a> the text.</p>
+
+<p>By the way, as I mentioned in class, we'll be re-assigning the marks
+on A2Q1. Let <i>M</i> be your mark for part (a), which was out of 13, and
+let <i>N</i> be your mark for part (b), which was out of 12. Your new mark
+will be <i>2M+0.5N</i>, and the denominator will be 25.</p>
+
+<h3>Midterm</h3>
+
+<p>We marked the midterms today. (By we, I mean the TAs, with me offering
+moral support. Thanks, Xavier (Q4), Bob (Q1), Mehdi (Q2) and Samaneh (Q3)!)
+You'll get them back in class Friday.</p>
+
+<p>I've written up <a href="files/mt-solns.pdf">solutions</a>. You can also 
+consult a <a href="files/histograms.png">histogram</a> of the marks 
+distribution. The mean over all students was 70%; by class: SE 76%, 
+CS447: 66%, ECE453: 64%, CS647: 66%. (The medians are
+pretty much the same as the means.)</p>
+
+<p>Here's the <a href="files/mt-all.pdf">midterm</a>. I probably should've
+dropped one of Q2 and Q3.</p>
+
+<p>In case you're curious, here is last year's <a href="files/f-2009.pdf">final</a> and
+<a href="files/f-solutions-2009.pdf">solutions</a> to that final.</p>
+
+<h3>A2 solutions</h3>
+
+<p><a href="files/a2-solns.pdf">A2 solutions</a> now available.</p>
+
+<h3>Midterm Review Tutorial and Materials</h3>
+
+<p>There will be a <a href="files/tutorial2.pdf">review tutorial</a> on Thursday, February 4 and
+Friday, February 5, led by Samaneh Navabpour. Here are <a href="files/mt-2009.pdf">last year's midterm</a> (<a href="files/mt-2009-solns.pdf">solutions</a>) as well as <a href="files/mt-practice.pdf">practice questions</a>.</p>
+
+<h3>Defs and Uses of Lists</h3>
+
+<p>If <code>x</code> is a <code>List</code>, consider a call to 
+<code>x.add()</code> to be a use of <code>x</code> and not a def. 
+Something is being defined, but it's not <code>x</code>. Ignore the
+def in this case.</p>
+
+<h3>Assignment 2</h3>
+
+<p><a href="files/a2.pdf">Assignment 2</a> is now available and
+due by 11:59pm (EST) on Wednesday, February 3rd. Please use ASM
+rather than reflection to read the classes; ASM enables you to analyze
+classes without loading them into the running Java Virtual Machine.
+Note that some of the information is visible in fields of the 
+<code>MethodNode</code>, e.g. the field <code>access</code> 
+in conjunction with <code>ACC_STATIC</code>.</p>
+
+<p>Some students have pointed out to me that Prime Path Coverage
+imposes a ridiculous number of test requirements.  So, if you have
+e.g. a cycle 1-2-3-4-5-6-7-8-1, you can write that PPC imposes
+"1-2-3-4-5-6-7-8-1 and related cycles" and explain what "and related
+cycles" means.</p>
+
+<p>In response to a question in class: you don't need to 
+use assertions as long as you can somehow argue that you're getting the
+coverage criteria that you need.</p>
+
+<p>Marking scheme for Question 1: 13 points for submitting a working
+program; 2 points for code readability; 5 points for (good) comments;
+5 points for code quality (modularity, algorithm, etc.)</p>
+
+<h3>Tutorial 1 files</h3>
+
+<p>Xavier's <a href="files/tutorial1_code.zip">source code</a> from <a href="files/junit__tutorial.pdf">Tutorial 1</a> (JUnit) is available.</p>
+
+<h3>Assignment 1</h3>
+
+<p><a href="files/a1.pdf">Assignment 1</a> is now available and
+due by 11:59pm (EST) on Monday, January 18th. The essay for Question 1 should
+be single-spaced.</p>
+
+<h3>Syllabus</h3>
+
+<p>Here is the <a href="files/stqam.pdf">syllabus</a> for this class.</p>
+
+<h3>Grace days</h3>
+
+<p>This course comes with some flexibility for assignment handin
+dates. You have 4 "grace days" to use throughout the term. Handing in
+an assignment a day late consumes a grace day. If you use more grace
+days than you have, I will divide the marks for late assignments by 2,
+if you manage to hand in the assignment before I return it.</p>
+
+<h3>Textbooks</h3>
+
+<p>The textbook for the class will be:</p>
+
+<blockquote>Paul Ammann and Jeff Offutt. <i>Introduction to Software Testing</i>. 
+Cambridge University Press, 2008.</blockquote>
+
+<p>This book is available on amazon.ca for $62. I also strongly recommend
+the following book:</p>
+
+<blockquote>Andreas Zeller. <i>Why Programs Fail: a Guide to Systematic
+Debugging.</i> Morgan Kaufmann, 2005.</blockquote>
+
+<p>The Zeller book is quite practical 
+and I expect that it will be useful to you in the future as well.</p>
+
+<h3>Tutorials and Labs</h3>
+
+<p>Several students have asked me if the tutorials and labs are
+mandatory. They are <i>not mandatory</i> for this course.</p>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

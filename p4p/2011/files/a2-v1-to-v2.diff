@@ -1,0 +1,154 @@
+diff -ruN v1/src/jpegr.c v2/src/jpegr.c
+--- v1/jpegr.c	2011-02-02 00:09:40.000000000 -0500
++++ v2/jpegr.c	2011-02-02 00:10:04.000000000 -0500
+@@ -129,8 +129,6 @@
+     }
+   }
+ 
+-
+-
+   if (outdir_flag) {
+     if (TRUE == processUserRequest (uRequest, argv, argc, optind))
+       printUserRequest (uRequest);
+@@ -155,7 +153,6 @@
+   int curFile = optind;
+   int transform = FALSE;
+   int max_files = argc - curFile;
+-  ExifData *exifData = 0;
+ 
+   int i;
+   for (i = 0; i < max_files; ++i) {
+@@ -180,17 +177,25 @@
+     strcpy (uRequest->fileRotIn[i], uRequest->fileIn[i]);
+     strncat (uRequest->fileRotIn[i], ENDING, SIZE_ENDING);
+ 
+-    uRequest->thumbnail[i] = (struct ida_image *) calloc (1, THUMB_MAX);
++    struct ida_image *curInputJpeg;
++
++    curInputJpeg = read_jpeg (uRequest->fileIn[i]);
++    if (!curInputJpeg) {
++      printf ("Could not read jpeg file %s during montage creation\n",
++	      uRequest->fileIn[i]);
++      return FALSE;
++    }
+ 
+-    int tsize = create_thumbnail (uRequest->fileIn[i], uRequest->thumbnail[i],
+-				  THUMB_MAX);
++    uRequest->thumbnail[i] = calloc (1, THUMB_MAX);
++    memcpy (uRequest->thumbnail[i], curInputJpeg, THUMB_MAX);
++    uRequest->thumbnail[i] =
++      ece459_scale_thumbnail (uRequest->thumbnail[i], 70);
+ 
+     JXFORM_CODE exif_orientation = JXFORM_NONE;
+ 
+     if (1 == auto_rotate_flag) {
+-      exifData = exif_data_new_from_data (uRequest->thumbnail[i], tsize);
+-      if (FALSE == getExifOrientation (exifData, &uRequest->auto_rotation[i]) )
+-      {
++      if (FALSE == getExifOrientation (uRequest->thumbnail[i],
++				       &uRequest->auto_rotation[i])) {
+ 	printf ("Could not read exif data from jpeg %s, so not"
+ 		"rotation will be done\n", uRequest->fileIn[i]);
+ 
+@@ -208,15 +213,13 @@
+ 			  uRequest->fileRotIn[i],
+ 			  exif_orientation,
+ 			  uRequest->comment,
+-			  uRequest->thumbnail[i], tsize, uRequest->flags);
++			  uRequest->thumbnail[i], THUMB_MAX, uRequest->flags);
+ 
+-    transform = TRUE;
+     printf ("An input file %s\n", uRequest->fileIn[i]);
+     printf ("An output file %s\n", uRequest->fileRotIn[i]);
+ 
+     ++curFile;
+     ++uRequest->nrFiles;
+-
+   }
+ 
+   //Create a montage file
+@@ -237,35 +240,13 @@
+     return FALSE;
+   }
+ 
+-  struct ida_image *curThumbnail = 0;
+-  struct ida_image *curInputJpeg;
+-
+-  int i;
+-  for (i = 0; i < uRequest->nrFiles; ++i) {
+-
+-    curInputJpeg = read_jpeg (uRequest->fileIn[i]);
+-    if (!curInputJpeg) {
+-      printf ("Could not read jpeg file %s during montage creation\n",
+-	      uRequest->fileIn[i]);
+-      return FALSE;
+-    }
+-
+-    curThumbnail = calloc (1, THUMB_MAX);
+-    memcpy (curThumbnail, curInputJpeg, THUMB_MAX);
+-    uRequest->thumbnail[i] = ece459_scale_thumbnail (curThumbnail, 70);
+-  }
+-
+-  //Compose the montage file
+-
+   struct ida_image *montageJpeg =
+     (struct ida_image *) calloc (1, sizeof (struct ida_image));
+ 
+   montageJpeg->data = (unsigned char *) calloc (uRequest->nrFiles, THUMB_MAX);
+ 
+-    /**
+-     * Write input thumbnails data to the montage file.
+-     */
+-
++  //Write input thumbnails data to the montage file.
++     
+   unsigned int y, x;
+ 
+   int max_width = 0, tmp_width = 0, max_height = 0;
+@@ -281,8 +262,10 @@
+     montageJpeg->data += max_width * y;
+     for (x = step * y; x < x_max && x < uRequest->nrFiles; ++x) {
+ 
+-      //Determining the max height of the montage file
++      
+       tmp_width += uRequest->thumbnail[x]->i.width;
++
++      //Determining the max height of the montage file
+       if (max_height < uRequest->thumbnail[x]->i.height)
+ 	max_height = uRequest->thumbnail[x]->i.height;
+ 
+@@ -310,8 +293,11 @@
+   return TRUE;
+ }
+ 
+-int getExifOrientation (ExifData * exifData, JXFORM_CODE * exifOrientation)
++int getExifOrientation (struct ida_image *aThumbnail,
++			JXFORM_CODE * exifOrientation)
+ {
++  ExifData *exifData = exif_data_new_from_data (aThumbnail, THUMB_MAX);
++
+   if (0 == exifData)
+     return FALSE;
+ 
+@@ -358,7 +344,7 @@
+   (*uRequest)->rotation = JXFORM_NONE;
+   (*uRequest)->threads = 2;
+   (*uRequest)->nrFiles = 0;
+-  (*uRequest)->comment = NULL;
++  (*uRequest)->comment = 0;
+   (*uRequest)->flags = flags;
+ 
+   return TRUE;
+diff -ruN v1/src/jpegr.h v2/src/jpegr.h
+--- v1/jpegr.h	2011-02-02 00:09:40.000000000 -0500
++++ v2/jpegr.h	2011-02-02 00:10:04.000000000 -0500
+@@ -65,7 +65,8 @@
+ int processUserRequest (UserRequest * uRequest,
+ 			 char *argv[], int argc, int optind);
+ 
+-int getExifOrientation (ExifData * exifData, JXFORM_CODE * exifOrientation);
++int getExifOrientation (struct ida_image *aThumbnail,
++			JXFORM_CODE * exifOrientation);
+ 
+ void getThreads (UserRequest * uRequest, char *optarg);
+ 

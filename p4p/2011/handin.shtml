@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 459: Programming for Performance: Assignment Handin</title>
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<p>This is the submission site for assignment 4. You
+can also give me hardcopy of non-code submissions in class.  You may
+make multiple submissions; the system will keep all past submissions
+from you as well, so you can submit files separately and resubmit as
+needed. Be aware that my upload limit is 16M; your files shouldn't
+need to be that big anyway.</p>
+
+<!-- <p>I only need one submission per group. Just be sure to indicate the
+names of all your group members.</p> -->
+
+<p>Do not upload Word documents. They make me cranky.</p>
+
+<p style="color:red">Please include your name in all files you submit. You do not need to include your name in the filename, but do include it in any PDFs, because I might mass print all PDFs.</p>
+
+<form enctype="multipart/form-data" action="/p4p/handin.shtml" method="POST">
+<input type="hidden" name="MAX_FILE_SIZE" value="16000000" />
+Please enter your username: <input name="uid" type="text" /> <br />
+Please enter your name: <input name="name" type="text" /> <br />
+Please choose a (low-security) code for re-verifying your upload: <input name="pw" type="text" /> <br />
+Choose an archive (.zip, .tar.gz, .jar, etc) to upload: <input name="zip" type="file" /><br />
+</form>
+
+</div>
+
+</div>
+<!--#include virtual="/p4p/includes/footer.html" -->

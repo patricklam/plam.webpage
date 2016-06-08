@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 459: Programming for Performance: Assignment Check</title>
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<form enctype="multipart/form-data" action="/p4p/checkhandin.shtml" method="POST">
+<input type="hidden" name="MAX_FILE_SIZE" value="12000000" />
+Please enter your username: <input name="uid" type="text" /> <br />
+Please enter your code: <input name="pw" type="text" /> <br />
+</form>
+
+</div>
+
+</div>
+<!--#include virtual="/p4p/includes/footer.html" -->

@@ -1,0 +1,34 @@
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<h2>Two Views of Columbia Crest Crater (Mount Rainier)</h2>
+
+<p id="date">July 8, 2009 and May 1, 2013</p>
+
+<style type="text/css">
+img.normal { height: auto; max-width: 45%; }
+img.expanded { max-width: none; }
+</style>
+
+<!-- http://livven.me/2012/04/27/how-to-enlarge-images-on-click-using-css-and-javascript/ -->
+<script type="text/javascript">
+$(document).ready(function() {
+        var imageLinks = $('a[href$=".png"], a[href$=".jpg"], a[href$=".gif"], a[href$=".bmp"]');
+        if (imageLinks.children('img').length) {
+            imageLinks.children('img').each(function() {
+                var currentTitle = $(this).attr('title');
+                $(this).attr('title', currentTitle + ' (click to enlarge image)');
+            });
+            imageLinks.click(function(e) {
+                e.preventDefault();
+                $(this).children('img').toggleClass('expanded');
+            });
+        }
+    });
+</script>
+
+<div>
+<a href="/files/2658_columbia_crest_crater.jpg"><img title="Columbia Crest Crater from ground" class="normal" src="/files/2658_columbia_crest_crater.jpg" /></a> <a href="/files/2070_aerial_ccc.jpg"><img title="Columbia Crest Crater from air" class="normal" src="/files/2070_aerial_ccc.jpg" /></a>
+</div>
+
+<p>
+Shot on left: at 14,400 ft (route to summit: Emmons-Winthrop Glacier) with David Wentzlaff and Aaron Yahr; shot on right: at 36,000 ft, from AC 545 flying from LAS to YVR.
+</p>

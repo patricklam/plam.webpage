@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 155: Engineering Design with Embedded Systems: Resources</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h5>Exams</h5>
+<p>W13 midterm: <a href="files/midterm-w13.pdf">blank</a>, <a href="files/midterm-w13-solns.pdf">solutions</a></p>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

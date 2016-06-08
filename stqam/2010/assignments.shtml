@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 453/CS 447/SE465: Software Testing, Quality Assurance, and Maintenance: Assignments</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Assignments</h3>
+
+<table>
+<tr><td>Assignment 1</td><td>01/18</td><td><a href="files/a1.pdf">pdf</a></td><td><a href="files/a1-solns.pdf">solns</a></td></tr>
+<tr><td>Assignment 2</td><td>02/03</td><td><a href="files/a2.pdf">pdf</a></td><td><a href="files/a2-solns.pdf">solns</a></td></tr>
+<tr><td>Assignment 3</td><td>03/03</td><td><a href="files/a3.pdf">pdf</a></td><td><a href="files/a3-solns.pdf">solns</a></td></tr>
+<tr><td>Assignment 4</td><td>03/17</td><td><a href="files/a4.pdf">pdf</a></td><td><a href="files/a4-solns.pdf">solns</a></td></tr>
+</table>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

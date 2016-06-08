@@ -1,0 +1,153 @@
+Here are some clarifications to Lab 1. Thanks to Pooja Sardesai for 
+bringing them up.
+
+On 24/09/10 11:17 PM, Pooja Sardesai wrote:
+> Hi,
+>
+> I have a couple of questions about Lab 1 for ECE251.
+>
+> 1) Does the .adl file have to be in the read,assign,write format like
+> the examples in the pdf:
+>
+> read pi. txt
+> pi_sum := reduce sum pi
+> write pi_sum
+>
+> 2) Can I write something like this in my test adl file:
+>
+> read test_i1.txt
+> test_o1 = sort ascending test_i1
+> test_o2 = reduce count test_i1
+> test_o3 = map +3 test_i1
+>
+> write test_o1.txt
+> write test_o2.atom
+> write test_o3.txt
+
+That would be an (almost) valid test case. Don't forget that you can
+have more than one operator in a single assignment statement. Also, it
+should be := not = in this particluar language.
+
+> 3) Can the filter command be used for strings? Can I filter a list of
+> words that is less than "abc"?
+
+Yes, the comparison operators apply to strings as well. You can sort
+and filter strings.
+
+> 4) What would the accumulator commands (sum,avg,...) do to strings in a
+> list and a tree?
+
+You can concatenate strings. There is no sensible definition for the
+other accumulator commands in the context of strings. (You could also
+use + to concatenate strings.)
+
+> 5) Can the truncate command be used for lists? What would be an example
+> of this one?
+
+Truncate can shorten a list, e.g. truncate 2 of the list {"a", "b",
+"c", "d", "e"} would be {"a", "b"}.
+
+It would probably be useful to post this email to the website, with your
+permission. Is that OK?
+
+pat 
+
+On 25/09/10 10:13 AM, Pooja Sardesai wrote:
+> Thanks for the reply and yes you can post these questions on the website.
+
+Thanks.
+
+> Although, I do have some more questions.
+>
+> 1) Can the interpreter handle negative numbers?
+> For example: I have a list of numbers : [1,2,3], and I subtract 2 from
+> each number, which gives me [-1,0,1]. Would '-1' be a string literal or
+> a number the next time I try to map it?
+
+Your interpreter should handle negative numbers: even if you can't
+input them directly to the interpreter as literals, you might get one
+in an Atom or through computation. Those negative numbers should be
+handled properly.
+
+> 2) Once we write an output file, can I read that output file for the
+> next adl command?
+
+That won't work, because output files are emitted to the output/
+directory (which makes everyone's life easier in terms of testing).
+
+> 3) Is there a limit to the number of output files? I have about 6-7
+> output test cases for each .adl file.
+
+Nope. (I mean, be reasonable and don't create 1000 output
+files. Anything below, say, two dozen is fine.)
+
+> 4) Can we concat numbers? For example, [1,2,3] would become 123.
+
+I expect that if you input a .txt file and it contains parseable
+Integers (in the sense of Integer.parseInt), then it should interpret
+these inputs as integers. If any of the inputs to concat is an
+integer, then concat is not defined.
+
+> 5) Can filter be applied to trees? For example, if you have a tree:
+> 2
+> 3 5
+> 4
+> and you filter everything (i) > 5, what would be the result? (ii) <= 1,
+> what would be the result?
+
+Let's say that filtering and sorting applies to trees as follows. 
+Sort and filter by the data (i.e. ignore the tag names). Keep the tree
+and all of its subtrees if the data meets the stated criterion, i.e.
+if you have 
+<root>
+ 2
+ <c>4
+  <c>7</c>
+  <c>1</c>
+ </c>
+ <c>3
+  <c>22</c>
+  <c>45</c>
+ </c>
+</root>
+
+Sorting this tree would swap the nodes for 3 and 4, as well as the
+nodes for 7 and 1. Filtering this tree by "> 3" would throw out the
+node 1 as well as the subtree rooted at 3.
+
+Here's an additional comment. Someone mentioned it in class, but I'll
+post it for the class as a whole. When you read text in XML, you'll
+often have extraneous whitespace, corresponding to the situation
+e.g. <root>text1<child>text2</child>text3</root>. In this case, the
+cdata for the root would be "text1text3". That's as expected. But
+instead of "text3", you might have newlines and other such
+whitespace. So you'll unexpectedly find that your data will have extra
+whitespace. xmldiff ignores this whitespace.
+
+If you have a concatenation on a tree, perform the concatenation in
+pre-order.
+
+To concatenate a string and an integer, convert the integer to a string
+and then concatenate the resulting strings.
+
+*Parentheses:* I've decided to flip-flop and declare that your parsers
+have to handle parentheses. In fact, while you are not required to handle any
+other error conditions, you must ensure that expressions contain balanced
+parentheses.
+
+Atoms may be strings or integers. You do not have to include the
+quotes, although if you have a quote-enclosed string in a file, it
+should read the quotes.
+
+e.g.
+
+read x.txt
+y := x
+print y
+
+where x.txt contains
+
+"Hello World"
+
+should result in the file y.txt, which also contains the quoted string
+"Hello World".

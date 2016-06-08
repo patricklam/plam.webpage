@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 453/CS 447/SE465: Software Testing, Quality Assurance, and Maintenance: General Information</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Course outline handout</h3>
+
+<p>I distributed a <a href="files/stqam.pdf">syllabus</a>
+on the first day of class. Although there will not be major changes to
+the course outline, you should consider details on this webpage to
+be authoritative.</p>
+
+<h3>General Information</h3>
+
+<p><strong>Lectures:</strong><br /> (SE465): Monday, Wednesday and Friday, 11:30-12:20, RCH 309<br />
+(ECE453/CS447/CS647): Monday, Wednesday and Friday, 15:30-16:20, MC 2038</p>
+<p><strong>Tutorials (to be announced beforehand):</strong> (SE465): Th11:30-12:20, MC 4058; (ECE/CS) F19:00-19:50, MC 2038</p>
+
+<h4>Instructor</h4>
+
+<blockquote>
+Professor Patrick Lam<br />
+Office: DC2534<br />
+Office Hours: Mondays 14:30-15:30, or by appointment<br />
+Email: <code>p.lam[at]ece.uwaterloo.ca</code><br />
+Phone: Use email instead!
+</blockquote>
+
+<h4>Teaching Assistants</h4>
+
+<blockquote>
+Mehdi Amoui Kalareh<br />
+Office: DC2542<br />
+Office Hours: Tuesdays 15:00-16:00<br />
+Email: <code>mamouika[at]uwaterloo.ca</code>
+</blockquote>
+
+<blockquote>
+Samaneh Navabpour<br />
+Office: DC2551A<br />
+Office Hours: Wednesdays 14:00-15:00<br />
+Email: <code>snavabpo[at]uwaterloo.ca</code>
+</blockquote>
+
+<blockquote>
+Xavier Noumbissi<br />
+Office: DC2551B<br />
+Office Hours: Tuesdays 14:00-15:00<br />
+Email: <code>xnoumbis[at]engmail.uwaterloo.ca</code>
+</blockquote>
+
+<blockquote>
+Yibo (Bob) Zhang<br />
+Office: DC2585<br />
+Office Hours: Thursdays 14:00-15:00<br />
+Email: <code>yibo[at]pami.uwaterloo.ca</code>
+</blockquote>
+
+<h3>Topics</h3>
+
+<p>Coverage, subsumption and infeasibility; graph coverage (includes path 
+and dataflow testing, state-based testing, call-graph based testing, 
+path-based testing); logic coverage (includes decision tables); input
+space partitioning; syntax-based testing; testing in practice
+(includes OO testing); non-testing-based software quality assurance
+(code reviews, pair programming, software verification); 
+software maintenance; testing for performance.</p>
+
+<h3>Textbooks</h3>
+
+<p>The textbook for the class will be:</p>
+
+<blockquote>Paul Ammann and Jeff Offutt. <i>Introduction to Software Testing</i>. 
+Cambridge University Press, 2008.</blockquote>
+
+<p>This book is available on amazon.ca for $62. I also strongly recommend
+the following book:</p>
+
+<blockquote>Andreas Zeller. <i>Why Programs Fail: a Guide to Systematic
+Debugging.</i> Morgan Kaufmann, 2005.</blockquote>
+
+<p>The Zeller book is quite practical 
+and I expect that it will be useful to you in the future as well.</p>
+
+<h3>Evaluation</h3>
+
+<p>This course includes assignments, midterms, a course project, and a final examination.</p>
+
+<table style="margin-left:4em">
+<tr><td>4 individual assignments&nbsp;&nbsp;</td><td>5% each</td></tr>
+<tr><td>Course project (groups)&nbsp;&nbsp;</td><td>20%</td></tr>
+<tr><td>Midterm</td><td>10%</td></tr>
+<tr><td>Final exam</td><td>50%</td></tr>
+</table>
+
+<p>I indend to make the midterm and final open-book, open-notes.</p>
+
+    <!-- InstanceEndEditable -->
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

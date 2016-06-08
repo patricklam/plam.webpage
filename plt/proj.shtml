@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 251: Programming Languages and Translators: Project</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>printVariableDeclarations()/save/restore...</h3>
+
+<p>If you sort the variables by name before printing them out, you'll
+simplify my life. It's not wrong to not sort them, though. Thanks!</p>
+
+<h3>Resubmissions</h3>
+
+<p>If you submit early, discover a problem, and resubmit later, I'll consider both submissions and choose the option that gives you a higher mark. The handin site is supposed to let me download all past submissions, I hope. </p>
+
+<h3>E-mail etiquette</h3>
+
+<p>If you are going to send mail to a TA and to me, please send email
+to both of us simultaneously (e.g. CC'd) so that we don't both
+independently answer the question.  This is quite annoying. Don't do
+it!</p>
+
+<h3>Project description</h3>
+
+<p>The best way to get the files is to check them out of the repository. However, you can also download a <a href="files/proj/proj-skeleton-v12.tar.gz">skeleton (v12 = svn r2298)</a> (fix to codegen WhileStm skeleton). </p>
+
+<p>The final part of the project is
+some <a href="files/proj/proj-cg.pdf">code generation</a> for a subset
+of WIG. (The link points to the description).  The skeleton now
+includes an updated <code>CodeGenVisitor</code> which you'll extend. I've
+removed the link to <code>tiny.c</code>; it's superceded by the
+testcases below. The 5% bonus applies if you hand in code generation by Friday
+at 11:59PM.</p>
+
+<p>I've posted
+the <a href="files/proj/proj-cg-testcases-v2.tar.gz">testcases v2</a>
+(updated 5 Dec 00:00---sorted variable names) for the code generation. I will use these test
+cases to mark your part 3.  If your compiler generates exactly these C
+files (without hardcoding them, of course), you will get full marks on
+part 3, and you make my life easier.  However, you don't have to
+exactly match my output. Your output only needs to be functionally
+equivalent. We'll mark that by hand.</p>
+
+<p>You can try the CGI scripts for these cases:
+<a href="http://ece251.patricklam.ca/~plam/cgi-bin/calculator">calculator</a>,
+<a href="http://ece251.patricklam.ca/~plam/cgi-bin/tiny">tiny</a>,
+<a href="http://ece251.patricklam.ca/~plam/cgi-bin/todo-minimal">todo-minimal</a>.</p>
+
+<p>The second part of the project will be to create a
+symbol table and type checker. I've
+updated the skeleton to include a symbol table and type checker 
+skeleton (r1281).  I've posted a <a href="files/proj/proj-st.pdf">description</a> (Nov 22). For the symbol table, you
+must fill in the blanks in
+the <code>SymbolTable</code>, <code>SymbolDefVisitor</code> and
+<code>SymbolUseVisitor</code> classes, and for the type checker, you
+must fill in the <code>TypeCheckingVisitor</code> class.</p>
+
+<p>The first part of the project was to create a parser. I posted
+an <a href="files/proj/proj.pdf">updated description</a> (Nov 14, 00:51).
+</p>
+
+<p>Update of symbol table PDF file: I forgot to add <code>[S10]</code>,
+multiply-defined function. (11/24) and one case for <code>[T16]</code>, &lt;&lt; on non-tuple parameters.</p>
+
+<h3>Testing Code Generation</h3>
+
+<p>So you've produced C code from your three WIG files and you want to test
+them out. Here are directions on how to do that.</p>
+
+<p>Let's say you have the <code>tiny.c</code> file as output from your
+WIG compiler. The easiest way to do this is to put your WIG compiler on
+<code>ece251.patricklam.ca</code>, along with the WIG file you'd like to
+compile, and run it there, producing your <code>.c</code> file. 
+Provide the proper URL. Example: <code>java -cp ~/courses/plt/proj/classes:/usr/share/java/antlr3-runtime.jar ca.uwaterloo.ece251.WIG -baseurl "http://ece251.patricklam.ca/~plam/cgi-bin/todo-minimal" todo-minimal.wig</code></p>
+
+<ul>
+<li>Run <code>gcc</code> to compile your source program, for 
+instance: <code>gcc -o tiny -I~plam/wig-runtime tiny.c ~plam/wig-runtime/runwig.c</code>. The <code>wig-runtime</code> directory is also in the SVN
+repository. (NB: I just updated it; r2167 is best). You can create your
+own copy of this directory.</li>
+<li>Copy the generated file, <code>tiny</code>, to your public_html/cgi-bin directory.</li>
+<li>In a web browser, go to <code>http://ece251.patricklam.ca/~userid/cgi-bin/tiny</code>.</li>
+</ul>
+
+
+<h3>Hints</h3>
+
+<p>T03 and T04 are both OK for the wrong number of args error in a method call.
+Also, to upload your script, use SCP, not FTP, with the same username as for
+SVN.</p>
+
+<p>I've added string operations to the test cases for code generation.
+During code generation for an assignment expression, emit <code>strcpy</code>
+instead of <code>=</code> if you're copying a string. Similarly,
+compare strings with <code>strcmp</code> instead of <code>==</code> 
+(special case that in <code>BinopExp</code>. You might also have to
+call <code>[get|put]GlobalString</code> instead of <code>GlobalInt</code>.</p>
+
+<p>Note also that I added an <code>enter</code> method for <code>OpenHTMLBody</code> and <code>CloseHTMLBody</code>. They are extremely simple to implement.</p>
+
+<p>Some hints on code generation. 1. No, there is nothing more you have to
+write code <code>enter(Session)</code> The comment at the end means that
+the next AST nodes that you'll visit are going to emit the body of the session.
+2. Newlines in the HTML output of the CGI script aren't significant. 3. 
+The <code>silence</code> stack makes the <code>ExpVisitor</code> not emit
+code while it's non empty. You need to write code which pushes to and pops
+from <code>silence</code>, and you need to check its emptiness
+while you are emitting code.
+</p>
+
+<p>You only need to call <code>enterScope</code> and <code>leaveScope</code> from the <code>SymbolDefVisitor</code>. However, you need to track the current scope in the <code>SymbolUseVisitor</code> so that you can pass it to the <code>findInScope</code> method. By the way, you don't actually need to use or implement the <code>find</code> method.</p>
+
+<p>The latest SVN (unreleased) contains some example output for symbol tables.</p>
+
+<p>I've posted a more detailed description of <code>scopesForASTNode</code>
+and <code>currentScopes</code> on the wiki.</p>
+
+<p>I've added some outputs for symbol tables and error cases to the 
+<code>proj-skel</code> repository.</p>
+
+<p>The enter() example in the <code>SymbolDefVisitor</code> should actually
+contain the line <code>SymbolTable.v().insert(h);</code>.</p>
+
+<p>Mismatched function signature: use T03 as well.</p>
+
+<p><code>SymbolDefVisitor</code> adds symbols to the symbol table, reporting errors on multiple definitions. <code>SymbolUseVisitor</code> checks to see if symbols are defined at each use. When the visitor reaches, for instance, an <code>Lvalue</code> (that is, when <code>enter(Lvalue lv)</code> is called), then that <code>enter</code> method needs to check that <code>lv</code> has, in fact, been defined in the current scope, which you track by keeping the most recent <code>CompoundStm</code> that you've entered. You should implement <code>enter</code> methods for all of the possible places that symbols get used.</p>
+
+<p>The definition of &lt;&lt; is to combine the fields in the two operands and look for a schema which contains the union of these fields.</p>
+
+<p>The <code>SymbolTable</code> class has
+fields <code>currentScopes</code> and <code>scopesForASTNode</code>. A
+scope maps identifiers to types.  As I discussed in lecture 16, you
+need to keep a different map for each scope you enter.  You should
+therefore update <code>currentScopes</code> as you enter and leave
+scopes. The problem with just using <code>currentScopes</code> is that
+when you leave a scope, you lose all of the information about the
+symbols in that scope. The
+<code>scopesForASTNode</code> map preserves that information so that
+you can query it with <code>findInScope</code>.</p>
+
+<p>WIG does not have overloaded functions.</p>
+
+<p>Here's a sequence of commands you can use to test your part 1 submission:</p>
+
+<p>First, ssh to the server, and check out a copy of the code. At the prompt:</p>
+
+<pre>$ svn checkout http://ece251.patricklam.ca/svn/groupN/</pre>
+
+<p>This will create a copy of your repository in some subdirectory, starting with <code>groupN</code>. Different repositories are set up differently, so I don't know where the source files will live. Let's say that your repository has everything in the <code>project</code> subdirectory.</p>
+
+<pre>
+$ cd groupN/project
+$ antlr3 -o src/ca/uwaterloo/ece251 Wig.g
+$ mkdir classes
+$ javac -d classes -cp /usr/share/java/antlr3-runtime.jar \
+   src/ca/uwaterloo/ece251/*.java src/ca/uwaterloo/ece251/ast/*.java
+$ cd tests
+$ ../testHarness.sh ../classes:/usr/share/java/antlr3-runtime.jar
+</pre>
+
+<p>That should get you running the test harness, which will report your score.</p>
+
+<p><c style="color:red">Note:</c> I've changed the version of ANTLR on the <code>ece251</code> server. Include <code>antlr3-runtime.jar</code>, not <code>antlr3.jar</code> on the server.</p>
+
+<p>"Usual" for IDs and string literals means like from Lab 1 (no quoted identifiers), not like from Lab 2.</p>
+
+<p>The <code>\+, \-</code> alternatives for expression require the backslash to be escaped, i.e. <code>\\+</code>.</p>
+
+<p>If you suspect that the lexer is up to something funny, use the <code>ca.uwaterloo.ece251.WIGToken</code> class as your main class to make it print out the tokens. If it's infinite looping with the <code>WHATEVER</code> problem, redirect output to a file, stop it, and look at the last thing in the file.</p>
+
+<h3>Merge instructions</h3>
+
+<p>If you have made changes to your repository and I've made changes
+to my repository and you'd like to combine the two sets of changes, you 
+should use the <code>svn merge</code> command. </p>
+
+<p>First, you have to 
+figure out what version you started from. Here's a table of
+skeleton versions in terms of SVN revisions.</p>
+
+<table>
+<tr><th>Skeleton version</th><th>SVN Revision</th></tr>
+<tr><td>v0</td><td>r32</td></tr>
+<tr><td>v1</td><td>r91</td></tr>
+<tr><td>v2</td><td>r34</td></tr>
+<tr><td>v3</td><td>r112</td></tr>
+<tr><td>v4</td><td>r144</td></tr>
+<tr><td>v5</td><td>r162</td></tr>
+<tr><td>v6</td><td>r629</td></tr>
+<tr><td>v7</td><td>r1273</td></tr>
+<tr><td>v8</td><td>r1281</td></tr>
+<tr><td>v9</td><td>r1413</td></tr>
+<tr><td>v10</td><td>r1613</td></tr>
+<tr><td>v11</td><td>r2270</td></tr>
+<tr><td>v12</td><td>r2298</td></tr>
+</table>
+
+<p>Now, what you want to do is to bring in the changes that have
+happened on the skeleton. Assuming that you have, say, v3, and now v4
+is out, you would go to your checked-out copy and type: <code>svn
+merge -r112:144 http://ece251.patricklam.ca/svn/plam/skel</code>. This
+brings in the changes from v3 to v4 into your copy. You should then
+commit and make note of the arguments you passed to svn merge in the commit
+log.</p>
+
+<p>For more information, you can read <a href="http://svnbook.red-bean.com/en/1.0/ch04s04.html">Chapter 4</a> of the SVN book.</p>
+
+<h3>Checkout instructions</h3>
+
+<p>To get started, copy my repository to your own. At a prompt, you can type: <code>svn cp http://ece251.patricklam.ca/svn/plam/skel http://ece251.patricklam.ca/svn/groupN</code>, replacing N by your group number. Then check out your copy: <code>svn co http://ece251.patricklam.ca/svn/groupN</code> on a Linux machine, or just give that address to your SVN client. You can commit the version that you check out that way.</p>
+
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

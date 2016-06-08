@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 750-T05: Static Analysis for Software Engineering: Resources</title>
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Materials on the Web</h3>
+
+<p>First of all, be wise in the use of PowerPoint or other
+presentation software (I use
+<a href="http://latex-beamer.sf.net">Beamer</a> and
+<a href="http://sf.net/projects/pgf">PGF/TikZ</a> personally). Resist the
+temptation to write too much on your slides: I don't want to suffer
+death by bullet!</p>
+
+<ul>
+<li><a href="http://scienceblogs.com/principles/2006/11/how_to_do_a_good_powerpoint_le.php">How to do a Good PowerPoint Lecture</a>, by Chad Orzel.</li>
+<li><a href="http://www.edwardtufte.com/tufte/powerpoint">The Cognitive Style of
+PowerPoint: Pitching Out Corrupts Within</a>, by Edward R. Tufte. (I have a
+version of the first edition of this essay; come see me if you want to read it!)</li>
+<li><a href="/good-talks-per-plam/">My opinions on what constitutes a good talk.</a>
+<li>Jeff Offutt's thoughts on <a href="http://cs.gmu.edu/~offutt/classes/phd/Hints-Read.html">reading papers</a>.
+</ul>
+
+<p>You may also wish to refer to these notes on static analysis and Soot.
+Please let me know if you find any other resources that I should list on
+this page.</p>
+
+<ul>
+<li><a href="http://www.brics.dk/~mis/static.pdf">Notes on Static Analysis</a>, by Michael I. Schwartzbach.</li>
+<li><a href="http://www.brics.dk/SootGuide">A Survivor's Guide to Java Program Analysis with Soot</a>, by Arni Einarsson and
+Janus Dam Nielsen.</li>
+<li><a href="http://www.sable.mcgill.ca/soot/tutorial/pldi03/tutorial.pdf">
+PLDI 2003 Soot tutorial</a>, by Laurie Hndren, Patrick Lam, Jennifer Lhotak,
+Ondrej Lhotak, and Feng Qian.
+<li><a href="http://www.sable.mcgill.ca/soot/tutorial/">Other Soot Documentation</a>.
+</ul>
+
+<h3>Books</h3>
+
+<p>Even though there is a lot of information on the Internet, there is even
+more information in books. These books can give you another perspective on
+the course material.</p>
+
+<ul>
+<li><i>Principles of Program Analysis</i>, by Flemming Nielson, Hanne Riis Nielson,
+and Chris Hankin.</li>
+<li><i>Advanced Compiler Design and Implementation</i>, by Steven Muchnick.</li>
+<li><i>Compilers: Principles, Techniques and Tools</i> (2nd edition), by Alfred V.
+Aho, Monica S. Lam (no relation), Ravi Sethi, and Jeffrey D. Ullman.</li>
+</ul>
+
+</div>
+
+</div>
+<!--#include virtual="/sase/includes/footer.html" -->

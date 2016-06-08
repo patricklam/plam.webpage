@@ -1,0 +1,35 @@
+Hi all,
+
+The set of midterm questions will be drawn from this list.
+
+Case study: I outline a situation and ask what you would do to improve
+the situation. (This might include parallelization patterns).
+
+I give you some code and ask: why is some code not automatically
+parallelizable? What would go wrong if you just threw OpenMP at it?
+How can you fix it?
+
+Be able to properly use restrict.
+
+Nonblocking I/O: here's some code, what's wrong with it? Fix it.
+(That includes, but is not limited to, understanding the difference
+between edge-triggered and level-triggered.)
+
+Be able to convert thread-based code into nonblocking I/O code.
+
+Be able to do Amdahl's Law and Gustafson's Law calculations.
+
+Understand that memory and disk are the bottlenecks in current CPUs.
+Understand the role of branch prediction. Answer questions that
+test this understanding.
+
+Use locks to fix some broken code (e.g. races), or remove locks, or
+sketch a more fine-grained locking scheme. Explain why you are
+doing what you are doing.
+
+Be able to identify dependencies and break them with speculation.
+
+Understand bandwidth versus latency.
+
+Be able to use fundamental OpenMP concepts (threading model, scope,
+for, reductions, scheduling, sections, tasks).

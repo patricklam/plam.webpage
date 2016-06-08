@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 453/CS 447/SE465: Software Testing and Quality Assurance &mdash; Dates</title>
+<!--#include virtual="/stqam/includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+    <h3>Important Dates</h3>
+    <table>
+      <tr><td>January 8</td><td>A1 out</td></tr>
+      <tr><td>January 18</td><td>A1 due, A2 out</td></tr>
+      <tr><td>February 3</td><td>A2 due, A3 out</td></tr>
+      <tr><td>February 9</td><td>Midterm (7-9PM), 90 minutes, MC4059/4061</td></tr>
+      <tr><td>March 3</td><td>A3 due</td></tr>
+      <tr><td>March 17</td><td>A4 due</td></tr>
+      <tr><td>March 24</td><td>Fourth Year Design Symposium for ECE; ECE/CS section cancelled</td></tr>
+      <tr><td>March 26</td><td>Fourth Year Design Symposium for SE; SE section cancelled</td></tr>
+      <tr><td>April 2</td><td>Good Friday: lectures cancelled</td></tr>
+      <tr><td>April 5</td><td>Last lecture; project due</td></tr>
+      <tr><td>April 20</td><td>Final exam, 9:00-11:30AM, 2.5 hours, RCH 103/105/110</td></tr>
+    </table>
+
+    <!-- InstanceEndEditable -->
+  </div>
+</div>
+
+<!--#include virtual="/sase/includes/footer.html" -->

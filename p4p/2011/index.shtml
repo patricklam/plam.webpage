@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 459: Programming for Performance</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>Winter 2013 offering</h3>
+
+<p>Here is a <a href="files/p4p-blurb.pdf">blurb</a> for the upcoming 2013 offering.</p>
+
+<h3>Final review materials</h3>
+
+<p>Here's the <a href="files/f.pdf">final exam</a>.</p>
+
+<p>You can expect to find corrections to the study guide questions 
+up until Saturday at 5pm, when I'll prepare and copy the final exam.
+I will answer questions by email until Sunday evening; the later
+you ask me, the smaller the chance that you'll get a suitable answer.</p>
+
+<p>Confused about lglocks? See <a href="http://lwn.net/Articles/401738/">here</a>. The code I gave you doesn't actually split into multiple locks, though.</p>
+
+<p>Here are the
+four <a href="files/final-premidterm-studyguide-Apr2011.pdf">pre-midterm
+questions</a>. I will choose one of these four questions.</p>
+
+<p>Here is a superset of
+the <a href="files/final-studyguide-Apr2011.pdf">post-midterm final exam
+questions</a>. Email me first if you're thinking of dropping by.
+I should be around till 4:30 on Thursday and all day on Friday.</p>
+
+<p><b>Code substitutions</b>: OpenMP questions will have different
+code.  An MPI question would have the same code. If I ask a MapReduce
+question, it will be one of the three things that I've listed. For the
+other questions, I may use the same code, or I may use different
+(but similar) code.</p>
+
+<p>By the way, the code example from the Linux kernel
+comes from <a href="http://git.kernel.org/?p=linux/kernel/git/npiggin/linux-npiggin.git;a=commit;h=6416ccb7899960868f5016751fb81bf25213d24f">the following commit</a>; it is to your advantage to figure out what's going on in the diff, so 
+that you can explain it to me.</p>
+
+<p>I'll post 4 pre-midterm final exam questions, probably on Friday,
+and choose 1 of them for the final exam.</p>
+
+<h5>Clarifications</h5>
+
+<p>Thanks to Paul Fugere for the following questions.</p>
+
+<p>Q1, comparing parallel sections and tasks: I'd like
+some sort of explanation along the lines
+of <a href="http://wikis.sun.com/display/openmp/Tasks+vs+Nested+Parallel+Regions">this
+page</a>, but the page isn't terribly clear, so you wouldn't get great
+marks for submitting that page as your solution. Squiggly lines would
+help make the explanation more clear.</p>
+
+<p>Q5, OpenCL kernels: When I posted it, I didn't realize that the
+diff part was a reduction; I only saw the w[] computation. In any
+case, I'd be looking for something that actually uses the GPU in an
+intelligent way, so you would indeed need to restructure the problem.</p>
+
+<p>I'm just looking for the kernel(s), not the enqueue call(s). I'm
+assuming that you're going to provide something that is relatively
+simple to enqueue.</p>
+
+<p>Note: I haven't tried the questions yet, but if I use different code,
+I'll definitely try the questions. If I use the same code, I feel less
+of a need to try the questions.</p>
+
+<h3>Extra grace day</h3>
+
+<p>Since there were problems with the servers, I'll give everyone an
+extra grace day.</p>
+
+<h3>version 2 of A4</h3>
+
+<p>I've done sequential coding for A4, and tweaked the assignment
+slightly to make it work better. See
+the <a href="a4notes.shtml">notes</a> for details.</p>
+
+<h3>version 1 of A4 posted</h3>
+
+<p>You can now find version 1 of A4, which contains part 2.<p>
+
+<h3>Midterm and solutions</h3>
+
+<p>Here are the <a href="files/midterm-Feb2011.pdf">midterm</a> and
+<a href="files/midterm-solutions-Feb2011.pdf">solutions</a>.</p>
+
+<h3>Midterm average and my availability</h3>
+
+<p>As discussed in class, I'll take the marks for the best three questions, 
+divide by 0.6, and add half the mark for the fourth-best question.
+I calculated the midterm average for the "best-3" marking scheme to
+be 71%.  I will also add the bonus marks for the fourth question and
+re-post that. (The original average would be 61%).</p>
+
+<p>You can find me in my office anytime in the afternoon when I'm not
+teaching.  I am teaching MF 13:30-14:30, T 13:00-15:30, and Th
+13:00-14:30. I tend to leave my office around 16:30.</p>
+
+<h3>Assignment 3, 03/08</h3>
+
+<p>Tips on OpenMP.</p>
+
+<p>Assignment 3 is individual.</p>
+
+<p>I've posted version 0 of assignment 3. I might still make some tweaks to
+reduce its scope, especially as you start trying it out. I haven't written 
+v2 of the L13 notes yet; expect them tomorrow. You can find the necessary software linked from the <a href="a3notes.shtml">Assignment 3 notes</a> page.</p>
+
+<h3>Midterm Update</h3>
+
+<p>I've managed to get OPT309 as an another room for a midterm, so
+that we don't need to be spread out among four (!) rooms. Yes, it's
+pretty far; across Columbia Street, in fact. So the midterm
+rooms are now PHY313/OPT309. If your last name starts with A-K, please
+go to PHY313; otherwise, go to OPT309.</p>
+
+<h3>Assignment 3</h3>
+
+<p>OK, so I didn't finish A3 today (February 10). I should have it done
+tomorrow.</p>
+
+<h3>More Office Hours + Answer to Question</h3>
+
+<p>I'll be in my office, DC2534 on Friday from 2:30 to 4:30, on Monday 
+except 1:00-2:30 (ECE155 midterm), and on Tuesday all day until 4:30, 
+starting at 9:30.</p>
+
+<p>In response to a question in class today: looks like OpenMP will
+always start threads, regardless of whether it's profitable or not.</p>
+
+<h3>Abstract questions for midterm</h3>
+
+<p>I've posted a set of <a href="files/mt-abstract-questions.txt">abstract
+questions</a>, which I have refined into 5 concrete midterm questions.</p>
+
+<h3>Midterm rooms</h3>
+
+<p>The open-notes midterm will be on Thursday, February 17 at
+1:00. Currently, the room assignments are PHY313 (usual lecture room);
+OPT309. I'll post the person-to-room assignment a few
+days before the midterm. I'll also try to get a better room assignment.</p>
+
+<h3>Reminder: Office Hours</h3>
+
+<p>My office hours are Thursdays from 2:30 to 3:30, in DC2534. Also, if I'm in
+my office, you can just drop by and ask me questions.</p>
+
+<h3>Notes on Assignment 2</h3>
+
+<p>Following the discussion in class, A2 is due on Monday, February 14.
+A3 will still be available on Thursday.</p>
+
+<p>Assignment 2 is an individual assignment.</p>
+
+<p>02/05 15:50: rev3, montages work.</p>
+
+<p>Moved to <a href="/p4p/a2notes.shtml">A2 notes</a> page.</p>
+
+<h3>Notes on Assignment 1</h3>
+
+<p>01/27: added LaTeX template</p>
+
+<p>Moved to the <a href="a1notes.shtml">A1 page</a> on the left menu.</p>
+
+<p>01/13: Here is <a href="files/a1.pdf">Assignment 1</a>.</p>
+
+<p>12/28: Here is the <a href="files/p4p.pdf">course syllabus</a>.</p>
+
+<p>Many modern software systems must process large amounts of data,
+either in the form of huge data sets or vast numbers of (concurrent)
+transactions.  Games also require extremely high computation
+throughput to maintain models and successfully render scenes.  This
+course introduces students to techniques for profiling,
+rearchitecting, and implementing software systems that can handle
+industrial-sized inputs. Experience with these techniques will enable
+students to design and build critical software infrastructure.
+</p>
+
+<h3>Expected Audience / Background</h3>
+
+<p>I'm aiming this course at fourth-year students with interest in
+software.  I expect students to know about basic concurrency concepts
+(threads and locks), for instance from an Operating Systems class. I
+don't expect any particular hardware background; the course should be
+self-contained in terms of hardware knowledge.
+</p>
+
+<h3>Topics</h3>
+
+<p>Here is a projected list of the topics. Since I've never
+taught this class before, the list may change over the course
+of the semester.</p>
+
+<h4>Introduction</h4>
+
+<p>We'll talk about Amdahl's Law, which describes the limits to
+speedups by parallelization (because you always have to execute some
+sequential code).
+</p>
+
+<h4>Multicore processors and vector architectures</h4>
+
+<p>We'll next examine modern hardware in some detail. The idea of
+vector architectures has been around for quite a while, but has been
+gaining some traction recently, especially in the context of
+GPUs. Streaming architectures are related to vector architectures, but
+specialized to high-throughput streams of data. Massively multicore
+processors may be coming to our desktops and laptops. Many of these
+architectures have problems with cache consistency, so we'll define
+cache consistency and see what cache models these architectures
+implement.</p>
+
+<h4>Profiling and bottlenecks</h4>
+
+<p>The scientific way to speed up your code is to figure out why it
+runs slowly. We'll see how to estimate the location of the bottlenecks
+in your code. Because we'll discuss the fundamentals of profiling,
+you'll understand the limitations of profiling tools that you might
+encounter later. (Did you know that Java profilers all lie?)</p>
+
+<h4>Concurrency and parallelism</h4>
+
+<p>Processors aren't getting faster anymore, so hardware designers
+have been giving us more processing cores. To exploit these cores, our
+software designs need to somehow use parallelism. In this course, I
+expect to start by briefly reviewing what you saw in your Operating
+Systems course about threads and locks, and then going beyond it
+by discussing new programming models for concurrency control:
+atomicity and transactional memory. Transactional memory enables
+optimistic parallelization. We'll also see lock-free data structures.
+</p>
+
+<h4>High-performance programming languages</h4>
+
+<p>Recent programming languages, language constructs, and libraries 
+attempt to help developers write better high-performance code. These
+include MapReduce and X10. We'll survey the language features of these
+languages and see what they can do for you.</p>
+
+<h3>Evaluation</h3>
+
+<p>
+Since many students tend to be overrun by course projects in 4B, I
+think I will omit a project from this course. The tentative evaluation
+scheme will be 50% final, 40% over 4 assignments and 10% midterm.
+</p>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->

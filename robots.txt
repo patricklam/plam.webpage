@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /stqam/files/a1-rest.pdf
+Disallow: /stqam/files/jml_tutorial.pdf
+Disallow: /stqam/files/FourthTutorial.pdf

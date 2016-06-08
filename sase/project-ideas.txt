@@ -1,0 +1,38 @@
+Hi all,
+
+As I mentioned in class, I'd like to see project proposals by next
+Wednesday. I'd also like to set up appointments to meet each of you on
+Thursday to discuss your proposals. Here are some ideas. Feel free to
+use Piazza for general discussion as well.
+
+Write a program analysis to look for non-determinism in Java programs.
+This could either be a static analysis (sources of non-determinism
+include things like calls to hashCode(), as well as concurrency) or 
+a dynamic analysis (compare program executions and see if they're
+identical).
+
+There's a lot of room for building a type system and seeing how it
+works. A not-very-interesting project would be to simply replicate the
+Freedom before Committment (Summers, Muller) work. It would be a lot
+more interesting to extend it: 1) they mention that the system
+could be used for two-state invariants; doing this would be
+interesting; or 2) an inference system for their analysis. 
+
+Other type system projects could be interesting too. JavaCOP enables
+you to easily design a type system to do something interesting.
+That could constitute a good course project.
+
+Test case generation could also be easy to implement. See the 
+papers on June 20th. I also have some unpublished work on analyzing
+test cases. Ask me if you'd like to know more.
+
+I'll send more in the next few days.
+
+Here is an example of a past project from the 2008 edition of the
+course:
+
+http://patricklam.ca/sase/files/thiago-final-project.pdf
+
+I look forward to reading your proposals!
+
+pat

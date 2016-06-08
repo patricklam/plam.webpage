@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 750-T05: Static Analysis for Software Engineering &mdash; Dates</title>
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+    <h3>Important Dates</h3>
+    <table>
+      <tr><td>October 3</td><td>Project proposals due</td></tr>
+      <tr><td>October 31</td><td>Project midterm reports due</td></tr>
+      <tr><td>December 1</td><td>Project final reports due</td></tr>
+    </table>
+
+    <p>As stated in class: I am not going to grade the project proposals
+      or midterm reports. I will read them and provide feedback. However,
+      if you do not hand in a deliverable, you get a 5% discount on your
+      final grade.</p>
+
+    <!-- InstanceEndEditable -->
+  </div>
+</div>
+
+<!--#include virtual="/sase/includes/footer.html" -->

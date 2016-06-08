@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECE 459: Programming for Performance: Resources</title>
+<!--#include virtual="includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>OpenMP additional resources</h3>
+
+<p>Here is <a href="http://www.drdobbs.com/high-performance-computing/225702895">an article about OpenMP 2.5</a>. Although it doesn't say anything about tasks, it does talk about the other capabilities of OpenMP in more detail than I was able to get to.</p>
+
+<p>And here is a <a href="http://www.viva64.com/en/a/0054/">page about common OpenMP mistakes</a>.</p>
+
+<h3>Recursion to iteration</h3>
+
+<p>You might find the following stackoverflow discussion useful for speeding up your programs:
+<a href="http://stackoverflow.com/questions/159590/way-to-go-from-recursion-to-iteration">Way to go from recursion to iteration</a>.</p>
+
+<h3>A Crash Course in Modern Hardware</h3>
+
+<p>Cliff Click explains <a href="http://www.infoq.com/presentations/click-crash-course-modern-hardware">modern hardware</a>.</p>
+
+<h3>Hidden in Plain Sight: about DTrace</h3>
+
+<p>Bryan Cantrill, an author of DTrace, <a href="http://queue.acm.org/detail.cfm?id=1117401">explains system-level profiling</a>. You can also read the <a href="http://www.usenix.org/event/usenix04/tech/general/full_papers/cantrill/cantrill_html/">technical paper on DTrace</a>.</p>
+
+<h3>Performance Anti-Patterns</h3>
+
+<p>Bart Smaalders writes a <a href="http://queue.acm.org/detail.cfm?id=1117403">not to-do list</a> containing performance anti-patterns he's encountered.</p>
+
+<h3>Extreme Software Scaling</h3>
+
+<p>Richard McDougall writes about the impact of <a href="http://queue.acm.org/detail.cfm?id=1095419">chip multithreading</a>.</p>
+
+</div>
+
+</div>
+<!--#include virtual="/sase/includes/footer.html" -->

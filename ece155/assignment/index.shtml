@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+ECE155: Engineering Design with Embedded Systems -- Assignments -- Patrick Lam
+</title>
+<style type="text/css">
+ li { padding-bottom:1em }
+</style>
+<!--#include virtual="/ece155/includes/header.html" -->
+
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+<h1><a href="http://www.patricklam.ca/ece155">ECE155: Engineering Design with Embedded Systems</a>
+    (Winter 2013)</h1>
+<h2><a href="http://www.patricklam.ca">Patrick Lam</a></h2>
+<div style="background-color: #FFFF80; color: black">
+<h2>Assignments</h2>
+</div>
+<!--<p>You can check out all lab and lecture notes' sources with the following command:</p>
+<p>&nbsp;&nbsp;&nbsp;<code>git clone http://patricklam.ca/ece155/w13.git/</code></p>
+<p>The usual <code>git</code> commands will work for pulling updates from my repository.</p>-->
+
+<ul>
+<li> <a href="assignment/pdf/a1.pdf"><strong>Assignment 1</strong></a>: Convert C# to Java</li>
+<li> <a href="assignment/pdf/a2.pdf"><strong>Assignment 2</strong></a>: Countdown Timer Android App</li>
+<li> <a href="assignment/pdf/a3.pdf"><strong>Assignment 3</strong></a>: Polling and Interrupts. (<a href="assignment/pdf/150-pointers-extract.pdf">ECE150 notes on pointers</a>)</li>
+<li> <a href="assignment/pdf/a4.pdf"><strong>Assignment 4</strong></a>: Intents in Android. Debugging practice. (<a href="assignment/pdf/a4x.pdf">more practice for debugging</a>, <a href="assignment/pdf/pa4-CarInvProgram.zip">buggy old ECE150 PA4, test cases revised 01Feb</a>)</li>
+<li> <a href="assignment/pdf/a5.pdf"><strong>Assignment 5</strong></a>: Using the Internet to answer programming questions. Version Control practice. Android Broadcast Receivers and Lists.</li>
+<li> <a href="assignment/pdf/a6.pdf"><strong>Assignment 6</strong></a>: Writing JUnit tests as well as Android tests. (<a href="assignment/pdf/List.java">List implementation for testing</a>, <a href="assignment/pdf/A6Q1.java">A6Q1 skeleton</a>)</li>
+<li> <strong>Assignment 7</strong></a>: none, in honour of midterm week.</li>
+<li> <a href="assignment/pdf/a8.pdf"><strong>Assignment 8</strong></a>: Android application: flash card tester.</li>
+<li> <a href="assignment/pdf/a9.pdf"><strong>Assignment 9</strong></a>: Reading assignment: STS Case Study.</li>
+<li> <a href="assignment/pdf/a10.pdf"><strong>Assignment 10</strong></a>: Refactoring and Robotium. (<a href="files/A10_userid_v3.zip">code to refactor</a>).</li>
+<li> <a href="assignment/pdf/a11.pdf"><strong>Assignment 11</strong></a>: UML.</li>
+<li> <a href="assignment/pdf/a12.pdf"><strong>Assignment 12</strong></a>: Design a game!</li>
+</ul>
+
+</div>
+</div>
+</body>
+</html>

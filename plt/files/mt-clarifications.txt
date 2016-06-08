@@ -1,0 +1,106 @@
+>> Bootstrapping: The way I read this question we have a
+>> source-to-source translator that reads C and emits Pascal.  It's
+>> not clear to me if you're saying this translator happens to be
+>> executable on x86 or if we also have a Pascal to x86 compiler.  If
+>> all we have is a source-to-source translator then bootstrapping is
+>> going to be difficult.  The example you give in lecture 1 we have a
+>> source-to-binary compiler for our second favourite programming
+>> language P.
+
+> Ok.  This question confused pretty much everyone, including myself and
+> the TAs.  Is it really possible to translate C (a memory unsafe
+> language) into Pascal (a memory safe language)?  What use a C to
+> Pascal translator for building a self-hosting Java compiler?  Is
+> having this any different than having nothing?  Why write a Pascal
+> compiler in assembly instead of writing a C compiler in assembly?
+
+Oops. I was imagining that you're going to have to write some assembly
+code.  Saying that you have a Pascal to C compiler would probably make
+more sense. Plus, writing a C compiler in assembly would probably be easier
+anyway. In any case, I wasn't planning on putting a bootstrapping question
+on the midterm. There may be one on the final.
+
+> There were some other questions about the questions today:
+
+> - In the lexing question the INT definition is a prefix of the FLOAT
+>   definition.  Is this intentional?
+
+Yes. That's the point of the question: how do you deal with that?
+
+> - The grammar in the derivations question contains two infinite
+>   recursions.  Jon suggested appending "| epsilon" to the A and B
+>   productions.
+
+Oops. Jon proposed a good fix. Thanks!
+
+> - The students weren't clear on the distinction between regular
+>   expressions and regexps.  I referred them to your notes for lecture
+>  5, but they weren't thrilled with that answer.
+
+Regular expressions are the theoretical constructs that are
+implemented directly using NFAs or DFAs. Regexps add the ability to
+match subexpressions and to refer to them. This means that you have
+more expressive power, e.g. primality testing.
+
+> The students would like to see solutions to these questions.  Perhaps
+> we can collectively produce some.  The students would also like some
+> reassurance that the TAs will be debugging the midterm before they
+> write it.
+
+I generally feel that it is more useful to not mass-produce solutions
+to questions (even if I have a lot of partial solutions on
+scratchpads, etc).  I always encourage students to share their
+solutions. Perhaps a wiki on the course website would be a good way
+for students to share this information?
+
+> - A student claimed that you had not taught them a technique for
+>   transforming regular expressions into DFAs.  He claimed that you had
+>   taught regular expressions to NFAs, and NFAs to DFAs, but not
+>   regular expressions to DFAs directly.  So he thought that such a
+>   question wasn't fair or should be worth more marks.
+
+It is totally a fair question to ask students to combine two
+techniques that they have seen. (Long discussion on grades
+continues. There aren't more questions below, so you can skip this
+unless you want to know how I construct tests.)
+
+Exams usually have three types of questions. The first-level
+question checks for a base level of competence. If you can answer these
+questions, then you should get a "C"; at MIT, a "C" means:
+
+  Adequate performance demonstrating an adequate understanding of the
+  subject matter, an ability to handle relatively simple problems, and
+  adequate preparation for moving on to more advanced work in the
+  field.
+
+Parroting what you've seen in lecture should get you a C. It means
+that I'm certifying that you have enough engineering knowledge to get
+by, but I'm not thrilled with your level of knowledge.
+
+The second-level question sees if you can apply your knowledge
+appropriately in most situations. Again channeling MIT's definitions,
+
+  Good performance demonstrating capacity to use the appropriate
+  concepts, a good understanding of the subject matter, and an ability
+  to handle the problems and materials encountered in the subject.
+
+You should be a perfectly fine engineer if you answer these questions.
+
+Finally, exams should contain questions which allow you to demonstrate
+that you really know your stuff. These questions generally require you
+to combine concepts, or to apply skills that you've seen in class to
+new situations, where there's some twist to what you've seen before.
+This is an A at MIT.
+
+  Exceptionally good performance demonstrating a superior
+  understanding of the subject matter, a foundation of extensive
+  knowledge, and a skillful use of concepts and/or materials.
+
+To get an A, you should be able to handle any questions on the course
+material that I can throw at you, especially questions that aren't
+exactly things you've seen before. Converting a regular expression to
+a DFA is an example of something like that: you have to combine
+concepts.  Of course, I would not go beyond the course material; for
+instance, I wouldn't ask you how to minimize an NFA.
+
+Reference: http://web.mit.edu/catalog/overv.chap5.html#grades

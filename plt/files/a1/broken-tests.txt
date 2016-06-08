@@ -1,0 +1,287 @@
+Thanks to Paul Roukema.
+
+a28gupta-6.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'a28gupta_test6_output6'
+
+adhar-1.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: adhar_inside1.atom (No such file or directory)
+Caused by: java.io.FileNotFoundException: adhar_inside1.atom (No such file or directory)
+
+awweber_test_1.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'awweber_test_1_out_2'
+
+awweber_test_2.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'awweber_2_truncate'
+
+b27chen-1.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: x1.txt (No such file or directory)
+Caused by: java.io.FileNotFoundException: x1.txt (No such file or directory)
+
+b27chen-2.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: x2.xml (No such file or directory)
+Caused by: java.io.FileNotFoundException: x2.xml (No such file or directory)
+
+b27chen-3.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: x3.atom (No such file or directory)
+Caused by: java.io.FileNotFoundException: x3.atom (No such file or directory)
+
+b27chen-4.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: x4.atom (No such file or directory)
+Caused by: java.io.FileNotFoundException: x4.atom (No such file or directory)
+
+b27chen-5.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: x5.txt (No such file or directory)
+Caused by: java.io.FileNotFoundException: x5.txt (No such file or directory)
+
+b27chen-6.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: x6.txt (No such file or directory)
+Caused by: java.io.FileNotFoundException: x6.txt (No such file or directory)
+
+bamccoll_2.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'bamccoll_input4'
+
+bamccoll_3.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: bamccoll_stringint.txt (No such file or directory)
+Caused by: java.io.FileNotFoundException: bamccoll_stringint.txt (No such file or directory)
+
+barshad-1.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'additional_sum'
+
+barshad-2.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'b2_sum'
+
+barshad-3.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'barshad_3sortedTitles'
+
+barshad-5.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'barshad_5NF'
+
+bdtheoba_1.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'output'
+
+bdtheoba_5.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'output'
+
+bdtheoba_6.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: bdtheoba_springList.txt (No such file or directory)
+Caused by: java.io.FileNotFoundException: bdtheoba_springList.txt (No such file or directory)
+
+bdtpham_1.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: bdtpham_1in.atom (No such file or directory)
+Caused by: java.io.FileNotFoundException: bdtpham_1in.atom (No such file or directory)
+
+bdtpham_2.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: bdtpham_2in.txt (No such file or directory)
+Caused by: java.io.FileNotFoundException: bdtpham_2in.txt (No such file or directory)
+
+bdtpham_3.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: bdtpham_3in.txt (No such file or directory)
+Caused by: java.io.FileNotFoundException: bdtpham_3in.txt (No such file or directory)
+
+bdtpham_4.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: bdtpham_4in.xml (No such file or directory)
+Caused by: java.io.FileNotFoundException: bdtpham_4in.xml (No such file or directory)
+
+bdtpham_5.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: bdtpham_5in.xml (No such file or directory)
+Caused by: java.io.FileNotFoundException: bdtpham_5in.xml (No such file or directory)
+
+bdtpham_6.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: bdtpham_6in.atom (No such file or directory)
+Caused by: java.io.FileNotFoundException: bdtpham_6in.atom (No such file or directory)h
+
+brridder_5.adl:
+Exception in thread "main" java.lang.RuntimeException: org.xml.sax.SAXParseException: The element type "producttype" must be terminated by the matching end-tag "</producttype>".
+Caused by: org.xml.sax.SAXParseException: The element type "producttype" must be terminated by the matching end-tag "</producttype>".
+
+brridder_6.adl:
+Exception in thread "main" java.lang.RuntimeException: org.xml.sax.SAXParseException: The element type "section" must be terminated by the matching end-tag "</section>".
+Caused by: org.xml.sax.SAXParseException: The element type "section" must be terminated by the matching end-tag "</section>".
+
+cccbanne_4.adl:
+Exception in thread "main" java.lang.RuntimeException: org.xml.sax.SAXParseException: The markup in the document following the root element must be well-formed.
+Caused by: org.xml.sax.SAXParseException: The markup in the document following the root element must be well-formed.
+
+ch2lai-5.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: ch2lai_5i1.atom (No such file or directory)
+Caused by: java.io.FileNotFoundException: ch2lai_5i1.atom (No such file or directory)
+
+ch2lai-6.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: ch2lai_6i1.atom (No such file or directory)
+Caused by: java.io.FileNotFoundException: ch2lai_6i1.atom (No such file or directory)
+
+chulmane_2.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'chulmane_9out2'
+
+cjji-2.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'cjji_228'
+
+cjji-5.adl:
+Exception in thread "main" java.lang.RuntimeException: org.xml.sax.SAXParseException: The element type "iii" must be terminated by the matching end-tag "</iii>".
+Caused by: org.xml.sax.SAXParseException: The element type "iii" must be terminated by the matching end-tag "</iii>".
+
+cjji-6.adl:
+Exception in thread "main" java.lang.RuntimeException: org.xml.sax.SAXParseException: The element type "iii" must be terminated by the matching end-tag "</iii>".
+Caused by: org.xml.sax.SAXParseException: The element type "iii" must be terminated by the matching end-tag "</iii>".
+
+cletnick-1.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'decending'
+
+cletnick-2.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'decending'
+
+d25patel_3.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'turncate'
+
+d25patel_4.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'turncate'
+
+d25patel_6.adl:
+Exception in thread "main" java.lang.RuntimeException: org.xml.sax.SAXParseException: The entity name must immediately follow the '&' in the entity reference.
+Caused by: org.xml.sax.SAXParseException: The entity name must immediately follow the '&' in the entity reference.
+
+d38wang-3.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'd38wang_list'
+
+d38wang-6.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'Concat'
+
+daebidia-1.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'daebidia'
+
+daebidia-3.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'daebidia'
+
+daebidia-4.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'daebidia'
+
+daebidia-5.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'daebidia'
+
+daebidia-6.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'daebidia'
+
+dajjanss_[3].adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'dajjanss_numberlist'
+
+dbduives-1.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'dbduives_output'
+
+dbduives-2.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'dbduives_output'
+
+dbduives-3.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'dbduives_output'
+
+dbduives-4.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'dbduives_output'
+
+dbduives-5.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'dbduives_output'
+
+dbduives-6.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'dbduives_output'
+
+emjia-2.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'emija_2_string_concat'
+
+emjia-3.adl:
+Exception in thread "main" java.lang.RuntimeException: org.xml.sax.SAXParseException: The content of elements must consist of well-formed character data or markup.
+Caused by: org.xml.sax.SAXParseException: The content of elements must consist of well-formed character data or markup.
+
+emjia-4.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'emjia'
+
+emjia-6.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'emjia'
+
+h25huang-6.adl:
+Exception in thread "main" java.lang.RuntimeException: com.sun.org.apache.xerces.internal.impl.io.MalformedByteSequenceException: Invalid byte 2 of 2-byte UTF-8 sequence.
+
+h65wang-3.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'h65wang_li3'
+
+h65wang-4.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'h65wang_ls3'
+
+hc3wong_4.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'hc3wong_a_hc3wong___atom'
+
+hc3wong_5.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'order'
+
+hc3wong_6.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'tree'
+
+j5alexan-1.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: j5alexan_basic_int_new.atom (No such file or directory)
+Caused by: java.io.FileNotFoundException: j5alexan_basic_int_new.atom (No such file or directory)
+
+j5alexan-2.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: j5alexan_basic_str_new.atom (No such file or directory)
+Caused by: java.io.FileNotFoundException: j5alexan_basic_str_new.atom (No such file or directory)
+
+j5alexan-3.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'j5alexan_list_str_lt'
+
+j5alexan-4.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'j5alexan_list_int_lt'
+
+ja4wong_2.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'ja4wong_list11'
+
+ja4wong_4.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'ja4wong_atom9'
+
+ja4wong_5.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'list15'
+
+ja4wong_6.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'ja4wong_treeString'
+
+jajekir-2.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: jajekir_two.txt (No such file or directory)
+Caused by: java.io.FileNotFoundException: jajekir_two.txt (No such file or directory)
+
+jajekir-3.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: txtvar.txt (No such file or directory)
+Caused by: java.io.FileNotFoundException: txtvar.txt (No such file or directory)
+
+jg2eng-2.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'predicate'
+
+jg2eng-3.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'predicate'
+
+jg2eng-4.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'tree'
+
+jg2eng-5.adl:
+Exception in thread "main" java.lang.RuntimeException: java.io.FileNotFoundException: tree.xml (No such file or directory)
+Caused by: java.io.FileNotFoundException: tree.xml (No such file or directory)
+
+jgrieman_2.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'jgrimean_2is8'
+
+jgrieman_5.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'jgrieman_5trunc'
+
+jgrieman_6.adl:
+Exception in thread "main" java.lang.RuntimeException: org.xml.sax.SAXParseException: The markup in the document preceding the root element must be well-formed.
+Caused by: org.xml.sax.SAXParseException: The markup in the document preceding the root element must be well-formed.
+
+jh33lee_2.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'test2'
+
+jh33lee_3.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'test3'
+
+
+jh33lee_4.adl::
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'test4'
+
+jh33lee_5.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'test5'
+
+jh33lee_6.adl:
+Exception in thread "main" java.lang.RuntimeException: Unknown variable: 'test6'

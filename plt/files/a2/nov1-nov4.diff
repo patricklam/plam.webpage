@@ -1,0 +1,122 @@
+diff -ru ece251-lab2/src/ca/uwaterloo/ece251/ast/AbstractVisitor.java ece251-lab2-new/src/ca/uwaterloo/ece251/ast/AbstractVisitor.java
+--- ece251-lab2/src/ca/uwaterloo/ece251/ast/AbstractVisitor.java	2010-10-18 10:32:55.000000000 +0200
++++ ece251-lab2-new/src/ca/uwaterloo/ece251/ast/AbstractVisitor.java	2010-11-04 22:34:10.000000000 +0100
+@@ -52,6 +52,21 @@
+     public void enter(VacuumStmt t) {
+     }
+ 
++    public void enterColumns() {
++    }
++    
++    public void leaveColumns() {
++    }
++
++    public void leaveColumn(String s) {
++    }
++
++    public void enterValues() {
++    }
++
++    public void leaveValues() {
++    }
++
+     public void leave(SelectSingleSource t) {
+     }
+ 
+diff -ru ece251-lab2/src/ca/uwaterloo/ece251/ast/InsertStmt.java ece251-lab2-new/src/ca/uwaterloo/ece251/ast/InsertStmt.java
+--- ece251-lab2/src/ca/uwaterloo/ece251/ast/InsertStmt.java	2010-10-18 10:32:55.000000000 +0200
++++ ece251-lab2-new/src/ca/uwaterloo/ece251/ast/InsertStmt.java	2010-11-04 22:34:42.000000000 +0100
+@@ -25,9 +25,19 @@
+ 
+     public void accept(Visitor v) {
+ 	v.enter(this);
++        if (columns != null) {
++	    v.enterColumns();
++	    for (String s : columns) {
++		v.leaveColumn(s);
++	    }
++	    v.leaveColumns();
++        }
++
+ 	if (values != null) {
++	    v.enterValues();
+ 	    for (Expr e : values)
+ 		e.accept(v);
++	    v.leaveValues();
+ 	}
+ 	if (selectStmt != null)
+ 	    selectStmt.accept(v);
+diff -ru ece251-lab2/src/ca/uwaterloo/ece251/ast/Visitor.java ece251-lab2-new/src/ca/uwaterloo/ece251/ast/Visitor.java
+--- ece251-lab2/src/ca/uwaterloo/ece251/ast/Visitor.java	2010-10-18 10:32:55.000000000 +0200
++++ ece251-lab2-new/src/ca/uwaterloo/ece251/ast/Visitor.java	2010-11-04 22:35:38.000000000 +0100
+@@ -22,6 +22,12 @@
+     public void enter(UpdateStmt t);
+     public void enter(VacuumStmt t);
+ 
++    public void enterColumns();
++    public void leaveColumns();
++    public void leaveColumn(String s);
++    public void enterValues();
++    public void leaveValues();
++
+     public void leave(SelectSingleSource t);
+     public void leave(JoinSingleSource t);
+     public void leave(QualifiedTableNameSingleSource t);
+diff -ru ece251-lab2/src/ca/uwaterloo/ece251/ast/XMLVisitor.java ece251-lab2-new/src/ca/uwaterloo/ece251/ast/XMLVisitor.java
+--- ece251-lab2/src/ca/uwaterloo/ece251/ast/XMLVisitor.java	2010-11-01 18:08:27.000000000 +0100
++++ ece251-lab2-new/src/ca/uwaterloo/ece251/ast/XMLVisitor.java	2010-11-04 23:07:17.000000000 +0100
+@@ -72,6 +72,35 @@
+ 	tabLevel++;
+     }
+ 
++    public void enterColumns() {
++	printTabs();
++	System.out.println("<columns>");
++	tabLevel++;
++    }
++    
++    public void leaveColumns() {
++	tabLevel--;
++	printTabs();
++	System.out.println("</columns>");
++    }
++    
++    public void leaveColumn(String s) {
++	printTabs();
++	System.out.printf("<column name=\"%s\">\n", s);
++    }
++    
++    public void enterValues() {
++	printTabs();
++	System.out.println("<values>");
++	tabLevel++;
++    }
++    
++    public void leaveValues() {
++	tabLevel--;
++	printTabs();
++	System.out.println("</values>");
++    }
++
+     public void leave(SelectSingleSource t) {
+ 	tabLevel--;
+ 	printTabs();
+diff -ru ece251-lab2/src/ca/uwaterloo/ece251/Parser.java ece251-lab2-new/src/ca/uwaterloo/ece251/Parser.java
+--- ece251-lab2/src/ca/uwaterloo/ece251/Parser.java	2010-10-18 10:47:04.000000000 +0200
++++ ece251-lab2-new/src/ca/uwaterloo/ece251/Parser.java	2010-11-04 22:32:43.000000000 +0100
+@@ -8,6 +8,7 @@
+     TokenStream ts;
+     Token current;
+ 
++    /** Create a parser which consumes the given <code>TokenStream</code>. */
+     public Parser(TokenStream ts) {
+ 	this.ts = ts; 
+ 	// prime the pump
+@@ -40,6 +41,7 @@
+     /** Stops the program, printing out the syntax error. */
+     public void syntax_error() {
+ 	System.out.println("Syntax error at "+current);
++	// This line is debug code. Remove it in your final submission.
+ 	if (true) throw new RuntimeException();
+ 	System.exit(-1);
+     }

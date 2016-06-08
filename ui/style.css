@@ -1,0 +1,40 @@
+body
+{
+  background:white;
+  color:black;
+}
+
+.pic {
+ padding-top:1em;
+}
+
+.imgblk {
+ float:right; 
+ padding:1em;
+}
+
+.topbar
+{
+  background-color:#aaa;
+}
+
+div#navmenu
+{
+  position:absolute;
+  right:1em;
+  border:dotted thin;
+  padding:0.5em 1.5em 0px 1em;
+  line-height:1.2em;
+  color:#5ed6ff;
+  background-color:#aaa;
+  margin-top:2em;
+  width:150px;
+}
+
+#main
+{
+  margin-right: 210px;
+}
+
+A:link {color:#e96172e; background-color:inherit !important;}
+A:visited {color:#79410e; background-color:inherit !important;}

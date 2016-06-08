@@ -1,0 +1,34 @@
+Assignment 1 Marking Guidelines
+
+The general principle is that correct solutions earn full marks.
+However, it is your responsibility to demonstrate to the TA
+that your solution is correct. Well-designed, clean solutions 
+are therefore more likely to be recognized as correct. 
+
+Solutions that do not compile will earn at most 39% of the available
+marks for that part. Segfaulting or otherwise crashing solutions earn
+at most 49%.
+
+Part 0 (5 marks): Self-explanatory.
+
+Part 1 (50 marks):
+
+(40 marks for implementation) A correct solution must:
+ * start the appropriate number of threads (10 points);
+ * have each thread do a significant portion of the work, distributed among the 3 servers (10 points);
+ * code safety: prevent buffer overflows and clean up all allocated resources, as verified by valgrind (10 points); and
+ * avoid data races and produce the correct output (10 points).
+
+(10 marks for report) 8 marks for including the necessary information; 2 marks
+for clarity of exposition.
+
+Part 2 (45 marks):
+
+(40 marks for implementation) A correct solution must:
+ * properly initialize the curl_multi handle with the appropriate number of individual curl_easy handles (10 points);
+ * process results from the curl_multi handle (select/multi_perform/multi_info_read or multi_perform_socket) (10 points); 
+ * replace finished handles with new requests while requests remain (10 points);
+ * code safety: prevent buffer overflows and clean up all allocated resources (5 points); and
+ * produce the correct output (5 points).
+
+(5 marks for report) 4 marks for information, 1 for clarity of exposition.
