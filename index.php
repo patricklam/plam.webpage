@@ -15,7 +15,7 @@
 
 <div id="main">
 
-<p>I'm looking for students who are interested in starting in Fall 2016. If you are interested in doing research with 
+<p>I'm looking for students. If you are interested in doing research with 
 me at the University of Waterloo, please contact me and we can see if
 we have mutual interests. Be sure to provide some evidence that you
 know something about my research interests in your email!</p>
