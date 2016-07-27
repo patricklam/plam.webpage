@@ -64,6 +64,7 @@ My main contribution these days is in the form of review articles, such as this 
 
 <ul>
 <li><a href="https://eyolfson.ca">Jon Eyolfson</a></li>
+<li><a href="https://www.stephenli.ca">Stephen Li</a></li>
 </ul>
 
 <h2>Graduated Students</h2>
