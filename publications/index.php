@@ -21,7 +21,7 @@ li { margin-bottom: .5em}
 <h2>Refereed Publications</h2>
 
 <ul>
-  <li>Jon Eyolfson and Patrick Lam. ECOOP 2016: <a href="/papers/16.ecoop.dynamic-immutability.pdf">C++ const and Immutability: An Empirical Study of Writes-Through-const</a>. [<a href="/papers/16.ecoop.dynamic-immutability.bib">bib</a>]</li>
+  <li>Jon Eyolfson and Patrick Lam. ECOOP 2016: <a href="/papers/16.ecoop.dynamic-immutability.pdf">C++ const and Immutability: An Empirical Study of Writes-Through-const</a>. [<a href="/papers/16.ecoop.dynamic-immutability.bib">bib</a>, <a href="http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=6124">artifact</a>]</li>
   <li>Brian Demsky and Patrick Lam. OOPSLA 2015: <a href="/papers/15.oopsla.satcheck.pdf">SATCheck: SAT-Directed Stateless Model Checking for SC and TSO</a>. [<a href="/papers/15.oopsla.satcheck.bib">bib</a>]</li>
   <li>Zheng (Felix) Fang and Patrick Lam. PPPJ 2015: <a href="/papers/15.pppj.af-analysis.pdf">Identifying Test Refactoring Candidates with Assertion Fingerprints</a>. [<a href="/papers/15.pppj.af-analysis.bib">bib</a>]</li>
   <li>Quinn Hanam, Lin Tan, Reid Holmes and Patrick Lam. MSR 2014: <a href="/papers/14.msr.saa.pdf">Finding Patterns in Static Analysis Alerts: Improving Actionable Alert Ranking</a>. [<a href="/papers/14.msr.saa.bib">bib</a>]</li>
@@ -80,6 +80,10 @@ Patrice Pominville, and Vijay Sundaresan.  CC 2000: <a href="/papers/cc2000.ps">
 
 <h2>Posters and Presentations</h2>
 <ul>
+  <li>Patrick Lam. <a href="/presentations/16.iwaco.ownership-types-in-the-world.pdf">Are Ownership Types Reaching the World Yet?</a> Invited talk at <a href="http://2016.ecoop.org/track/IWACO-2016">7th International Workshop on Aliasing, Capabilities and Ownership</a>.</li>
+  <li>Patrick Lam. <a href="/presentations/15.srw.test-analysis.pdf">Static and Dynamic Analysis of Test Suites</a>. Invited talk at <a href="http://www.srl.inf.ethz.ch/workshop2015.php">3rd Annual ETH Zurich Software Reliability Workshop</a>. [<a href="https://www.youtube.com/watch?v=wblbI9LQdYQ">video</a>]</li>
+  <li>Patrick Lam. <a href="https://docs.google.com/presentation/d/1DMROLd1Vy61Ji3qHSil-vVvAIJuMoMQbVlmUX9iHdjc/">Test Suites and Program Analysis</a>. Contributed talk at <a href="https://developers.google.com/google-test-automation-conference/2015/">2015 Google Test Automation Conference</a>. [<a href="https://www.youtube.com/watch?v=dH7bXocxPR0&index=24&list=PLSIUOFhnxEiCWGsN9t5A-XOhRbmz54IS1">video</a>]</li>
+  <li>Patrick Lam. <a href="http://goo.gl/tVGzy3">Beyond Coverage: What Lurks in Test Suites?</a> Contributed talk at <a href="https://developers.google.com/google-test-automation-conference/2014/presentations">2014 Google Test Automation Conference</a>. [<a href="http://www.youtube.com/watch?v=hoCqnb7_N9o&list=PLSIUOFhnxEiDFckNDSjKWqOCtd8ksJrh4&index=1">video</a>]</li>
   <li>Patrick Lam, Viktor Kuncak and Martin Rinard.  Hob: A Tool for Verifying Data Structure Consistency.  Tool demo at <a href="http://www.etaps05.inf.ed.ac.uk/MainConferences/conference.html#cc">Compiler Construction 2005</a>.</li>
   <li>Patrick Lam.  <a href="http://www.iro.umontreal.ca/~jaumard/Conferences_and_Seminars/Seminaire_DIRO/Abstracts/Lam_Winter_2005.htm">Colloque du D&eacute;partement d'Informatique et recherche op&eacute;rationnelle</a>: The Hob System for Verifying Data Structure Consistency Properties. [<a href="/papers/udem.pdf">pdf</a>, handout front: <a href="/papers/udem.handout.front.svg">svg</a>, <a href="/papers/udem.handout.front.png">png</a>, back: <a href="/papers/udem.handout.back.svg">svg</a>, <a href="/papers/udem.handout.back.png">png</a>]</li>
   <li>Patrick Lam.  <a href="http://www.iro.umontreal.ca/~monnier/qcpls/11-2004.html.en">Qu&eacute;bec Programming Languages Seminaire, Fall 2004</a>: <a href="http://plam.csail.mit.edu//papers/qcpls.pdf">The Hob System for Verifying Data Structure Consistency Properties</a> [<a href="http://plam.csail.mit.edu//papers/qcpls.sxi">sxi</a>].</li>
