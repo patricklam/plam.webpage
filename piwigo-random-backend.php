@@ -28,15 +28,15 @@ $element_name = 'random_image';
 $mode = 'javascript';
 $target = '_blank';
 
-if (is_numeric($_GET['maximages']))
-{
-  $maximages = intval($_GET['maximages']);
-}
+//if (is_numeric($_GET['maximages']))
+//{
+//  $maximages = intval($_GET['maximages']);
+//}
 
-if (is_numeric($_GET['cat_id']))
-{
-  $cat_id = intval($_GET['cat_id']);
-}
+//if (is_numeric($_GET['cat_id']))
+//{
+//  $cat_id = intval($_GET['cat_id']);
+//}
 
 if (isset($_GET['element_name']))
 {
@@ -56,7 +56,7 @@ header('Content-Type: text/javascript');
 $url = $site . "ws.php" .
   "?format=php" .
   "&method=pwg.categories.getImages" .
-  ($cat_id ? "&cat_id=" . $cat_id : "") .
+//  ($cat_id ? "&cat_id=" . $cat_id : "") .
   "&recursive=true" .
   "&per_page=" . $maximages .
   "&page=1" .
