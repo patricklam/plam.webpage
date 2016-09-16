@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>SE 101: Introduction to Methods of Software Engineering</title>
+<script type="text/javascript" src="/ui/alternate_rows.js"></script>
+<link rel="stylesheet" type="text/css" href="alternating-rows.css" />
+<!--#include virtual="includes/header.html" -->
+
+<body>
+<div id="primarycontarea">
+  <div id="primarycontent">
+    <!-- InstanceBeginEditable name="primarycontent" -->
+
+<h3>About This Course</h3>
+
+    <p>This half-weight course introduces you to the Software Engineering programme and to engineering as a profession. The focus is more on soft skills (which are super important!) rather than hard technical skills, although you will still be writing software for the course project.
+    </p>
+
+  </div>
+</div>
+
+<!--#include virtual="includes/footer.html" -->
