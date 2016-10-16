@@ -3,8 +3,8 @@
  <h1>Patrick Lam</h1>
   <address style="margin-left:1em"> 
     Associate Professor, Department of Electrical and Computer Engineering <br>
+    Director, Software Engineering Programme <br>
     University of Waterloo <br>
-    Gastprofessor, ETH Zurich (2015-2016) <br>
     email: <code>patrick.lam@uwaterloo.ca</code> (no unsolicited commercial email) <br>
     phone: use email instead!
   </address>
