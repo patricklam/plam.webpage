@@ -21,6 +21,7 @@ li { margin-bottom: .5em}
 <h2>Refereed Publications</h2>
 
 <ul>
+  <li>Andrei Marian Dan, Patrick Lam, Torsten Hoefler, and Martin Vechev. OOPSLA 2016: <a href="/papers/16.oopsla.rma-alloy.pdf">Modeling and Analysis of Remote Memory Access Programming</a>. [<a href="/papers/16.oopsla.rma-alloy.bib">bib</a>]</li>
   <li>Jon Eyolfson and Patrick Lam. ECOOP 2016: <a href="/papers/16.ecoop.dynamic-immutability.pdf">C++ const and Immutability: An Empirical Study of Writes-Through-const</a>. [<a href="/papers/16.ecoop.dynamic-immutability.bib">bib</a>, <a href="http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=6124">artifact</a>]</li>
   <li>Brian Demsky and Patrick Lam. OOPSLA 2015: <a href="/papers/15.oopsla.satcheck.pdf">SATCheck: SAT-Directed Stateless Model Checking for SC and TSO</a>. [<a href="/papers/15.oopsla.satcheck.bib">bib</a>]</li>
   <li>Zheng (Felix) Fang and Patrick Lam. PPPJ 2015: <a href="/papers/15.pppj.af-analysis.pdf">Identifying Test Refactoring Candidates with Assertion Fingerprints</a>. [<a href="/papers/15.pppj.af-analysis.bib">bib</a>]</li>
