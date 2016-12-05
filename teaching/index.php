@@ -18,16 +18,18 @@
 
 <h2>Teaching</h2>
 
-<p>In Winter 2013, I am teaching the following course: </p>
+<p>In Winter 2017, I am teaching: </p>
 
 <ul>
-<li> <a href="/ece155/">ECE155</a>: Engineering Design for Embedded Systems.</li>
-<li> <a href="/p4p/">ECE459</a>: Programming for Performance.</li>
+<li> <a href="/stqam">SE465/ECE453/CS447</a>: Software Testing, Quality Assurance &amp; Maintenance</li>
 </ul>
 
 <p> I have taught the following courses: </p>
 
 <ul>
+<li> <a href="https:///github.com/patricklam/se101-f16">SE101</a>, Fall 2016: Introduction to Methods of Software Engineering</li>
+<li> <a href="https:///github.com/patricklam/p4p-2015">ECE459</a>, Winter 2015: Programming for Performance.</li>
+<li> <a href="/ece155/">ECE155</a>: Engineering Design for Embedded Systems.</li>
 <li> <a href="ece155-s11.pdf">ECE155</a>, Spring 2011: Engineering Design for Embedded Systems. Git repository: <code>http://patricklam.ca/ece155/s11.git</code></li>
 <li> <a href="ece155-w11.pdf">ECE155</a>, Winter 2011: Engineering Design for Embedded Systems. You can find a git repository of my course materials (adapted from originals by B. Bishop) here: <code>http://patricklam.ca/ece155/w11.git</code></li>
 <li> <a href="/p4p/2011/">ECE459</a>, Winter 2011: Programming for Performance.</li>
