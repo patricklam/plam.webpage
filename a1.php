@@ -33,7 +33,7 @@
      ?>   <h1> A1Q1 automarker results </h1> <?php
      $pmd = '/home/plam/jail/pmd-bin-5.5.2';
        exec("$pmd/bin/run.sh pmd -f text -R $pmd/a1q1-automarker.xml -d " . $_FILES["fcat"]["tmp_name"], $output, $rv);
-       echo 'PMD errors (ideally empty): <pre>';
+       echo 'Reported automarker errors (ideally empty): <pre>';
        foreach($output as $line) {
          echo $line . "\n";
        }
