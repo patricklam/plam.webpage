@@ -63,13 +63,16 @@ My main contribution these days is in the form of review articles, such as this 
 <h2>Current Students</h2>
 
 <ul>
-<li><a href="https://eyolfson.ca">Jon Eyolfson</a></li>
-<li><a href="https://www.stephenli.ca">Stephen Li</a></li>
+  <li><a href="https://www.stephenli.ca">Stephen Li</a></li>
+  <li>Jun Zhao</li>
+  <li>Zeming Liu</li>
+  <li>Qian Liang</li>
 </ul>
 
 <h2>Graduated Students</h2>
 
 <ul>
+<li><a href="https://eyolfson.ca">Jon Eyolfson</a></li>
 <li>Jeff Zarnett (co-supervised with Mahesh Tripunitara)</li>
 <li>Aakarsh Nair</li>
 <li>Hang Chu</li>
