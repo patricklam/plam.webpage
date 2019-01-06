@@ -18,15 +18,19 @@
 
 <h2>Teaching</h2>
 
-<p>In Winter 2017, I am teaching: </p>
+<p>In Winter 2019, I am teaching: </p>
 
 <ul>
-<li> <a href="/stqam">SE465/ECE453/CS447</a>: Software Testing, Quality Assurance &amp; Maintenance</li>
+<li> SE465: Software Testing, Quality Assurance &amp; Maintenance [<a href="https://github.com/patricklam/stqam-2019">github</a>]</li>
+<li> ECE459: Programming for Performance [<a href="https://github.com/jzarnett/ece459">github</a>]</li>
 </ul>
 
 <p> I have taught the following courses: </p>
 
 <ul>
+<li> <a href="https:///github.com/patricklam/se101-f18">SE101</a>, Fall 2018: Introduction to Methods of Software Engineering</li>
+<li> ECE459, Winter 2018: Programming for Performance [<a href="https://github.com/jzarnett/ece459">github</a>]</li>
+<li> <a href="/stqam">SE465/ECE453/CS447</a>, Winter 2017: Software Testing, Quality Assurance &amp; Maintenance</li>
 <li> <a href="https:///github.com/patricklam/se101-f16">SE101</a>, Fall 2016: Introduction to Methods of Software Engineering</li>
 <li> <a href="https:///github.com/patricklam/p4p-2015">ECE459</a>, Winter 2015: Programming for Performance.</li>
 <li> <a href="/ece155/">ECE155</a>: Engineering Design for Embedded Systems.</li>

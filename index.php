@@ -63,10 +63,8 @@ My main contribution these days is in the form of review articles, such as this 
 <h2>Current Students</h2>
 
 <ul>
-  <li><a href="https://www.stephenli.ca">Stephen Li</a></li>
-  <li>Jun Zhao</li>
-  <li>Zeming Liu</li>
   <li>Qian Liang</li>
+  <li>Ali Iman</li>
 </ul>
 
 <h2>Graduated Students</h2>
@@ -80,6 +78,10 @@ My main contribution these days is in the form of review articles, such as this 
 <li>Divam Jain (co-supervised with Reid Holmes)</li>
 <li>Felix Fang</li>
 <li>Wenzhu Man</li>
+<li><a href="https://www.stephenli.ca">Stephen Li</a></li>
+<li>Jun Zhao</li>
+<li>Zeming Liu</li>
+<li><a href="https://eyl.io">Jon Eyolfson</a></li>
 </ul>
 
 <h2>Publications</h2>
