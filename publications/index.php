@@ -21,7 +21,7 @@ li { margin-bottom: .5em}
 <h2>Refereed Publications</h2>
 
 <ul>
-  <li>Jon Eyolfson and Patrick Lam. To appear in ICSE 2019: How C++ Developers Use Immutability Declarations: an Empirical Study.</li>
+  <li>Jon Eyolfson and Patrick Lam. To appear in ICSE 2019: <a href="/papers/19.icse.empirical-static-const.pdf">How C++ Developers Use Immutability Declarations: an Empirical Study</a>. [<a href="/papers/19.icse.empirical-static-const.bib">bib</a>]</li>
   <li>Andrei Marian Dan, Patrick Lam, Torsten Hoefler, and Martin Vechev. OOPSLA 2016: <a href="/papers/16.oopsla.rma-alloy.pdf">Modeling and Analysis of Remote Memory Access Programming</a>. [<a href="/papers/16.oopsla.rma-alloy.bib">bib</a>, <a href="/files/rma-alloy.xz">artifact</a>]</li>
   <li>Jon Eyolfson and Patrick Lam. ECOOP 2016: <a href="/papers/16.ecoop.dynamic-immutability.pdf">C++ const and Immutability: An Empirical Study of Writes-Through-const</a>. [<a href="/papers/16.ecoop.dynamic-immutability.bib">bib</a>, <a href="http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=6124">artifact</a>]</li>
   <li>Brian Demsky and Patrick Lam. OOPSLA 2015: <a href="/papers/15.oopsla.satcheck.pdf">SATCheck: SAT-Directed Stateless Model Checking for SC and TSO</a>. [<a href="/papers/15.oopsla.satcheck.bib">bib</a>]</li>
