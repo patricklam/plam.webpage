@@ -1,0 +1,253 @@
+<html>
+
+	<head>
+		<link rel="stylesheet" type="text/css" href="coverity.css" />
+	</head>
+	
+	<body>
+		<!--<h2>Coverity static analysis for ECE453/ECE653/SE465/CS447/CS647</h2>-->
+		<h2>Coverity static analysis for SE465 (courtesy Lin Tan)</h2>
+		<p>This page demonstrates the use of the Coverity static analysis tool for bug detection. </p>
+		<p><b>Prerequisite</b>: Coverity should be configured for the language/compiler that you are using. For example, if using Java, Coverity should be configured to use the <span class="code">javac</span> compiler.</p>
+
+		<h3>Table of Contents</h3>
+		<ol>
+			<li>
+				<a href="#platform">Inspecting Defects Using Coverity Platform</a>
+				<ol>
+					<li><a href="#login">Log In to Platform</a></li>
+					<li><a href="#inspect">Inspect Coverity and FindBugs Warnings</a></li>
+				</ol>
+			</li>
+			<li>
+				<a href="#compiling_gui">How to Compile and Analyze Java and C/C++ Programs using the Graphical Interface?</a>
+				<ol>
+					<li><a href="#ecelinux">Log In to ECE Linux Servers</a></li>
+					<li><a href="#intermediate">Create an Intermediate Directory</a></li>
+					<li><a href="#config_build">Configure the Build Script</a></li>
+					<ol type="a">
+						<li><a href="#intro_sc">Introduction Screen</a></li>
+						<li><a href="#compiler_sc">Compiler Configuration Screen</a></li>
+						<li><a href="#build_sc">Configure the Build Screen</a></li>
+						<li><a href="#analysis_sc">Analysis Screen</a></li>
+						<li><a href="#commit_sc">Commit Defects Screen</a></li>
+						<li><a href="#vizualize">Find and Fix Bugs</a></li>
+					</ol>
+				</ol>
+			</li>
+			<li>
+				<a href="#compiling_command_line">How to Compile and Analyze Java and C/C++ Programs using the command line?</a>
+				<ol>
+					<li><a href="#ecelinux">Log In to ECE Linux Servers</a></li>
+					<li><a href="#intermediate">Create an Intermediate Directory</a></li>
+					<li><a href="#build_script">Configure the Build Script</a></li>
+					<li><a href="#build">Run Coverity's Build Command</a></li>
+					<li><a href="#analyze">Analyze the Output</a></li>
+					<li><a href="#commit">Commit the Defects</a></li>
+
+					<li><a href="#output">Find and Fix Bugs</a></li>
+				</ol>
+			</li>
+			<li><a href="#reference_material">Reference Material (Further Reading).</a></li>
+		</ol>
+
+		<h2 id="platform">Inspecting Defects Using Coverity Platform</h2>
+
+		<h3 id="login">1) Log in to Platform</h3>
+
+		Platform is installed as a web application. Navigate to <a href="http://ecetesla0.uwaterloo.ca:8080">http://ecetesla0.uwaterloo.ca:8080</a>. Login username and password can be found in proj.pdf.
+
+		<h3 id="inspect">2) Inspect Coverity and Findbugs Warnings</h3>
+
+		<p>In the navigation tree on the left-hand side of the page, select "Outstanding Defects". This provides a summary of the warnings found in the analysis of the Apache Commons library. Click on one of the warnings. The source code associated with the warning will appear in the pane below the warning list. On the right-hand side of the screen is more information about the warning.</p>
+
+		<p>To assist in triaging the warnings, you may want to look at the events in the source code that led the checker to produce a warning. The events are shown under the "Occurrences" menu in the panel on the right.</p>
+
+		<h2 id="compiling_gui">How to Compile and Analyze Java and C/C++ Programs Using Coverity using the Graphical Interface?</h2>
+		
+		Coverity is installed on the ECE Linux servers at path <span class="code"> /usr/local/cov-analysis-linux64-8.7.1/</span>.
+
+		
+		<h4 id="cov">1) Create a project and a stream</h4>
+		<p>Connect to <a href="http://ecetesla0.uwaterloo.ca:8080">http://ecetesla0.uwaterloo.ca:8080</a> with the credentials you received by email. Click on "Configuration", 
+		"Projects & Streams" and click on "+Project" to create your project. Name it gXX_project. Then select your project and click on "+Stream" to create 
+		a stream in your project. Call it also "gXX_project". <font color="red"><strong>Then, in the "Roles" tab, click on "add" and check the box"No Access" for the group "Students".</strong></font></p>
+
+		
+		<h4 id="ecelinux_gui">2) Log In to ECE Linux Servers</h4>
+
+		<p>You can access the server by logging into <span class="code">ecetesla0.uwaterloo.ca</span> through <span class="code">ssh</span> (don't forget -X to be able to run the graphical interface). SE students should have access to ecelinux. If you don't, please contact the lab instructor. All of the following steps in this tutorial should be performed from the home directory of your ecelinux account.</p>
+		<p> Coverity is only installed on <strong>ecelinux1, ecelinux2, and ecelinux3</strong>. Make sure you are connecting to one of those machine to use Coverity, otherwise, it won't work!</p>
+
+		
+		<h4 id="wizard">3) Launch Coverity Wizard </h4>
+		<p>To start the Coverity wizard and create your project, use the following command:</p>
+		<p class="code"> /usr/local/cov-analysis-linux64-8.7.1/bin/cov-wizard</p>
+		
+	
+		<h4 id="config_build">4) Configure the Build</h4>
+		The Wizard tutorial is available on <a href="http://ecetesla0.uwaterloo.ca:8080/docs/en/cov_wizard_usage_guide.html">http://ecetesla0.uwaterloo.ca:8080/docs/en/cov_wizard_usage_guide.html</a>.
+		
+		<h5 id="intro_sc">Introduction Screen</h5>
+		<p>Enter the name of your project. <strong>Your project name should start with 'g' followed by your group number. For example, if you are in group 2, your project name can be 'g2_myproject'.</strong> Choose the option "Analyze my software for possible problems", and check the box "Quality Advisor: Find general defects". Be sure to uncheck "Security Advisor for Java: Find Security vulnerabilities". </p>
+
+		<h5 id="compiler_sc">Compiler Configuration Screen</h5>
+		<p>Some compilers for Java, C and C++ are already configured, if you are using one of them, you have nothing to do here. If you are using a different compiler, you will need to create a new coverity_config.xml and add the compiler you use to the list.</p>
+
+		<h5 id="build_sc">Configure the Build Screen</h5>
+		<p>Coverity will use the build script that you pass to it and intercept any calls to your compiler. For Java this is <span class="code">javac</span> while for C/C++ Coverity is configured for <span class="code">g++</span> or <span class="code">gcc</span> This means that you can pass Coverity pretty much any build script, including shell scripts, Apache Ant, make, cmake etc. Ensure your build script is functioning properly by first building the program without Coverity.
+		<p>In this screen, you also need to choose the intermediate directory. The intermediate directory is where Coverity stores all the files associated with the analysis. Both the compiled code as well as the results are stored in this directory. Create an output directory in your home directory on ecelinux for your static analysis:</p>
+		<p>Finally, click on Capture Build. If the GUI crash at this step, please follow the command lines instructions.</p>
+		
+		
+		<h5 id="analysis_sc">Analysis Screen</h5>
+		Choose the kind of analysis you want to do (Choose at least "Enable all checkers commonly used" and "Enable FindBug checkers". You can play with the different options such as the aggressivity level. Click on "Run Analysis". This step will take at least a few minutes.
+	
+		<h5 id="commit_sc">Commit Defects Screen</h5>
+		<p>The host name is ecetesla0.uwaterloo.ca, the port is 8080. The username and password were sent to you by email. The stream should be the one you created in step 2.</p>
+		
+		
+		<h5 id="vizualize">Find and Fix bugs</h5>
+		<p>Connect  on  <a href="http://ecetesla0.uwaterloo.ca:8080">http://ecetesla0.uwaterloo.ca:8080</a> with your credentials and navigate to your project to see the list of errors.</p>
+		
+		
+		<h2 id="compiling_command_line">How to Compile and Analyze Java and C/C++ Programs Using Coverity using command line</h2>
+
+		Coverity is installed on the ECE Linux servers at path <span class="code"> /usr/local/cov-analysis-linux64-8.7.1/</span>.
+		<h4 id="cov">1) Create a project and a stream</h4>
+		<p>Connect to <a href="http://ecetesla0.uwaterloo.ca:8080">http://ecetesla0.uwaterloo.ca:8080</a> with the credentials you received by email. Click on "Configuration", 
+		"Projects & Streams" and click on "+Project" to create your project. Name it gXX_project. Then select your project and click on "+Stream" to create 
+		a stream in your project. Call it also "gXX_project". <font color="red"><strong>Then, in the "Roles" tab, click on "add" and check the box"No Access" for the group "Students".</strong></font></p>
+
+		<h4 id="ecelinux">2) Log In to ECE Linux Servers</h4>
+
+		<p>You can access the server by logging in to <span class="code">ecelinuxN.uwaterloo.ca</span> through <span class="code">ssh</span>. If you are enrolled in the class, you should have access to ecelinux. If you don't, please contact the lab instructor. All of the following steps in this tutorial should be performed from the home directory of your ecelinux account.</p>
+		<p> Coverity is only installed on ecelinux1, ecelinux2, ecelinux3 and ecelinux5. Make sure you are connecting to one of those machine to use Coverity, otherwise, it won't work!</p>
+		<h4 id="intermediate">3) Create an Intermediate Directory.</h4>
+
+		<p>The intermediate directory is where Coverity stores all the files associated with the analysis. Both the compiled code as well as the results are stored in this directory. Create an output directory in your home directory on ecelinux for your static analysis:</p>
+		<p class="code">mkdir ~/sa_output</p>
+
+		<p>Next, create the directory for the intermediary files. Hint: append the revision number to this directory to avoid overwriting this directory in the future.</p>
+		<p class="code">mkdir ~/sa_output/intermediate_r[revision]</p>
+
+		<h4 id="build_script">4) Configure the Build Script</h4> 
+		<p>Coverity will use the build script that you pass to it and intercept any calls to your compiler. For Java this is <span class="code">javac</span> while for C/C++ Coverity is configured for <span class="code">g++</span> or <span class="code">gcc</span> This means that you can pass Coverity pretty much any build script, including shell scripts, Apache Ant, make, cmake etc. Ensure your build script is functioning properly by first building the program without Coverity.
+
+		<!--<p>In the case of Apache Ant ensure:
+			<ol>
+				<li>The correct version of Ant is installed</li>
+				<li>Environment variables point to the correct locations:
+					<ul>
+						<li>ANT_HOME =&gt; path to Ant installation</li>
+						<li>PATH =&gt; includes $ANT_HOME/bin</li>
+					</ul>
+				</li>
+				<li>The correct version of Ant is installed to compile your program.</li>
+			</ol>
+		</p>-->
+
+		<h4 id="build">5) Run Coverity's Build Command</h4>
+
+		<p>This will compile your program. The build will be intercepted by Coverity and the intermediary files needed for analysis will be created here. Depending on the size of the program, this step could take some time (~1 hour for 1MLOC). The format for this command is <span class="code">cov-build --dir [intermediate_directory] [build_command]</p>
+
+		<p class="code"> /usr/local/cov-analysis-linux64-8.7.1/bin/cov-build --dir ~/sa_output/intermediate_r[revision]/ [build_command]</p>
+
+		<p>
+		Examples of <span class="code">[build_command]</span>:
+			<ul>
+				<li>make: <span class="code">make</span>
+				<li>javac: <span class="code">javac myprogram.java</span>
+				<li>Apache Ant: <span class="code">ant -f build.xml</span></li>
+			</ul>
+		</p>
+
+		<h4 id="analyze">6) Analyze the Output.</h4>
+
+		<p>Now we can analyze the output of the build and find potential bugs.</p>
+
+		<p class="code">/usr/local/cov-analysis-linux64-8.7.1/bin/cov-analyze --dir ~/sa_output/intermediate_r[revision]</p>
+
+		<h4 id="commit">7) Commit your defects</h4>
+		<p class="code">/usr/local/cov-analysis-linux64-8.7.1/bin/cov-commit-defects --dir ~/sa_output/intermediate_r[revision] --host ecetesla0.uwaterloo.ca --user gXXX --port 8080 --stream gXXX_project
+		</p>
+		<p>The only things you should change is the user (gXXX) and the stream name (gXXX_project). The stream name should match the stream you created in step 1. Then you will be asked to enter the password for your group</p>
+		<h4 id="output">8) Find and Fix Bugs</h4>
+		<p>If the commit is successfull, you should be able to see your project on  <a href="http://ecetesla0.uwaterloo.ca:8080">http://ecetesla0.uwaterloo.ca:8080</a> with your credentials and navigate to your project to see the list of errors.</p>
+
+		<p>If the commit fail, you can still see the output from the analysis is located in <span class="code">~/sa_output/intermediate_r[revision]/[java|c]/output/[CHECKER].errors.xml</span>. Each checker looks for different bug types. Read checker_ref.pdf (see <a href="#reference_material">Reference Material</a> section) for details on what each checker looks for. Note that C/C++ has different checkers than Java.</p>
+
+		<p>The following snippet is taken from <span class="code">FORWARD_NULL.errors.xml</span> during an analysis of Tomcat6:</p>
+
+		<p class="code">
+			&lt;error&gt;<br/>
+			&nbsp;
+			&lt;checker&gt;FORWARD_NULL&lt;/checker&gt;<br/>
+			&nbsp;
+			&lt;file&gt;/home/user/tomcat6/java/org/apache/tomcat/util/buf/MessageBytes.java&lt;/file&gt;<br/>
+			&nbsp;
+			&lt;function&gt;org.apache.tomcat.util.buf.MessageBytes.equalsIgnoreCase(java.lang.String)&lt;/function&gt;<br/>
+			&nbsp;
+			&lt;score&gt;100&lt;/score&gt;<br/>
+			&nbsp;
+			&lt;ordered&gt;true&lt;/ordered&gt;<br/>
+			&nbsp;
+			&lt;event&gt;<br/>
+			&nbsp;&nbsp;
+			&lt;tag&gt;switch&lt;/tag&gt;<br/>
+			&nbsp;&nbsp;
+			&lt;description&gt;{CovLStr{v1}{Switch case value {0}}{&quot;1&quot;}}&lt;/description&gt;<br/>
+			&nbsp;&nbsp;
+			&lt;line&gt;328&lt;/line&gt;<br/>
+			&nbsp;&nbsp;
+			&lt;path_event&gt;<br/>
+			&nbsp;&nbsp;
+			&lt;jump&gt;true&lt;/jump&gt;<br/>
+			&nbsp;&nbsp;
+			&lt;/path_event&gt;<br/>
+			&nbsp;
+			&lt;/event&gt;<br/>
+			&nbsp;
+			...<br/>
+			&nbsp;
+			&lt;event&gt;<br/>
+			&nbsp;&nbsp;
+			&lt;main&gt;true&lt;/main&gt;<br/>
+			&nbsp;&nbsp;
+			&lt;tag&gt;null_method_call&lt;/tag&gt;<br/>
+			&nbsp;&nbsp;
+			&lt;description&gt;{CovLStr{v1}{Calling a method on null object {0}.}{&quot;strValue&quot;}}&lt;/description&gt;<br/>
+			&nbsp;&nbsp;
+			&lt;line&gt;331&lt;/line&gt;<br/>
+			&nbsp;
+			&lt;/event&gt;<br/>
+			&nbsp;
+			&lt;extra&gt;strValue&lt;/extra&gt;<br/>
+			&nbsp;
+			&lt;subcategory&gt;none&lt;/subcategory&gt;<br/>
+			&lt;/error&gt;
+		</p>
+
+		<p>Each error is represented by an error element (&lt;error&gt;&lt;/error&gt;). Within the error element, you can view the potential bug as well as the reasoning behind why Coverity believes it is a bug. In this example, Coverity deduces that a method is called on a null object at line 331. Each step leading up to this conclusion, as well as the conclusion itself, can be viewed in &lt;event&gt; elements. To resolve this particular warning, the developer might remove the method call, initialize the object before the method call or change the conditional statements leading up to the method call.</p>
+
+		<h3 id="reference_material">Reference Material</h3>
+		<p>Reference material can be found in the documentation directory of the Coverity installation, which is at <span class="code">/usr/local/cov-analysis-linux64-8.7.1/doc/en</span>. The following manuals are useful for learning how to run Coverity static analysis:</p>
+
+			<h4>1) cov_command_ref.pdf</h4>
+			<p>Demonstrates the command line operations needed to compile and analyze your program using Coverity.</p>
+
+			<h4>2) cov_checker_ref.pdf</h4>
+			<p>Describes the static checkers (or rules) that Coverity uses to detect defects. Each checker detects a certain type of defect. Use this guide to learn what problems Coverity found with your program and how to fix them.</p>
+
+			<h4>3) cov_analysis_administration_guide.pdf</h4>
+			<p>Provides getting started guides for c and java.</p>
+			
+			<h4>4) <a href="http://ecetesla0.uwaterloo.ca:8080/doc/en/cov_wizard_usage_guide.html">http://ecetesla0.uwaterloo.ca:8080/doc/en/cov_wizard_usage_guide.html</a></h4>
+			<p>Provides details about the wizard configuration.</p>
+			
+			<h4>5) <a href="http://ecetesla0.uwaterloo.ca:8080/doc/en/index.html">http://ecetesla0.uwaterloo.ca:8080/doc/en/index.html</a></h4>
+			<p>General documentation of Coverity.</p>
+
+	</body>
+</html>
+
