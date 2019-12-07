@@ -1,9 +1,29 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html lang="en">
 
-<!-- Load d3.js -->
-<script src="https://d3js.org/d3.v4.js"></script>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SE Burnout Survey, Fall 2019</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+  </head>
+
+  <body>
+
+  <div class="container" id="main">
+    <div class="starter-template">
+  <h1>SE Burnout Survey, November 2019</h1>
+  <p>Author: Patrick Lam</p>
+  <p>
+    During Week 9 of Fall 2019, I polled Waterloo Software Engineering students about workload and burnout. Here are the answers I received, separated by class (SE 2021 and SE 2023). A = Strongly agree (left), D = strongly disagree (right).
+  </p>
+  
+<div>
 <h4>I've achieved the success I want at this stage of life.</h4>
 <div>
     <div id="success_2a" style="float:left"></div>
@@ -70,12 +90,21 @@
     <div id="se_net_benefit_3b" style="float:right"></div>
 </div>
 
+</div>
+    </div>
+  </div>
+  
 <script>
 
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 40},
     width = 460 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
+
+var clientWidth = document.getElementById("main").clientWidth;
+if ((width + margin.left + margin.right) * 2 > clientWidth) {
+    width = (clientWidth - margin.left * 3 - margin.right * 2) / 2;
+}
 
 // append the svg object to the body of the page
 var create_svg = function (tag) {
@@ -86,6 +115,10 @@ var create_svg = function (tag) {
     .append("g")
       .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
+}
+
+var ordinalToLetter = function(i) {
+    return ["", "A","a","n","d","D"][i];
 }
 
 // get the data
@@ -100,7 +133,9 @@ var chart = function(filename, f, svg, fill) {
         .attr("transform", "translate(20," + height + ")")
         .call(d3.axisBottom(x)
                 .tickValues([1,2,3,4,5])
-                .tickFormat(d3.format(".0f")));
+                .tickFormat(ordinalToLetter));
+//                .tickValues(["A","a","n","d","D"])
+//                .tickFormat(d3.format(".0f")));
 
     // set the parameters for the histogram
     var histogram = d3.histogram()
@@ -142,4 +177,10 @@ svg_3b.forEach(x => chart(x[0]+"_3b.csv", x[0], x[1], "#404080"));
 
 
 </script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  </body>
+</html>
 

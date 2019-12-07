@@ -65,24 +65,24 @@
 
 		<h2 id="compiling_gui">How to Compile and Analyze Java and C/C++ Programs Using Coverity using the Graphical Interface?</h2>
 		
-		Coverity is installed on the ECE Linux servers at path <span class="code"> /usr/local/cov-analysis-linux64-8.7.1/</span>.
+		Coverity is installed on the ECE Linux servers at path <span class="code"> /opt/cov-analysis-linux64-2018.12/</span>.
 
 		
 		<h4 id="cov">1) Create a project and a stream</h4>
-		<p>Connect to <a href="http://ecetesla0.uwaterloo.ca:8080">http://ecetesla0.uwaterloo.ca:8080</a> with the credentials you received by email. Click on "Configuration", 
+		<p>Connect to <a href="http://ecetesla0.uwaterloo.ca:8080">http://ecetesla0.uwaterloo.ca:8080</a> with the credentials you received by email. Click on "Configuration" (now a dropdown at the top, next to the help dropdown), 
 		"Projects & Streams" and click on "+Project" to create your project. Name it gXX_project. Then select your project and click on "+Stream" to create 
 		a stream in your project. Call it also "gXX_project". <font color="red"><strong>Then, in the "Roles" tab, click on "add" and check the box"No Access" for the group "Students".</strong></font></p>
 
 		
 		<h4 id="ecelinux_gui">2) Log In to ECE Linux Servers</h4>
 
-		<p>You can access the server by logging into <span class="code">ecetesla0.uwaterloo.ca</span> through <span class="code">ssh</span> (don't forget -X to be able to run the graphical interface). SE students should have access to ecelinux. If you don't, please contact the lab instructor. All of the following steps in this tutorial should be performed from the home directory of your ecelinux account.</p>
-		<p> Coverity is only installed on <strong>ecelinux1, ecelinux2, and ecelinux3</strong>. Make sure you are connecting to one of those machine to use Coverity, otherwise, it won't work!</p>
+		<p>You can access the server by logging into <span class="code">ecetesla2.uwaterloo.ca</span> through <span class="code">ssh</span> (don't forget -X to be able to run the graphical interface). SE students should have access to ecelinux/ecetesla2. If you don't, please contact the lab instructor. All of the following steps in this tutorial should be performed from the home directory of your ecelinux account.</p>
+                <p> The Coverity install on machines that are not ecetesla2 might be broken. Use ecetesla2.</p>
 
 		
 		<h4 id="wizard">3) Launch Coverity Wizard </h4>
 		<p>To start the Coverity wizard and create your project, use the following command:</p>
-		<p class="code"> /usr/local/cov-analysis-linux64-8.7.1/bin/cov-wizard</p>
+		<p class="code">  /opt/cov-analysis-linux64-2018.12/bin/cov-wizard</p>
 		
 	
 		<h4 id="config_build">4) Configure the Build</h4>
@@ -113,7 +113,7 @@
 		
 		<h2 id="compiling_command_line">How to Compile and Analyze Java and C/C++ Programs Using Coverity using command line</h2>
 
-		Coverity is installed on the ECE Linux servers at path <span class="code"> /usr/local/cov-analysis-linux64-8.7.1/</span>.
+		Coverity is installed on the ECE Linux servers at path <span class="code"> /opt/cov-analysis-linux64-2018.12/</span>.
 		<h4 id="cov">1) Create a project and a stream</h4>
 		<p>Connect to <a href="http://ecetesla0.uwaterloo.ca:8080">http://ecetesla0.uwaterloo.ca:8080</a> with the credentials you received by email. Click on "Configuration", 
 		"Projects & Streams" and click on "+Project" to create your project. Name it gXX_project. Then select your project and click on "+Stream" to create 
@@ -121,8 +121,8 @@
 
 		<h4 id="ecelinux">2) Log In to ECE Linux Servers</h4>
 
-		<p>You can access the server by logging in to <span class="code">ecelinuxN.uwaterloo.ca</span> through <span class="code">ssh</span>. If you are enrolled in the class, you should have access to ecelinux. If you don't, please contact the lab instructor. All of the following steps in this tutorial should be performed from the home directory of your ecelinux account.</p>
-		<p> Coverity is only installed on ecelinux1, ecelinux2, ecelinux3 and ecelinux5. Make sure you are connecting to one of those machine to use Coverity, otherwise, it won't work!</p>
+		<p>You can access the server by logging in to <span class="code">ecetesla2.uwaterloo.ca</span> through <span class="code">ssh</span>. If you are enrolled in the class, you should have access to ecelinux. If you don't, please contact the lab instructor. All of the following steps in this tutorial should be performed from the home directory of your ecelinux account.</p>
+		<p> Use Coverity on ecetesla2. Things might be sketchy on other machines.</p>
 		<h4 id="intermediate">3) Create an Intermediate Directory.</h4>
 
 		<p>The intermediate directory is where Coverity stores all the files associated with the analysis. Both the compiled code as well as the results are stored in this directory. Create an output directory in your home directory on ecelinux for your static analysis:</p>
@@ -151,7 +151,7 @@
 
 		<p>This will compile your program. The build will be intercepted by Coverity and the intermediary files needed for analysis will be created here. Depending on the size of the program, this step could take some time (~1 hour for 1MLOC). The format for this command is <span class="code">cov-build --dir [intermediate_directory] [build_command]</p>
 
-		<p class="code"> /usr/local/cov-analysis-linux64-8.7.1/bin/cov-build --dir ~/sa_output/intermediate_r[revision]/ [build_command]</p>
+		<p class="code"> /opt/cov-analysis-linux64-2018.12/bin/cov-build --dir ~/sa_output/intermediate_r[revision]/ [build_command]</p>
 
 		<p>
 		Examples of <span class="code">[build_command]</span>:
@@ -166,10 +166,10 @@
 
 		<p>Now we can analyze the output of the build and find potential bugs.</p>
 
-		<p class="code">/usr/local/cov-analysis-linux64-8.7.1/bin/cov-analyze --dir ~/sa_output/intermediate_r[revision]</p>
+		<p class="code">/opt/cov-analysis-linux64-2018.12/bin/cov-analyze --dir ~/sa_output/intermediate_r[revision]</p>
 
 		<h4 id="commit">7) Commit your defects</h4>
-		<p class="code">/usr/local/cov-analysis-linux64-8.7.1/bin/cov-commit-defects --dir ~/sa_output/intermediate_r[revision] --host ecetesla0.uwaterloo.ca --user gXXX --port 8080 --stream gXXX_project
+		<p class="code">/opt/cov-analysis-linux64-2018.12/bin/cov-commit-defects --dir ~/sa_output/intermediate_r[revision] --host ecetesla0.uwaterloo.ca --user gXXX --port 8080 --stream gXXX_project
 		</p>
 		<p>The only things you should change is the user (gXXX) and the stream name (gXXX_project). The stream name should match the stream you created in step 1. Then you will be asked to enter the password for your group</p>
 		<h4 id="output">8) Find and Fix Bugs</h4>
@@ -231,7 +231,7 @@
 		<p>Each error is represented by an error element (&lt;error&gt;&lt;/error&gt;). Within the error element, you can view the potential bug as well as the reasoning behind why Coverity believes it is a bug. In this example, Coverity deduces that a method is called on a null object at line 331. Each step leading up to this conclusion, as well as the conclusion itself, can be viewed in &lt;event&gt; elements. To resolve this particular warning, the developer might remove the method call, initialize the object before the method call or change the conditional statements leading up to the method call.</p>
 
 		<h3 id="reference_material">Reference Material</h3>
-		<p>Reference material can be found in the documentation directory of the Coverity installation, which is at <span class="code">/usr/local/cov-analysis-linux64-8.7.1/doc/en</span>. The following manuals are useful for learning how to run Coverity static analysis:</p>
+		<p>Reference material can be found in the documentation directory of the Coverity installation, which is at <span class="code">/opt/cov-analysis-linux64-2018.12/doc/en</span>. The following manuals are useful for learning how to run Coverity static analysis:</p>
 
 			<h4>1) cov_command_ref.pdf</h4>
 			<p>Demonstrates the command line operations needed to compile and analyze your program using Coverity.</p>

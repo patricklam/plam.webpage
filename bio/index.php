@@ -92,7 +92,7 @@ spaces are semi-open), and they lack writing surfaces.</p>
 <h2>Hobbies</h2>
 
 <p>Since I do not watch TV, I have tons of free time for hobbies. You 
-will find pictures of me participating in my hobbies in <a href="/gallery2/">
+will find pictures of me participating in my hobbies in <a href="https://gallery.patricklam.ca">
 my gallery</a>.</p>
 
 <ul>
